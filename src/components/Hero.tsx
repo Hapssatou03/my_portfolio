@@ -1,0 +1,94 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { FaArrowDown } from 'react-icons/fa'
+
+const Hero = () => {
+  return (
+    <section className="py-12 md:py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-800 leading-tight">
+            Bonjour, je suis <span className="text-primary-600">Hapssatou</span>
+          </h1>
+          <h2 className="text-xl md:text-2xl text-gray-600 mt-4">
+            Concepteur Développeur d'Applications
+          </h2>
+          <p className="text-gray-700 mt-6 text-lg">
+            Passionnée par le développement web & mobile et la cybersécurité.
+            Je crée des applications robustes, performantes et sécurisées.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link href="#contact" className="btn btn-primary">
+              Me contacter
+            </Link>
+            <Link href="#projects" className="btn btn-outline">
+              Voir mes projets
+            </Link>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          <div className="relative w-full h-[400px] md:h-[500px]">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-secondary-200 rounded-full opacity-20 blur-3xl"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                <Image 
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                  alt="Hapssatou" 
+                  width={400} 
+                  height={400}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </div>
+            <div className="absolute -bottom-4 -right-4 md:bottom-0 md:right-0">
+              <div className="bg-white rounded-full p-3 shadow-lg">
+                <div className="bg-primary-100 rounded-full p-3">
+                  <div className="bg-primary-200 rounded-full p-3">
+                    <div className="bg-primary-500 rounded-full p-3 text-white">
+                      <span className="font-bold">CDA</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      <motion.div 
+        className="flex justify-center mt-16"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1 }}
+      >
+        <Link 
+          href="#about"
+          className="text-primary-600 flex flex-col items-center"
+        >
+          <span className="mb-2">Découvrir</span>
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            <FaArrowDown />
+          </motion.div>
+        </Link>
+      </motion.div>
+    </section>
+  )
+}
+
+export default Hero
