@@ -1,9 +1,9 @@
 'use client'
-
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaArrowDown } from 'react-icons/fa'
+
 
 const Hero = () => {
   return (
@@ -15,14 +15,13 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-800 leading-tight">
-            Bonjour, je suis <span className="text-primary-600">Hapssatou</span>
+            je suis <span className="text-primary-600">Hapssatou</span>
           </h1>
           <h2 className="text-xl md:text-2xl text-gray-600 mt-4">
-            Concepteur Développeur d'Applications
+            Conceptrice Développeuse d'Applications
           </h2>
           <p className="text-gray-700 mt-6 text-lg">
-            Passionnée par le développement web & mobile et la cybersécurité.
-            Je crée des applications robustes, performantes et sécurisées.
+            Passionnée par le développement web & mobile et l'Intelligence artificelle. 
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link href="#contact" className="btn btn-primary">
@@ -45,7 +44,7 @@ const Hero = () => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
                 <Image 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                    src="/images/picture1.png" 
                   alt="Hapssatou" 
                   width={400} 
                   height={400}

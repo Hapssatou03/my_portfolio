@@ -16,7 +16,6 @@ interface TransactionListProps {
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({ transactions, onDelete }) => {
-  // Format date to a readable format
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat('en-US', {

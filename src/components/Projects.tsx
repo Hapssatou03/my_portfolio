@@ -15,38 +15,54 @@ const Projects = () => {
         viewport={{ once: true }}
       >
         <h2 className="section-title">Mes projets</h2>
-        
+
         <div className="mt-12 space-y-20">
-          <ProjectCard 
+          {/* SPENDY */}
+          <ProjectCard
             title="Spendy"
-            description="Application mobile de gestion des dépenses"
-            image="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-            technologies={["React Native", "Spring Boot", "PostgreSQL", "JWT"]}
+            description="Application de gestion des finances personnelles avec statistiques automatiques."
+            image="/images/spendy.png" 
+            technologies={['React', 'Spring Boot', 'MySQL', 'MongoDB', 'JWT']}
             features={[
-              "React Native pour le front, Spring Boot pour le backend",
-              "Création d'une API REST sécurisée",
-              "Sécurisation des données utilisateurs (chiffrement, JWT)",
-              "Gestion des utilisateurs principaux et secondaires"
+              'API REST sécurisée (JWT, BCrypt)',
+              'Gestion revenus/dépenses + budgets',
+              'Dashboard et totaux automatiques',
+            ]}
+            githubLink="https://github.com/Hapssatou03/spendy_backend"
+            liveLink="https://spendy-front-klbm.vercel.app"
+            reverse={false}
+          />
+
+          {/* ÉCLAT SOLIDAIRE */}
+          <ProjectCard
+            title="Éclat Solidaire"
+            description="Plateforme solidaire pour connecter associations, bénévoles et bénéficiaires, avec gestion des projets et des dons."
+            image="/images/eclat-solidaire.png" 
+            technologies={['React', 'Node.js', 'Express', 'MongoDB']}
+            features={[
+              'Espace projets associatifs et suivi',
+              'Gestion des bénévoles et des dons',
+              'UI simple et accessible',
+            ]}
+            githubLink="https://github.com/hapssatou03/eclat-solidaire"
+            liveLink="https://eclat-solidaire.vercel.app"
+            reverse={true}
+          />
+
+          {/* EXPRESSIVE (exemple) */}
+          <ProjectCard
+            title="Expressive"
+            description="Blog full-stack sur le développement personnel et professionnel."
+            image="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80"
+            technologies={['Express.js', 'MongoDB', 'JWT', 'React']}
+            features={[
+              'API articles + users',
+              'Auth JWT',
+              'Interface fluide',
             ]}
             githubLink="https://github.com"
             liveLink="#"
             reverse={false}
-          />
-          
-          <ProjectCard 
-            title="Expressive"
-            description="Blog sur le développement personnel et professionnel"
-            image="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-            technologies={["Express.js", "MongoDB", "JWT", "React"]}
-            features={[
-              "Express.js + MongoDB",
-              "API REST pour la gestion des articles et des utilisateurs",
-              "Authentification avec JWT",
-              "Interface fluide et design optimisé"
-            ]}
-            githubLink="https://github.com"
-            liveLink="#"
-            reverse={true}
           />
         </div>
       </motion.div>
@@ -55,28 +71,29 @@ const Projects = () => {
 }
 
 interface ProjectCardProps {
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  features: string[];
-  githubLink: string;
-  liveLink: string;
-  reverse: boolean;
+  title: string
+  description: string
+  image: string
+  technologies: string[]
+  features: string[]
+  githubLink: string
+  liveLink?: string
+  reverse?: boolean
 }
 
-const ProjectCard = ({ 
-  title, 
-  description, 
-  image, 
-  technologies, 
-  features, 
-  githubLink, 
-  liveLink, 
-  reverse 
+const ProjectCard = ({
+  title,
+  description,
+  image,
+  technologies,
+  features,
+  githubLink,
+  liveLink,
+  reverse = false,
 }: ProjectCardProps) => {
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${reverse ? 'md:flex-row-reverse' : ''}`}>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      {/* Image side */}
       <motion.div
         initial={{ opacity: 0, x: reverse ? 50 : -50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -85,35 +102,55 @@ const ProjectCard = ({
         className={`order-2 ${reverse ? 'md:order-1' : 'md:order-2'}`}
       >
         <div className="relative rounded-xl overflow-hidden shadow-xl">
-          <Image 
-            src={image} 
-            alt={title} 
-            width={600} 
+          <Image
+            src={image}
+            alt={title}
+            width={600}
             height={400}
             className="w-full h-auto"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
             <div className="p-6 w-full">
               <div className="flex flex-wrap gap-2 mb-4">
                 {technologies.map((tech, index) => (
-                  <span key={index} className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs">
+                  <span
+                    key={index}
+                    className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs"
+                  >
                     {tech}
                   </span>
                 ))}
               </div>
               <div className="flex space-x-4">
-                <Link href={githubLink} className="bg-white text-gray-900 p-2 rounded-full hover:bg-primary-100 transition-colors">
+                <Link
+                  href={githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Voir le code ${title} sur GitHub`}
+                  className="bg-white text-gray-900 p-2 rounded-full hover:bg-primary-100 transition-colors"
+                >
                   <FaGithub />
                 </Link>
-                <Link href={liveLink} className="bg-white text-gray-900 p-2 rounded-full hover:bg-primary-100 transition-colors">
-                  <FaExternalLinkAlt />
-                </Link>
+
+                {liveLink && liveLink !== '#' && (
+                  <Link
+                    href={liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Voir la démo ${title}`}
+                    className="bg-white text-gray-900 p-2 rounded-full hover:bg-primary-100 transition-colors"
+                  >
+                    <FaExternalLinkAlt />
+                  </Link>
+                )}
               </div>
             </div>
           </div>
         </div>
       </motion.div>
-      
+
+      {/* Text side */}
       <motion.div
         initial={{ opacity: 0, x: reverse ? -50 : 50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -125,7 +162,7 @@ const ProjectCard = ({
           {title}
         </h3>
         <p className="text-xl text-gray-600 mb-4">{description}</p>
-        
+
         <ul className="space-y-2 mb-6">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start">
@@ -136,16 +173,29 @@ const ProjectCard = ({
             </li>
           ))}
         </ul>
-        
+
         <div className="flex space-x-4">
-          <Link href={githubLink} className="btn btn-outline flex items-center space-x-2">
+          <Link
+            href={githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline flex items-center space-x-2"
+          >
             <FaGithub />
             <span>Code source</span>
           </Link>
-          <Link href={liveLink} className="btn btn-primary flex items-center space-x-2">
-            <FaExternalLinkAlt />
-            <span>Voir le projet</span>
-          </Link>
+
+          {liveLink && liveLink !== '#' && (
+            <Link
+              href={liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary flex items-center space-x-2"
+            >
+              <FaExternalLinkAlt />
+              <span>Voir le projet</span>
+            </Link>
+          )}
         </div>
       </motion.div>
     </div>
