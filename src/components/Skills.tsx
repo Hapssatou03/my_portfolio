@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { motion } from "framer-motion";
 import {
@@ -8,7 +8,6 @@ import {
   FaShieldAlt,
   FaTools,
   FaPencilRuler,
-  FaProjectDiagram,
 } from "react-icons/fa";
 
 const Skills = () => {
@@ -16,14 +15,20 @@ const Skills = () => {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
-
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
   };
 
   return (
-    <section id="skills" className="py-16 bg-primary-50 rounded-3xl">
+    <section
+      id="skills"
+      className="
+        py-16 rounded-3xl
+        bg-primary-50 dark:bg-gray-900/40
+        border border-primary-100 dark:border-gray-800
+      "
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -38,13 +43,11 @@ const Skills = () => {
               icon={<FaCode />}
               title="Développement web & mobile"
               skills={[
-                "JavaScript & Frontend : React, React Native, Redux, Vue.js, Tailwind CSS",
-                "Backend : Node.js, Express.js",
-                "Java & Frameworks : Java, Spring Boot, Hibernate, JPA, Maven",
+                "Frontend : Javascript, Angular, React, React Native, Redux, Vue.js, Tailwind CSS",
+                "Backend : Java, Spring Boot, Hibernate, JPA, Maven, Node.js, Express.js ",
               ]}
               color="primary"
             />
-
             <SkillCard
               icon={<FaServer />}
               title="Création d'API REST"
@@ -55,7 +58,6 @@ const Skills = () => {
               ]}
               color="secondary"
             />
-
             <SkillCard
               icon={<FaDatabase />}
               title="Base de données"
@@ -66,7 +68,6 @@ const Skills = () => {
               ]}
               color="accent"
             />
-
             <SkillCard
               icon={<FaPencilRuler />}
               title="Conception (UX/UI & Architecture)"
@@ -79,7 +80,6 @@ const Skills = () => {
               ]}
               color="primary"
             />
-
             <SkillCard
               icon={<FaShieldAlt />}
               title="Sécurité & Authentification"
@@ -89,21 +89,27 @@ const Skills = () => {
               ]}
               color="primary"
             />
-
             <SkillCard
               icon={<FaTools />}
               title="DevOps & Outils"
               skills={[
                 "Docker (conteneurisation front/back)",
-                "CI/CD (GitHub Actions), gestion de versions : Git, GitHub",
+                "CI/CD (GitHub Actions); gestion de versions : Git, GitHub",
                 "Monitoring & logs de base",
               ]}
               color="secondary"
             />
           </div>
 
-          <div className="mt-16">
-            <h3 className="text-2xl font-serif font-bold text-primary-800 mb-6">
+          {/* Pourquoi me choisir ? */}
+          <div
+            className="
+              mt-16 p-8 rounded-3xl
+              bg-white/70 dark:bg-gray-900/60
+              border border-gray-100 dark:border-gray-800
+            "
+          >
+            <h3 className="text-2xl font-serif font-bold text-primary-800 dark:text-primary-200 mb-6">
               Pourquoi me choisir ?
             </h3>
 
@@ -114,66 +120,42 @@ const Skills = () => {
               whileInView="show"
               viewport={{ once: true }}
             >
-              <motion.li variants={item} className="flex items-start">
-                <div className="bg-primary-100 p-2 rounded-full mr-4 mt-1">
-                  <span className="text-primary-600 text-sm">✓</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900">
-                    Conception → Déploiement
-                  </h4>
-                  <p className="text-gray-700 mt-1">
-                    De la maquette Figma aux diagrammes UML puis au code, je
-                    couvre tout le cycle pour livrer vite et bien.
-                  </p>
-                </div>
-              </motion.li>
-
-              <motion.li variants={item} className="flex items-start">
-                <div className="bg-primary-100 p-2 rounded-full mr-4 mt-1">
-                  <span className="text-primary-600 text-sm">✓</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900">
-                    Développement sécurisé
-                  </h4>
-                  <p className="text-gray-700 mt-1">
-                    Bonnes pratiques de sécurité intégrées dès la conception
-                    (auth, chiffrement, durcissement API).
-                  </p>
-                </div>
-              </motion.li>
-
-              <motion.li variants={item} className="flex items-start">
-                <div className="bg-primary-100 p-2 rounded-full mr-4 mt-1">
-                  <span className="text-primary-600 text-sm">✓</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900">
-                    Performance & lisibilité
-                  </h4>
-                  <p className="text-gray-700 mt-1">
-                    Code maintenable, composants réutilisables et UX fluide pour
-                    des apps robustes et rapides.
-                  </p>
-                </div>
-              </motion.li>
-              {/* Partie humaine */}
-              <motion.li variants={item} className="flex items-start">
-                <div className="bg-primary-100 p-2 rounded-full mr-4 mt-1">
-                  <span className="text-primary-600 text-sm">✓</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900">
-                    Autonomie & persévérance
-                  </h4>
-                  <p className="text-gray-700 mt-1">
-                    Capable d'avancer aussi bien en équipe qu'en toute autonomie, de résoudre des blocages et de
-                    trouver des solutions créatives, je ne lâche rien face aux
-                    difficultés.
-                  </p>
-                </div>
-              </motion.li>
+              {[
+                {
+                  t: "De la conception au déploiement",
+                  d: "De l’idée jusqu’au produit en ligne. Je maîtrise tout le cycle pour livrer vite et bien.",
+                },
+                {
+                  t: "Développement sécurisé",
+                  d: "Pratiques de sécurité intégrées dès la conception et code maintenable, testé et documenté.",
+                },
+                {
+                  t: "Performance & expérience utilisateur",
+                  d: "Applications rapides et fluides, au design moderne et centré sur l’utilisateur.",
+                },
+                {
+                  t: "Polyvalence technique",
+                  d: "Langages, frameworks, bases de données, CI/CD.",
+                },
+                 {
+                  t: "Autonomie & esprit d’équipe",
+                  d: "Persévérante et organisée, J’aime relever les défis et trouver des solutions créatives.",
+                },
+                 {
+                  t: "Passion & engagement",
+                  d: "Je proposer des solutions créatives.",
+                },
+              ].map((e, i) => (
+                <motion.li key={i} variants={item} className="flex items-start">
+                  <div className="bg-primary-100 dark:bg-primary-900/40 p-2 rounded-full mr-4 mt-1">
+                    <span className="text-primary-600 dark:text-primary-300 text-sm">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900 dark:text-gray-100">{e.t}</h4>
+                    <p className="text-gray-700 dark:text-gray-200 mt-1">{e.d}</p>
+                  </div>
+                </motion.li>
+              ))}
             </motion.ul>
           </div>
         </motion.div>
@@ -190,21 +172,25 @@ interface SkillCardProps {
 }
 
 const SkillCard = ({ icon, title, skills, color }: SkillCardProps) => {
+  // couleurs claires + variantes dark (gradient doux + bordures sombres + texte lisible)
   const colorClasses = {
-    primary: "bg-primary-50 border-primary-200 text-primary-800",
-    secondary: "bg-secondary-50 border-secondary-200 text-secondary-800",
-    accent: "bg-accent-50 border-accent-200 text-accent-800",
-  };
+    primary:
+      "bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/15 dark:to-gray-900 border-primary-200 dark:border-gray-800 text-primary-900 dark:text-primary-200",
+    secondary:
+      "bg-gradient-to-br from-secondary-50 to-white dark:from-secondary-900/15 dark:to-gray-900 border-secondary-200 dark:border-gray-800 text-secondary-900 dark:text-secondary-200",
+    accent:
+      "bg-gradient-to-br from-accent-50 to-white dark:from-accent-900/15 dark:to-gray-900 border-accent-200 dark:border-gray-800 text-accent-900 dark:text-accent-200",
+  } as const;
 
   const iconColorClasses = {
-    primary: "bg-primary-100 text-primary-600",
-    secondary: "bg-secondary-100 text-secondary-600",
-    accent: "bg-accent-100 text-accent-600",
-  };
+    primary: "bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300",
+    secondary: "bg-secondary-100 dark:bg-secondary-900/40 text-secondary-600 dark:text-secondary-300",
+    accent: "bg-accent-100 dark:bg-accent-900/40 text-accent-600 dark:text-accent-300",
+  } as const;
 
   return (
     <motion.div
-      className={`card border ${colorClasses[color]} hover:shadow-lg`}
+      className={`card border hover:shadow-lg ${colorClasses[color]}`}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
     >
@@ -217,7 +203,7 @@ const SkillCard = ({ icon, title, skills, color }: SkillCardProps) => {
 
       <ul className="space-y-2">
         {skills.map((skill, index) => (
-          <li key={index} className="text-gray-700">
+          <li key={index} className="text-gray-700 dark:text-gray-200">
             {skill}
           </li>
         ))}

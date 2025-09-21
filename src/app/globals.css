@@ -2,49 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- Thème via variables (light par défaut) ---------- */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 242, 248;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 17, 24, 39;        /* gray-900 */
+  --background-start-rgb: 255, 242, 248; /* pink-50 */
+  --background-end-rgb: 255, 255, 255;   /* white */
 }
 
+/* Overrides quand .dark est sur <html> */
+html.dark {
+  --foreground-rgb: 243, 244, 246;     /* gray-100 */
+  --background-start-rgb: 3, 7, 18;    /* gray-950 */
+  --background-end-rgb: 17, 24, 39;    /* gray-900 */
+}
+
+/* Fond global (utilise les variables au-dessus) */
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  background:
+    linear-gradient(
       to bottom right,
       rgb(var(--background-start-rgb)),
       rgb(var(--background-end-rgb))
-    )
-    fixed;
+    ) fixed;
 }
 
+/* ---------- BASE (typo & contrastes) ---------- */
+@layer base {
+  body { @apply text-gray-900 dark:text-gray-100; }
+  h1,h2,h3,h4 { @apply text-gray-900 dark:text-white; }
+  p,li,span,small { @apply text-gray-700 dark:text-gray-200; }
+  a { @apply text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-300; }
+
+  /* utilitaires */
+  .muted { @apply text-gray-500 dark:text-gray-400; }
+  .subtle { @apply text-gray-600 dark:text-gray-300; }
+}
+
+/* ---------- COMPONENTS (boutons, cartes, titres, badges) ---------- */
 @layer components {
-  .btn {
-    @apply px-6 py-2 rounded-full font-medium transition-all duration-300;
-  }
-  
+  .btn { @apply px-6 py-2 rounded-full font-medium transition-all duration-300; }
+
   .btn-primary {
     @apply bg-primary-500 text-white hover:bg-primary-600 shadow-md hover:shadow-lg;
   }
-  
+
   .btn-outline {
-    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-50;
+    @apply border-2 border-primary-500 text-primary-600 hover:bg-primary-50
+           dark:text-primary-300 dark:border-primary-300 dark:hover:bg-gray-800/60;
   }
-  
+
   .card {
-    @apply bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300;
+    @apply bg-white dark:bg-gray-900 rounded-2xl shadow-md p-6
+           border border-gray-100 dark:border-gray-800
+           hover:shadow-lg transition-shadow duration-300;
   }
-  
+
   .section-title {
-    @apply text-3xl md:text-4xl font-serif font-bold text-primary-800 mb-6 relative;
+    @apply text-3xl md:text-4xl font-serif font-bold text-primary-800 dark:text-primary-200 mb-6 relative;
   }
-  
+
   .section-title::after {
     content: '';
     @apply absolute bottom-0 left-0 w-16 h-1 bg-primary-400 rounded-full;
   }
-  
+
   .skill-badge {
-    @apply px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800 m-1;
+    @apply px-3 py-1 rounded-full text-sm font-medium
+           bg-primary-100 text-primary-800 m-1
+           dark:bg-primary-900/40 dark:text-primary-200;
   }
 }

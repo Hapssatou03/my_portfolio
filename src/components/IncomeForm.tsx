@@ -37,7 +37,6 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ onAddIncome }) => {
       category: useCustomCategory ? customCategory : category
     });
     
-    // Reset form
     setAmount('');
     setDescription('');
     setCategory(INCOME_CATEGORIES[0]);
