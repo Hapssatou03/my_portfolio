@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import {
@@ -137,22 +137,28 @@ const Skills = () => {
                   t: "Polyvalence technique",
                   d: "Langages, frameworks, bases de données, CI/CD.",
                 },
-                 {
+                {
                   t: "Autonomie & esprit d’équipe",
                   d: "Persévérante et organisée, J’aime relever les défis et trouver des solutions créatives.",
                 },
-                 {
+                {
                   t: "Passion & engagement",
-                  d: "Je proposer des solutions créatives.",
+                  d: "Je propose des solutions créatives.",
                 },
               ].map((e, i) => (
                 <motion.li key={i} variants={item} className="flex items-start">
                   <div className="bg-primary-100 dark:bg-primary-900/40 p-2 rounded-full mr-4 mt-1">
-                    <span className="text-primary-600 dark:text-primary-300 text-sm">✓</span>
+                    <span className="text-primary-600 dark:text-primary-300 text-sm">
+                      ✓
+                    </span>
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900 dark:text-gray-100">{e.t}</h4>
-                    <p className="text-gray-700 dark:text-gray-200 mt-1">{e.d}</p>
+                    <h4 className="font-medium text-gray-900 dark:text-gray-100">
+                      {e.t}
+                    </h4>
+                    <p className="text-gray-700 dark:text-gray-200 mt-1">
+                      {e.d}
+                    </p>
                   </div>
                 </motion.li>
               ))}
@@ -172,7 +178,6 @@ interface SkillCardProps {
 }
 
 const SkillCard = ({ icon, title, skills, color }: SkillCardProps) => {
-  // couleurs claires + variantes dark (gradient doux + bordures sombres + texte lisible)
   const colorClasses = {
     primary:
       "bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/15 dark:to-gray-900 border-primary-200 dark:border-gray-800 text-primary-900 dark:text-primary-200",
@@ -183,9 +188,12 @@ const SkillCard = ({ icon, title, skills, color }: SkillCardProps) => {
   } as const;
 
   const iconColorClasses = {
-    primary: "bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300",
-    secondary: "bg-secondary-100 dark:bg-secondary-900/40 text-secondary-600 dark:text-secondary-300",
-    accent: "bg-accent-100 dark:bg-accent-900/40 text-accent-600 dark:text-accent-300",
+    primary:
+      "bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300",
+    secondary:
+      "bg-secondary-100 dark:bg-secondary-900/40 text-secondary-600 dark:text-secondary-300",
+    accent:
+      "bg-accent-100 dark:bg-accent-900/40 text-accent-600 dark:text-accent-300",
   } as const;
 
   return (

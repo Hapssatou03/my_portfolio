@@ -49,7 +49,7 @@ const Projects = () => {
             reverse={true}
           />
 
-          {/* EXPRESSIVE (exemple) */}
+          {/* EXPRESSIVE */}
           <ProjectCard
             title="Expressive"
             description="Blog full-stack sur le développement personnel et professionnel."

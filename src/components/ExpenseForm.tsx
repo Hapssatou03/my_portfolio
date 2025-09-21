@@ -1,52 +1,56 @@
-import React, { useState } from 'react';
-import { MinusCircle } from 'lucide-react';
+import React, { useState } from "react";
+import { MinusCircle } from "lucide-react";
 
 interface ExpenseFormProps {
-  onAddExpense: (expense: { amount: number; description: string; category: string }) => void;
+  onAddExpense: (expense: {
+    amount: number;
+    description: string;
+    category: string;
+  }) => void;
 }
 
 // Predefined expense categories
 const EXPENSE_CATEGORIES = [
-  'Food & Dining',
-  'Transportation',
-  'Housing',
-  'Utilities',
-  'Entertainment',
-  'Shopping',
-  'Healthcare',
-  'Education',
-  'Personal Care',
-  'Travel',
-  'Debt Payments',
-  'Other'
+  "Food & Dining",
+  "Transportation",
+  "Housing",
+  "Utilities",
+  "Entertainment",
+  "Shopping",
+  "Healthcare",
+  "Education",
+  "Personal Care",
+  "Travel",
+  "Debt Payments",
+  "Other",
 ];
 
 const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
-  const [amount, setAmount] = useState('');
-  const [description, setDescription] = useState('');
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
   const [category, setCategory] = useState(EXPENSE_CATEGORIES[0]);
-  const [customCategory, setCustomCategory] = useState('');
+  const [customCategory, setCustomCategory] = useState("");
   const [useCustomCategory, setUseCustomCategory] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!amount || parseFloat(amount) <= 0) {
-      alert('Please enter a valid amount');
+      alert("Please enter a valid amount");
       return;
     }
-    
+
     onAddExpense({
       amount: parseFloat(amount),
       description,
-      category: useCustomCategory ? customCategory : category
+      category: useCustomCategory ? customCategory : category,
     });
-    
+
     // Reset form
-    setAmount('');
-    setDescription('');
+    setAmount("");
+    setDescription("");
     setCategory(EXPENSE_CATEGORIES[0]);
-    setCustomCategory('');
+    setCustomCategory("");
     setUseCustomCategory(false);
   };
 
@@ -56,10 +60,13 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
         <MinusCircle size={24} className="text-red-500 mr-2" />
         <h2 className="text-2xl font-bold text-primary">Add Expense</h2>
       </div>
-      
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="amount">
+          <label
+            className="block text-gray-300 text-sm font-bold mb-2"
+            htmlFor="amount"
+          >
             Amount ($)
           </label>
           <input
@@ -74,9 +81,12 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
             required
           />
         </div>
-        
+
         <div>
-          <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="description">
+          <label
+            className="block text-gray-300 text-sm font-bold mb-2"
+            htmlFor="description"
+          >
             Description
           </label>
           <input
@@ -89,10 +99,13 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
             required
           />
         </div>
-        
+
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="block text-gray-300 text-sm font-bold" htmlFor="category">
+            <label
+              className="block text-gray-300 text-sm font-bold"
+              htmlFor="category"
+            >
               Category
             </label>
             <div className="flex items-center">
@@ -108,7 +121,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
               </label>
             </div>
           </div>
-          
+
           {useCustomCategory ? (
             <input
               type="text"
@@ -134,7 +147,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddExpense }) => {
             </select>
           )}
         </div>
-        
+
         <button
           type="submit"
           className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors"

@@ -1,46 +1,53 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  FaEnvelope,
+  FaLinkedin,
+  FaGithub,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  })
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitSuccess(true)
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
       setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      })
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
 
       setTimeout(() => {
-        setSubmitSuccess(false)
-      }, 5000)
-    }, 1500)
-  }
+        setSubmitSuccess(false);
+      }, 5000);
+    }, 1500);
+  };
 
   return (
     <section id="contact" className="py-16">
@@ -59,7 +66,8 @@ const Contact = () => {
               Discutons de votre projet
             </h3>
             <p className="text-gray-700 dark:text-gray-200 mb-8">
-              N'hésitez pas à me contacter pour échanger sur une opportunité de colllaboration !
+              N'hésitez pas à me contacter pour échanger sur une opportunité de
+              colllaboration !
             </p>
 
             <div className="space-y-6">
@@ -106,7 +114,8 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-4 py-3 rounded-lg mb-6"
                 >
-                  Votre message a été envoyé avec succès ! Je vous répondrai dans les plus brefs délais.
+                  Votre message a été envoyé avec succès ! Je vous répondrai
+                  dans les plus brefs délais.
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit}>
@@ -164,8 +173,12 @@ const Contact = () => {
                       className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 focus:ring-primary-500 focus:border-primary-500 outline-none"
                     >
                       <option value="">Sélectionnez un sujet</option>
-                      <option value="alternance">Proposition d'alternance</option>
-                      <option value="projet">Collaboration sur un projet</option>
+                      <option value="alternance">
+                        Proposition d'alternance
+                      </option>
+                      <option value="projet">
+                        Collaboration sur un projet
+                      </option>
                       <option value="question">Question générale</option>
                       <option value="autre">Autre</option>
                     </select>
@@ -220,7 +233,7 @@ const Contact = () => {
                         Envoi en cours...
                       </>
                     ) : (
-                      'Envoyer le message'
+                      "Envoyer le message"
                     )}
                   </button>
                 </form>
@@ -230,14 +243,14 @@ const Contact = () => {
         </div>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
 interface ContactInfoProps {
-  icon: React.ReactNode
-  title: string
-  content: string
-  link: string
+  icon: React.ReactNode;
+  title: string;
+  content: string;
+  link: string;
 }
 
 const ContactInfo = ({ icon, title, content, link }: ContactInfoProps) => {
@@ -245,8 +258,8 @@ const ContactInfo = ({ icon, title, content, link }: ContactInfoProps) => {
     <a
       href={link}
       className="flex items-start group"
-      target={link.startsWith('http') ? '_blank' : undefined}
-      rel={link.startsWith('http') ? 'noopener noreferrer' : undefined}
+      target={link.startsWith("http") ? "_blank" : undefined}
+      rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
     >
       <div
         className="
@@ -255,16 +268,20 @@ const ContactInfo = ({ icon, title, content, link }: ContactInfoProps) => {
           dark:bg-primary-900/40 dark:group-hover:bg-primary-900/60
         "
       >
-        <span className="text-primary-600 dark:text-primary-300 text-lg">{icon}</span>
+        <span className="text-primary-600 dark:text-primary-300 text-lg">
+          {icon}
+        </span>
       </div>
       <div>
-        <h4 className="font-medium text-gray-900 dark:text-gray-100">{title}</h4>
+        <h4 className="font-medium text-gray-900 dark:text-gray-100">
+          {title}
+        </h4>
         <p className="text-gray-700 dark:text-gray-200 group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors">
           {content}
         </p>
       </div>
     </a>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

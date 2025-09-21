@@ -1,7 +1,11 @@
-'use client';
+"use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaLaptopCode, FaProjectDiagram, FaGraduationCap } from "react-icons/fa";
+import {
+  FaLaptopCode,
+  FaProjectDiagram,
+  FaGraduationCap,
+} from "react-icons/fa";
 
 const About = () => {
   return (
@@ -27,9 +31,10 @@ const About = () => {
               </h3>
             </div>
             <p className="text-gray-700 dark:text-gray-200 mb-4">
-              Passionnée par le développement web et mobile, j&apos;ai acquis de solides
-              compétences dans plusieurs technologies et frameworks, me permettant
-              de concevoir des applications robustes, performantes et sécurisées.
+              Passionnée par le développement web et mobile, j&apos;ai acquis de
+              solides compétences dans plusieurs technologies et frameworks, me
+              permettant de concevoir des applications robustes, performantes et
+              sécurisées.
             </p>
             {/* <div className="space-y-3">
               <Block title="Langages">
@@ -71,20 +76,22 @@ const About = () => {
 
             <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-200">
               <li>
-                <span className="font-medium">UX/UI :</span> wireframes & maquettes (Figma),
-                design system, accessibilité (couleurs, contrastes, parcours).
+                <span className="font-medium">UX/UI :</span> wireframes &
+                maquettes (Figma), design system, accessibilité (couleurs,
+                contrastes, parcours).
               </li>
               {/* <li>
                 <span className="font-medium">Architecture :</span> séparation des
                 responsabilités, composants réutilisables, gestion d’état claire.
               </li> */}
               <li>
-                <span className="font-medium">UML & docs :</span> cas d’usage, séquence,
-                classes, user flows — spécifications fonctionnelles & critères d’acceptabilité.
+                <span className="font-medium">UML & docs :</span> cas d’usage,
+                séquence, classes, user flows — spécifications fonctionnelles &
+                critères d’acceptabilité.
               </li>
               <li>
-                <span className="font-medium">APIs :</span> conception REST (ressources, codes
-                HTTP, validation), sécurité by design.
+                <span className="font-medium">APIs :</span> conception REST
+                (ressources, codes HTTP, validation), sécurité by design.
               </li>
               {/* <li>
                 <span className="font-medium">Qualité :</span> lisibilité, performances,
@@ -106,28 +113,19 @@ const About = () => {
 
             <ul className="space-y-2 text-gray-700 dark:text-gray-200">
               <li>
-                <span className="font-medium">Bac+4 – Concepteur Développeur d’Applications</span>
+                <span className="font-medium">
+                  Bac+4 – Concepteur Développeur d’Applications
+                </span>
               </li>
               <li>
                 <span className="font-medium">Licence – Marketing Digital</span>
               </li>
               <li>
-                <span className="font-medium">Titre professionnel – Référent communication & numérique</span>
+                <span className="font-medium">
+                  Titre professionnel – Référent communication & numérique
+                </span>
               </li>
             </ul>
-
-            {/* <div className="mt-4">
-              <h4 className="font-semibold text-accent-700 dark:text-accent-300 mb-1">
-                Outils & DevOps utilisés pendant les projets
-              </h4>
-              <div className="flex flex-wrap">
-                {["Git", "GitHub", "CI/CD", "Docker (initiation)"].map((t) => (
-                  <Badge key={t} tone="accent">
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-            </div> */}
           </div>
         </div>
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -146,10 +144,11 @@ const About = () => {
 
           <div className="order-2 md:order-2">
             <p className="text-gray-700 dark:text-gray-200 mb-4 text-justify">
-              Actuellement en freelance sur Jiamini (plateforme éducative) et Spendy
-              (application de gestion des dépenses), je privilégie des solutions utiles,
-              performantes et évolutives. J’aime transformer un besoin en produit concret
-              avec une expérience fluide et une base technique saine.
+              Actuellement en freelance sur Kalan (plateforme éducative) et
+              Spendy (application de gestion des dépenses), je privilégie des
+              solutions utiles, performantes et évolutives. J’aime transformer
+              un besoin en produit concret avec une expérience fluide et une
+              base technique saine.
             </p>
             <div className="mt-6">
               <h4 className="font-semibold text-primary-700 dark:text-primary-300 mb-2">
@@ -166,9 +165,17 @@ const About = () => {
   );
 };
 
-const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
+const Block = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => (
   <div>
-    <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-1">{title}</h4>
+    <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-1">
+      {title}
+    </h4>
     <div className="flex flex-wrap">{children}</div>
   </div>
 );
@@ -189,7 +196,9 @@ const Badge = ({
       "bg-accent-100 text-accent-800 dark:bg-accent-900/40 dark:text-accent-200",
   } as const;
   return (
-    <span className={`px-3 py-1 rounded-full text-xs font-medium m-1 ${tones[tone]}`}>
+    <span
+      className={`px-3 py-1 rounded-full text-xs font-medium m-1 ${tones[tone]}`}
+    >
       {children}
     </span>
   );

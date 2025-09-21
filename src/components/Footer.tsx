@@ -1,14 +1,18 @@
-import Link from "next/link"; 
+import Link from "next/link";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="bg-primary-50 dark:bg-gray-900 border-t border-primary-100 dark:border-gray-800 py-8">
       <div className="container mx-auto px-4">
+        {/* Ligne principale */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Logo + texte */}
+          {/* Logo + texte (gauche) */}
           <div className="mb-4 md:mb-0 text-center md:text-left">
-            <Link href="/" className="flex items-center space-x-2 justify-center md:justify-start">
+            <Link
+              href="/"
+              className="flex items-center space-x-2 justify-center md:justify-start"
+            >
               <span className="font-serif text-lg font-semibold text-primary-800 dark:text-primary-200">
                 Hapssatou.S
               </span>
@@ -18,7 +22,24 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Liens sociaux */}
+          {/* Liens RGPD (milieu) */}
+          <div className="text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-0 text-center">
+            <Link
+              href="/mentions-legales"
+              className="hover:underline text-primary-600 dark:text-primary-400 mx-2"
+            >
+              Mentions légales
+            </Link>
+            |
+            <Link
+              href="/confidentialite"
+              className="hover:underline text-primary-600 dark:text-primary-400 mx-2"
+            >
+              Politique de confidentialité
+            </Link>
+          </div>
+
+          {/* Réseaux sociaux (droite) */}
           <div className="flex space-x-6">
             <SocialLink
               href="https://github.com/hapssatou"
@@ -38,9 +59,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bas du footer */}
-        <div className="mt-8 pt-6 border-t border-primary-100 dark:border-gray-800 text-center text-sm text-gray-600 dark:text-gray-400">
-          <p>© {new Date().getFullYear()} Hapssatou SY. Tous droits réservés.</p>
+        <div className="mt-6 pt-4 border-t border-primary-100 dark:border-gray-800 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p>© Tous droits réservés.</p>
         </div>
       </div>
     </footer>
