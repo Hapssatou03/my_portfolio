@@ -1,77 +1,124 @@
+// app/confidentialite/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Mentions légales | Hapssatou SY",
+  title: "Politique de confidentialité | Hapssatou SY",
   description:
-    "Mentions légales du site portfolio de Hapssatou SY : informations éditeur, hébergeur, propriété intellectuelle et contact.",
+    "Politique de confidentialité du portfolio d’Hapssatou SY : données collectées, base légale, durée, droits RGPD et contact.",
 };
 
-export default function MentionsLegalesPage() {
+export default function ConfidentialitePage() {
   return (
     <section className="py-12">
       <div className="max-w-3xl mx-auto px-4">
-        <h1 className="text-2xl font-bold mb-6 text-center">Mentions légales</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center">
+          Politique de confidentialité
+        </h1>
 
         <p className="text-sm text-gray-500 mb-6 text-center">
           Dernière mise à jour : 21 septembre 2025
         </p>
 
-        <div className="space-y-6 text-gray-800 dark:text-gray-200">
+        <div className="space-y-6 text-gray-800 dark:text-gray-200 leading-relaxed">
           <div>
-            <h2 className="text-lg font-semibold mb-2">Éditeur du site</h2>
+            <h2 className="text-lg font-semibold mb-2">1. Responsable du traitement</h2>
             <p>
-              <strong>Hapssatou SY</strong> <br />
-              Conceptrice Développeuse d’Applications <br />
-              Email :{" "}
+              La responsable du traitement est <strong>Hapssatou SY</strong>. 
+              Contact :{" "}
               <Link
                 href="mailto:hapssatousy01@gmail.com"
                 className="text-blue-600 dark:text-blue-400 underline"
               >
                 hapssatousy01@gmail.com
-              </Link>{" "}
-              <br />
-              Localisation : Argenteuil, France
+              </Link>.
             </p>
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold mb-2">Hébergement</h2>
+            <h2 className="text-lg font-semibold mb-2">2. Données collectées</h2>
             <p>
-              Le site est hébergé par <strong>Vercel</strong> – Vercel Inc., 440 N
-              Barranca Ave #4133, Covina, CA 91723, USA. <br />
-              Site :{" "}
-              <a
-                href="https://vercel.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 underline"
-              >
-                vercel.com
-              </a>
+              Lors de l’utilisation du formulaire de contact : nom, email, sujet et
+              message sont recueillis pour répondre à vos demandes.
+            </p>
+            <p>
+              L’hébergeur collecte des données techniques anonymes pour la sécurité
+              et la performance.
+            </p>
+            <p>
+              Des cookies strictement nécessaires peuvent être utilisés (préférences
+              de thème, bon fonctionnement du site). Aucun cookie publicitaire.
             </p>
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold mb-2">Propriété intellectuelle</h2>
+            <h2 className="text-lg font-semibold mb-2">3. Finalités et base légale</h2>
             <p>
-              L’ensemble des contenus (textes, images, logos, identité visuelle, code)
-              présents sur ce site est protégé par le droit d’auteur. <br />
-              Toute reproduction, distribution ou utilisation non autorisée est
-              interdite sans l’accord écrit préalable d’Hapssatou SY.
+              Les données sont utilisées pour répondre à vos messages et assurer le
+              bon fonctionnement du site. Base légale : exécution de mesures
+              contractuelles et intérêt légitime.
             </p>
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold mb-2">Contact</h2>
+            <h2 className="text-lg font-semibold mb-2">4. Durées de conservation</h2>
             <p>
-              Pour toute question relative aux mentions légales, merci de contacter :{" "}
+              Les messages sont conservés jusqu’à 12 mois après le dernier contact.  
+              Les journaux techniques dépendent de la politique de l’hébergeur (Vercel).  
+              Les cookies de préférence sont limités dans le temps côté navigateur.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-lg font-semibold mb-2">5. Destinataires</h2>
+            <p>
+              Les données sont traitées uniquement par Hapssatou SY. 
+              L’hébergeur <strong>Vercel</strong> traite uniquement des données
+              techniques liées à l’hébergement.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-lg font-semibold mb-2">6. Vos droits (RGPD)</h2>
+            <p>
+              Conformément au RGPD, vous disposez de droits d’accès, de rectification,
+              d’effacement, de limitation et d’opposition.  
+              Pour les exercer :{" "}
               <Link
                 href="mailto:hapssatousy01@gmail.com"
                 className="text-blue-600 dark:text-blue-400 underline"
               >
                 hapssatousy01@gmail.com
-              </Link>
+              </Link>.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-lg font-semibold mb-2">7. Cookies</h2>
+            <p>
+              Ce site n’emploie aucun cookie publicitaire. Seuls des cookies
+              techniques nécessaires au fonctionnement peuvent être utilisés.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-lg font-semibold mb-2">8. Sécurité</h2>
+            <p>
+              Des mesures raisonnables sont appliquées pour protéger vos données
+              (connexion sécurisée HTTPS, mises à jour, bonnes pratiques).
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-lg font-semibold mb-2">9. Contact</h2>
+            <p>
+              Pour toute question concernant cette politique, écrivez à :{" "}
+              <Link
+                href="mailto:hapssatousy01@gmail.com"
+                className="text-blue-600 dark:text-blue-400 underline"
+              >
+                hapssatousy01@gmail.com
+              </Link>.
             </p>
           </div>
         </div>
