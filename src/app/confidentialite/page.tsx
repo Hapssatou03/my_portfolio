@@ -20,105 +20,107 @@ export default function ConfidentialitePage() {
           Dernière mise à jour : 21 septembre 2025
         </p>
 
-        <div className="space-y-6 text-gray-800 dark:text-gray-200">
+        <div className="space-y-6 text-gray-800 dark:text-gray-200 leading-relaxed">
           <div>
             <h2 className="text-lg font-semibold mb-2">1. Responsable du traitement</h2>
             <p>
-              <strong>Hapssatou SY</strong> est responsable du traitement.
+              La responsable du traitement est <strong>Hapssatou SY</strong>.  
               Contact :{" "}
               <Link
                 href="mailto:hapssatousy01@gmail.com"
                 className="text-blue-600 dark:text-blue-400 underline"
               >
                 hapssatousy01@gmail.com
-              </Link>
-              .
+              </Link>.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-semibold mb-2">2. Données collectées</h2>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>
-                <strong>Formulaire de contact</strong> : nom, email, sujet, message
-                (nécessaires pour répondre).
-              </li>
-              <li>
-                <strong>Journaux techniques</strong> de l’hébergeur (sécurité, performance).
-              </li>
-              <li>
-                <strong>Cookies</strong> : uniquement techniques (préférences de thème, fonctionnement).
-              </li>
-            </ul>
+            <p>
+              Lors de l’utilisation du formulaire de contact, les informations suivantes
+              peuvent être collectées : nom, email, sujet et message.
+            </p>
+            <p>
+              L’hébergeur collecte également des données techniques anonymes utilisées
+              pour la sécurité et la performance.
+            </p>
+            <p>
+              Des cookies strictement nécessaires peuvent être utilisés (préférences de
+              thème, bon fonctionnement du site). Aucun cookie publicitaire.
+            </p>
           </div>
 
           <div>
             <h2 className="text-lg font-semibold mb-2">3. Finalités et base légale</h2>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Répondre à vos messages (exécution de mesures pré/contractuelles).</li>
-              <li>Sécuriser et faire fonctionner le site (intérêt légitime).</li>
-            </ul>
+            <p>
+              Les données sont utilisées pour répondre à vos messages et assurer le bon
+              fonctionnement du site. La base légale est l’exécution de mesures
+              contractuelles et l’intérêt légitime.
+            </p>
           </div>
 
           <div>
             <h2 className="text-lg font-semibold mb-2">4. Durées de conservation</h2>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Messages : jusqu’à 12 mois après le dernier contact.</li>
-              <li>Journaux techniques : selon la politique de Vercel.</li>
-              <li>Cookies de préférence : durée limitée côté navigateur.</li>
-            </ul>
+            <p>
+              Les messages sont conservés jusqu’à 12 mois après le dernier contact.  
+              Les journaux techniques dépendent de la politique de l’hébergeur (Vercel).  
+              Les cookies de préférence sont limités dans le temps côté navigateur.
+            </p>
           </div>
 
           <div>
             <h2 className="text-lg font-semibold mb-2">5. Destinataires</h2>
             <p>
-              Données traitées par Hapssatou SY. L’hébergeur <strong>Vercel</strong> traite
-              des données techniques liées à l’hébergement et la diffusion.
+              Les données sont traitées uniquement par Hapssatou SY.  
+              L’hébergeur <strong>Vercel</strong> traite uniquement des données techniques
+              liées à l’hébergement et à la diffusion du site.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-semibold mb-2">6. Vos droits (RGPD)</h2>
             <p>
-              Droits d’accès, rectification, effacement, limitation, opposition.
-              Exercez vos droits à :{" "}
+              Conformément au RGPD, vous disposez de droits d’accès, de rectification,
+              d’effacement, de limitation et d’opposition.  
+              Pour les exercer, contactez :{" "}
               <Link
                 href="mailto:hapssatousy01@gmail.com"
                 className="text-blue-600 dark:text-blue-400 underline"
               >
                 hapssatousy01@gmail.com
-              </Link>
-              .
+              </Link>.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-semibold mb-2">7. Cookies</h2>
             <p>
-              Pas de cookies publicitaires. Seuls des cookies strictement nécessaires
-              peuvent être utilisés pour améliorer l’expérience.
+              Ce site n’emploie pas de cookies publicitaires.  
+              Seuls des cookies strictement nécessaires peuvent être utilisés pour
+              améliorer votre expérience.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-semibold mb-2">8. Sécurité</h2>
             <p>
-              Mesures raisonnables de protection (HTTPS, mises à jour, pratiques de
-              développement sécurisé).
+              Des mesures raisonnables sont mises en place pour protéger vos données :
+              connexion sécurisée (HTTPS), mises à jour régulières, bonnes pratiques de
+              développement.
             </p>
           </div>
 
           <div>
             <h2 className="text-lg font-semibold mb-2">9. Contact</h2>
             <p>
-              Pour toute question :{" "}
+              Pour toute question concernant cette politique, écrivez à :{" "}
               <Link
                 href="mailto:hapssatousy01@gmail.com"
                 className="text-blue-600 dark:text-blue-400 underline"
               >
                 hapssatousy01@gmail.com
-              </Link>
-              .
+              </Link>.
             </p>
           </div>
         </div>
