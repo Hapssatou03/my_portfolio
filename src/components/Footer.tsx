@@ -24,12 +24,12 @@ const Footer = () => {
 
           {/* Liens RGPD (milieu) */}
           <div className="text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-0 text-center">
-            <Link
+            {/* <Link
               href="/mentions-legales"
               className="hover:underline text-primary-600 dark:text-primary-400 mx-2"
             >
               Mentions légales
-            </Link>
+            </Link> */}
             |
             <Link
               href="/confidentialite"
