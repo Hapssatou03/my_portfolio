@@ -30,7 +30,7 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/70 backdrop-blur-md shadow-sm">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center">
-          {/* Logo texte */}
+          {/* Logo*/}
           <div className="flex items-center flex-none">
             <Link href="/" className="flex items-center">
               <span className="font-serif text-xl font-bold text-primary-800 dark:text-primary-300">
@@ -39,7 +39,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Nav centré desktop */}
+          {/* Nav desktop */}
           <div className="hidden md:flex flex-1 justify-center">
             <div className="flex items-center gap-8">
               <NavLink href="#about">À propos</NavLink>

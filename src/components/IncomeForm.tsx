@@ -9,7 +9,6 @@ interface IncomeFormProps {
   }) => void;
 }
 
-// Predefined income categories
 const INCOME_CATEGORIES = [
   "Salary",
   "Freelance",

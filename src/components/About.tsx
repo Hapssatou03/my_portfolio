@@ -36,31 +36,6 @@ const About = () => {
               permettant de concevoir des applications robustes, performantes et
               sécurisées.
             </p>
-            {/* <div className="space-y-3">
-              <Block title="Langages">
-                {["JavaScript", "TypeScript", "Java", "SQL"].map((t) => (
-                  <Badge key={t}>{t}</Badge>
-                ))}
-              </Block>
-
-              <Block title="Frameworks & Front">
-                {["Angular", "React", "Next.js", "React Native", "Redux", "Tailwind CSS"].map((t) => (
-                  <Badge key={t}>{t}</Badge>
-                ))}
-              </Block>
-
-              <Block title="Back-end & Data">
-                {["Node.js", "Express", "Spring Boot", "MySQL", "MongoDB"].map((t) => (
-                  <Badge key={t}>{t}</Badge>
-                ))}
-              </Block>
-
-              <Block title="Déploiement / DevOps">
-                {["GitHub Actions", "Docker (basics)", "Vercel", "Git"].map((t) => (
-                  <Badge key={t}>{t}</Badge>
-                ))}
-              </Block>
-            </div> */}
           </div>
 
           {/* Conception */}
@@ -80,10 +55,6 @@ const About = () => {
                 maquettes (Figma), design system, accessibilité (couleurs,
                 contrastes, parcours).
               </li>
-              {/* <li>
-                <span className="font-medium">Architecture :</span> séparation des
-                responsabilités, composants réutilisables, gestion d’état claire.
-              </li> */}
               <li>
                 <span className="font-medium">UML & docs :</span> cas d’usage,
                 séquence, classes, user flows — spécifications fonctionnelles &
@@ -93,10 +64,6 @@ const About = () => {
                 <span className="font-medium">APIs :</span> conception REST
                 (ressources, codes HTTP, validation), sécurité by design.
               </li>
-              {/* <li>
-                <span className="font-medium">Qualité :</span> lisibilité, performances,
-                structure de projet, revues de code.
-              </li> */}
             </ul>
           </div>
 
@@ -155,7 +122,9 @@ const About = () => {
                 Objectif professionnel
               </h4>
               <p className="text-gray-700 dark:text-gray-200">
-                Contrat à durée indéterminée (CDI) ✨
+                Rejoindre une équipe en contrat d’alternance dans le cadre de
+                mon Master 2, ou en CDI, afin de contribuer durablement à des
+                projets innovants et ambitieux. ✨
               </p>
             </div>
           </div>

@@ -5,9 +5,8 @@ const Footer = () => {
   return (
     <footer className="bg-primary-50 dark:bg-gray-900 border-t border-primary-100 dark:border-gray-800 py-8">
       <div className="container mx-auto px-4">
-        {/* Ligne principale */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Logo + texte (gauche) */}
+          {/* Logo + texte */}
           <div className="mb-4 md:mb-0 text-center md:text-left">
             <Link
               href="/"
@@ -22,7 +21,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Liens RGPD (milieu) */}
+          {/* Liens RGPD */}
           <div className="text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-0 text-center">
             {/* <Link
               href="/mentions-legales"
@@ -39,7 +38,7 @@ const Footer = () => {
             </Link>
           </div>
 
-          {/* Réseaux sociaux (droite) */}
+          {/* Réseaux sociaux*/}
           <div className="flex space-x-6">
             <SocialLink
               href="https://github.com/hapssatou"

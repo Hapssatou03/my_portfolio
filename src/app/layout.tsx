@@ -32,28 +32,27 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="fr"
       className={`${poppins.variable} ${playfair.variable}`}
       suppressHydrationWarning
     >
-      <Script id="theme-init" strategy="beforeInteractive">
-        {`
-          try {
-            const stored = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = stored ? stored : (prefersDark ? 'dark' : 'light');
-            if (theme === 'dark') document.documentElement.classList.add('dark');
-            else document.documentElement.classList.remove('dark');
-          } catch (_) {}
-        `}
-      </Script>
+      <head>
+        {/* Script anti-flash de thème → doit être dans <head> */}
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`
+            try {
+              const stored = localStorage.getItem('theme');
+              const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+              const theme = stored ? stored : (prefersDark ? 'dark' : 'light');
+              if (theme === 'dark') document.documentElement.classList.add('dark');
+              else document.documentElement.classList.remove('dark');
+            } catch (_) {}
+          `}
+        </Script>
+      </head>
 
       <body className="font-sans text-gray-900 bg-gradient-to-br from-pink-50 to-white min-h-screen dark:text-gray-100 dark:from-gray-950 dark:to-gray-900">
         <Navbar />

@@ -141,10 +141,10 @@ const Skills = () => {
                   t: "Autonomie & esprit d’équipe",
                   d: "Persévérante et organisée, J’aime relever les défis et trouver des solutions créatives.",
                 },
-                {
-                  t: "Passion & engagement",
-                  d: "Je propose des solutions créatives.",
-                },
+                // {
+                //   t: "Passion & engagement",
+                //   d: "",
+                // },
               ].map((e, i) => (
                 <motion.li key={i} variants={item} className="flex items-start">
                   <div className="bg-primary-100 dark:bg-primary-900/40 p-2 rounded-full mr-4 mt-1">
