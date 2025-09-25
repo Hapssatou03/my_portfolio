@@ -81,6 +81,11 @@ const About = () => {
             <ul className="space-y-2 text-gray-700 dark:text-gray-200">
               <li>
                 <span className="font-medium">
+                  Mastère 2 – CTO / Tech Lead – HETIC (en cours)
+                </span>
+              </li>
+              <li>
+                <span className="font-medium">
                   Bac+4 – Concepteur Développeur d’Applications
                 </span>
               </li>
