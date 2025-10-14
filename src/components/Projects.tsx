@@ -86,6 +86,38 @@ const Projects = () => {
             liveLink="https://eclat-solidaire.vercel.app"
             reverse={true}
           />
+{/* FILMEO */}
+<ProjectCard
+  title="FILMEO — Catalogue de films & bandes-annonces"
+  description="Site vitrine façon plateforme de streaming : recherche, grilles par catégories (populaires, tendances, streaming), fiches avec affiche, date et bande-annonce intégrée."
+  image="/images/filmeo.png"
+  gallery={[
+    "/images/filmeo.png",
+    "/images/flime_bande_annonce.png",   // (nom tel que dans tes fichiers)
+    "/images/flimeo_polulaire.png",
+    "/images/filmeo3.png",
+    "/images/flimeo_tendance_2.png",
+    "/images/flimeo_tendance.png",
+  ]}
+  technologies={[
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "YouTube Embed",
+    "Responsive Design",
+  ]}
+  features={[
+    "Recherche globale (films, séries, artistes)",
+    "Sections : Populaires, Tendances, Streaming",
+    "Cartes media avec affiche, titre, date",
+    "Bandes-annonces intégrées (YouTube)",
+    "UI dark, responsive et accessible",
+  ]}
+  githubLink="https://github.com/ton-compte/filmeo"  
+  liveLink="#"
+  reverse={false}
+/>
 
           {/* EXPRESSIVE */}
           <ProjectCard
