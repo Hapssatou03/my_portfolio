@@ -8,10 +8,10 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     if (typeof document === "undefined") return;
-    const root = document.documentElement;
-    root.classList.add("dark");
+    document.documentElement.classList.add("dark");
     try {
       localStorage.theme = "dark";
     } catch {}
@@ -28,76 +28,63 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-gray-900/70 backdrop-blur-md shadow-sm">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center">
-          {/* Logo */}
-          <div className="flex items-center flex-none">
-            <Link href="/" className="flex items-center">
-              <span className="font-serif text-xl font-bold text-[#EE4D96]">
-                Hapssatou.S
-              </span>
-            </Link>
-          </div>
-
-          {/* Desktop nav */}
-          <div className="hidden md:flex flex-1 justify-center">
-            <div className="flex items-center gap-8">
-              {items.map((it) => (
-                <NavLink
-                  key={it.href}
-                  href={it.href}
-                  active={pathname === it.href}
-                >
-                  {it.label}
-                </NavLink>
-              ))}
-            </div>
-          </div>
-
-          {/* Actions (menu mobile uniquement) */}
-          <div className="ml-auto flex items-center gap-3 flex-none">
-            <button
-              className="md:hidden p-2 text-gray-100"
-              onClick={toggleMenu}
-              aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+      <div className="container mx-auto px-6 py-3 flex items-center justify-between">
+        <Link href="/" className="font-serif text-xl font-bold text-[#EE4D96]">
+          Hapssatou.S
+        </Link>
+        <div className="hidden md:flex items-center gap-8 ml-auto">
+          {items.map((it) => (
+            <NavLink
+              key={it.href}
+              href={it.href}
+              active={pathname === it.href}
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
+              {it.label}
+            </NavLink>
+          ))}
         </div>
 
-        {/* Mobile menu */}
+        {/* Menu mobile */}
+        <button
+          className="md:hidden p-2 text-gray-100 ml-auto"
+          onClick={toggleMenu}
+          aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+
+        {/* Mobile dropdown */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden mt-4 pb-4"
+              className="absolute top-full left-0 right-0 bg-gray-900/90 backdrop-blur-md md:hidden"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25 }}
             >
-              <div className="flex flex-col space-y-3">
+              <div className="flex flex-col items-center space-y-3 py-4">
                 {items.map((it) => (
                   <MobileNavLink
                     key={it.href}
@@ -131,12 +118,12 @@ function NavLink({
       href={href}
       aria-current={active ? "page" : undefined}
       className={`font-medium relative group ${
-        active ? "text-primary-300" : "text-gray-100 hover:text-primary-300"
+        active ? "text-[#EE4D96]" : "text-gray-100 hover:text-[#EE4D96]"
       }`}
     >
       {children}
       <span
-        className={`absolute -bottom-0.5 left-0 h-0.5 bg-primary-400 transition-all duration-300 ${
+        className={`absolute -bottom-0.5 left-0 h-0.5 bg-[#EE4D96] transition-all duration-300 ${
           active ? "w-full" : "w-0 group-hover:w-full"
         }`}
       />
@@ -162,8 +149,8 @@ function MobileNavLink({
       aria-current={active ? "page" : undefined}
       className={`font-medium py-2 px-4 rounded-lg transition ${
         active
-          ? "text-primary-300 bg-gray-800/60"
-          : "text-gray-100 hover:text-primary-300 hover:bg-gray-800/60"
+          ? "text-[#EE4D96] bg-gray-800/60"
+          : "text-gray-100 hover:text-[#EE4D96] hover:bg-gray-800/60"
       }`}
     >
       {children}
