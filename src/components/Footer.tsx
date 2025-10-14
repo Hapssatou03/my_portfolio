@@ -16,7 +16,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-              Ingenieure logicielle en apprentissage
+              Ingénieure logicielle en apprentissage
             </p>
           </div>
 
