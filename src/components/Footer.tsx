@@ -6,7 +6,6 @@ const Footer = () => {
     <footer className="bg-primary-50 dark:bg-gray-900 border-t border-primary-100 dark:border-gray-800 py-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Logo + texte */}
           <div className="mb-4 md:mb-0 text-center md:text-left">
             <Link
               href="/"
@@ -17,19 +16,12 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-              Conceptrice Développeuse d'Applications
+              Ingenieure logicielle en apprentissage
             </p>
           </div>
 
           {/* Liens RGPD */}
-          <div className="text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-0 text-center">
-            {/* <Link
-              href="/mentions-legales"
-              className="hover:underline text-primary-600 dark:text-primary-400 mx-2"
-            >
-              Mentions légales
-            </Link> */}
-            |
+          <div className="text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-0 text-center">  |
             <Link
               href="/confidentialite"
               className="hover:underline text-primary-600 dark:text-primary-400 mx-2"
