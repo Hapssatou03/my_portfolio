@@ -30,6 +30,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/contact/page.js"
+    ],
+    "/confidentialite/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/confidentialite/page.js"
     ]
   }
 }

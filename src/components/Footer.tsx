@@ -21,7 +21,9 @@ const Footer = () => {
           </div>
 
           {/* Liens RGPD */}
-          <div className="text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-0 text-center">  |
+          <div className="text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-0 text-center">
+            {" "}
+            |
             <Link
               href="/confidentialite"
               className="hover:underline text-primary-600 dark:text-primary-400 mx-2"
@@ -49,9 +51,10 @@ const Footer = () => {
             />
           </div>
         </div>
-
-        <div className="mt-6 pt-4 border-t border-primary-100 dark:border-gray-800 text-center text-sm text-gray-600 dark:text-gray-400">
-          <p>© Tous droits réservés.</p>
+        <div className="mt-6 pt-4 border-t border-primary-100 dark:border-gray-800 text-center text-sm text-gray-600 dark:text-gray-400 overflow-hidden">
+          <p className="inline-block translate-x-[2.8rem]">
+            © Tous droits réservés.
+          </p>
         </div>
       </div>
     </footer>

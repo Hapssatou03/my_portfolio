@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { FaWalking } from "react-icons/fa";
 import {
   FaLaptopCode,
@@ -16,7 +17,7 @@ import {
   FaCameraRetro,
   FaPlane,
   FaHistory,
-  FaBrain,
+  FaBullseye,
   FaSpa,
 } from "react-icons/fa";
 
@@ -31,14 +32,16 @@ export default function AboutClient() {
   return (
     <section id="about" className="py-20">
       <motion.div {...fadeUp}>
-        <header className="max-w-4xl mx-auto text-center">
-          <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold">
+        <header className="max-w-4xl mx-auto text-center -mt-12 sm:-mt-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl font-extrabold leading-tight text-pink-500"
+          >
             Construire des solutions qui allient performance, design et impact
-          </h2>
-          <p className="mt-4 text-gray-700 dark:text-gray-200">
-            Ingénieure logiciel, je transforme les idées en produits concrets,
-            performants et évolutifs. Passionnée par l’architecture,
-          </p>
+          </motion.h2>
         </header>
 
         {/* Photo + stats */}
@@ -59,17 +62,21 @@ export default function AboutClient() {
           {/* Stat cards */}
           <div className="md:col-span-3 grid grid-cols-3 gap-4">
             <StatCard
-              icon={<FaProjectDiagram />}
+              icon={
+                <FaProjectDiagram className="text-pink-400 sm:text-pink-500" />
+              }
               label="Projets"
-              value="•Spendy • Eclat •Jiamini • MindIA"
+              value="•Spendy •Éclat •Jiamini •MindIA"
             />
             <StatCard
-              icon={<FaGraduationCap />}
+              icon={
+                <FaGraduationCap className="text-pink-400 sm:text-pink-500" />
+              }
               label="Parcours"
               value="Ingénieure Logiciel en apprentissage"
             />
             <StatCard
-              icon={<FaGraduationCap />}
+              icon={<FaBullseye className="text-pink-400 sm:text-pink-500" />}
               label="Objectif pro"
               value="Rejoindre une équipe en alternance"
             />
@@ -81,13 +88,13 @@ export default function AboutClient() {
               <Card tone="primary">
                 <h3 className="text-xl font-semibold flex items-center gap-3">
                   <FaHeart className="opacity-80" />
-                  Ce qui me drive
+                  Ma vision du développement
                 </h3>
                 <p className="mt-3 text-gray-700 dark:text-gray-200 text-justify">
-                  J’aime livrer des features qui comptent : utiles pour les
-                  utilisateurs, propres côté code, et élégantes côté UI. Mon
-                  style de travail : écoute, clarté, petites itérations,
-                  mesures, puis amélioration continue.
+                  Pour moi, un bon produit allie clarté du code, performance et
+                  expérience utilisateur. Je privilégie la qualité, la rigueur
+                  et la collaboration — pour livrer des solutions durables et
+                  évolutives.
                 </p>
                 <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
                   <Badge tone="primary">Craft & qualité</Badge>
@@ -149,14 +156,48 @@ export default function AboutClient() {
               Ce qui me fait kiffer
             </h3>
             <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <Chip icon={<FaBookOpen />}>Lecture</Chip>
-              <Chip icon={<FaHistory />}>Histoire</Chip>
-              <Chip icon={<FaDumbbell />}>Fitness</Chip>
-              <Chip icon={<FaWalking />}>Marche</Chip>
-              <Chip icon={<FaSpa />}>Méditation</Chip>
-              <Chip icon={<FaCameraRetro />}>Design</Chip>
-              <Chip icon={<FaCameraRetro />}>Photographie</Chip>
-              <Chip icon={<FaPlane />}>Voyages</Chip>
+              <Chip
+                icon={<FaBookOpen className="text-pink-400 sm:text-pink-500" />}
+              >
+                Lecture
+              </Chip>
+              <Chip
+                icon={<FaHistory className="text-pink-400 sm:text-pink-500" />}
+              >
+                Histoire
+              </Chip>
+              <Chip
+                icon={<FaDumbbell className="text-pink-400 sm:text-pink-500" />}
+              >
+                Fitness
+              </Chip>
+              <Chip
+                icon={<FaWalking className="text-pink-400 sm:text-pink-500" />}
+              >
+                Marche
+              </Chip>
+              <Chip icon={<FaSpa className="text-pink-400 sm:text-pink-500" />}>
+                Méditation
+              </Chip>
+              <Chip
+                icon={
+                  <FaCameraRetro className="text-pink-400 sm:text-pink-500" />
+                }
+              >
+                Design
+              </Chip>
+              <Chip
+                icon={
+                  <FaCameraRetro className="text-pink-400 sm:text-pink-500" />
+                }
+              >
+                Photographie
+              </Chip>
+              <Chip
+                icon={<FaPlane className="text-pink-400 sm:text-pink-500" />}
+              >
+                Voyages
+              </Chip>
             </div>
           </Card>
         </div>
@@ -166,13 +207,20 @@ export default function AboutClient() {
           <p className="text-gray-700 dark:text-gray-200">
             Curieuse d’en savoir plus ? Je serais ravie d’échanger ☕
           </p>
-          <div className="mt-4 flex justify-center gap-3">
-            <a href="#contact" className="btn-primary">
-              Discuter ensemble
-            </a>
-            <a href="#projects" className="btn-ghost">
+          <div className="mt-6 flex justify-center gap-4">
+            <Link
+              href="/projets"
+              className="px-6 py-2 rounded-full font-medium border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-all duration-300"
+            >
               Explorer mes projets
-            </a>
+            </Link>
+
+            <Link
+              href="/contact"
+              className="px-6 py-2 rounded-full font-medium bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              Contactez-moi
+            </Link>
           </div>
         </div>
       </motion.div>
