@@ -2,167 +2,260 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { FaWalking } from "react-icons/fa";
 import {
   FaLaptopCode,
   FaProjectDiagram,
   FaGraduationCap,
+  FaHeart,
+  FaRegSmileBeam,
+  FaCompass,
+  FaSeedling,
+  FaBookOpen,
+  FaDumbbell,
+  FaCameraRetro,
+  FaPlane,
+  FaHistory,
+  FaBrain,
+  FaSpa,
 } from "react-icons/fa";
 
-const AboutClient = () => {
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 },
+  viewport: { once: true, margin: "-80px" },
+};
+
+export default function AboutClient() {
   return (
-    <section id="about" className="py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="section-title">À propos de moi</h2>
+    <section id="about" className="py-20">
+      <motion.div {...fadeUp}>
+        <header className="max-w-4xl mx-auto text-center">
+          <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold">
+            Construire des solutions qui allient performance, design et impact
+          </h2>
+          <p className="mt-4 text-gray-700 dark:text-gray-200">
+            Ingénieure logiciel, je transforme les idées en produits concrets,
+            performants et évolutifs. Passionnée par l’architecture,
+          </p>
+        </header>
 
-        {/* CARTES */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-          {/* Développement */}
-          <div className="card bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/15 dark:to-gray-900">
-            <div className="flex items-center mb-4">
-              <div className="bg-primary-100 dark:bg-primary-900/40 p-3 rounded-full mr-4">
-                <FaLaptopCode className="text-primary-600 dark:text-primary-300 text-xl" />
-              </div>
-              <h3 className="text-xl font-semibold text-primary-800 dark:text-primary-200">
-                Développement
-              </h3>
-            </div>
-            <p className="text-gray-700 dark:text-gray-200 mb-4">
-              Passionnée par le développement web et mobile, j&apos;ai acquis de
-              solides compétences dans plusieurs technologies et frameworks, me
-              permettant de concevoir des applications robustes, performantes et
-              sécurisées.
-            </p>
-          </div>
-
-          {/* Conception */}
-          <div className="card bg-gradient-to-br from-secondary-50 to-white dark:from-secondary-900/15 dark:to-gray-900">
-            <div className="flex items-center mb-4">
-              <div className="bg-secondary-100 dark:bg-secondary-900/40 p-3 rounded-full mr-4">
-                <FaProjectDiagram className="text-secondary-600 dark:text-secondary-300 text-xl" />
-              </div>
-              <h3 className="text-xl font-semibold text-secondary-800 dark:text-secondary-200">
-                Conception
-              </h3>
-            </div>
-
-            <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-200">
-              <li>
-                <span className="font-medium">UX/UI :</span> wireframes &amp;
-                maquettes (Figma), design system, accessibilité (couleurs,
-                contrastes, parcours).
-              </li>
-              <li>
-                <span className="font-medium">UML &amp; docs :</span> cas
-                d’usage, séquence, classes, user flows — spécifications
-                fonctionnelles &amp; critères d’acceptabilité.
-              </li>
-              <li>
-                <span className="font-medium">APIs :</span> conception REST
-                (ressources, codes HTTP, validation), sécurité by design.
-              </li>
-            </ul>
-          </div>
-
-          {/* Formation */}
-          <div className="card bg-gradient-to-br from-accent-50 to-white dark:from-accent-900/15 dark:to-gray-900">
-            <div className="flex items-center mb-4">
-              <div className="bg-accent-100 dark:bg-accent-900/40 p-3 rounded-full mr-4">
-                <FaGraduationCap className="text-accent-600 dark:text-accent-300 text-xl" />
-              </div>
-              <h3 className="text-xl font-semibold text-accent-800 dark:text-accent-200">
-                Formation
-              </h3>
-            </div>
-
-            <ul className="space-y-2 text-gray-700 dark:text-gray-200">
-              <li>
-                <span className="font-medium">
-                  Mastère 2 – CTO / Tech Lead – HETIC (en cours)
-                </span>
-              </li>
-              <li>
-                <span className="font-medium">
-                  Bac+4 – Concepteur Développeur d’Applications
-                </span>
-              </li>
-              <li>
-                <span className="font-medium">Licence – Marketing Digital</span>
-              </li>
-              <li>
-                <span className="font-medium">
-                  Titre professionnel – Référent communication &amp; numérique
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="order-1 md:order-1">
-            <div className="aspect-square w-72 md:w-96 rounded-full overflow-hidden ring-4 ring-white/40 dark:ring-white/10 shadow-2xl bg-white dark:bg-gray-900">
+        {/* Photo + stats */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-5 gap-8 max-w-6xl mx-auto items-center">
+          {/* Photo */}
+          <div className="md:col-span-2 flex justify-center">
+            <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-2xl ring-4 ring-white/40 dark:ring-white/10">
               <Image
                 src="/images/picture2.jpg"
                 alt="Hapssatou"
-                width={800}
-                height={800}
-                className="w-full h-full object-cover object-[50%_18%] md:object-[50%_15%]"
+                fill
+                className="object-cover object-[50%_18%] md:object-[50%_15%]"
                 priority
               />
             </div>
           </div>
 
-          <div className="order-2 md:order-2">
-            <p className="text-gray-700 dark:text-gray-200 mb-4 text-justify">
-              Actuellement en freelance sur Kalan (plateforme éducative) et
-              Spendy (application de gestion des dépenses), je privilégie des
-              solutions utiles, performantes et évolutives. J’aime transformer
-              un besoin en produit concret avec une expérience fluide et une
-              base technique saine.
-            </p>
-            <div className="mt-6">
-              <h4 className="font-semibold text-primary-700 dark:text-primary-300 mb-2">
-                Objectif professionnel
-              </h4>
-              <p className="text-gray-700 dark:text-gray-200">
-                Rejoindre une équipe en contrat d’alternance dans le cadre de
-                mon Master 2, ou en CDI, afin de contribuer durablement à des
-                projets innovants et ambitieux. ✨
-              </p>
+          {/* Stat cards */}
+          <div className="md:col-span-3 grid grid-cols-3 gap-4">
+            <StatCard
+              icon={<FaProjectDiagram />}
+              label="Projets"
+              value="•Spendy • Eclat •Jiamini • MindIA"
+            />
+            <StatCard
+              icon={<FaGraduationCap />}
+              label="Parcours"
+              value="Ingénieure Logiciel en apprentissage"
+            />
+            <StatCard
+              icon={<FaGraduationCap />}
+              label="Objectif pro"
+              value="Rejoindre une équipe en alternance"
+            />
+          </div>
+        </div>
+        <div className="max-w-5xl mx-auto mt-12 grid grid-cols-1 lg:grid-cols-3 gap-12 items-stretch">
+          <div className="lg:col-span-2">
+            <div className="h-full flex flex-col justify-between">
+              <Card tone="primary">
+                <h3 className="text-xl font-semibold flex items-center gap-3">
+                  <FaHeart className="opacity-80" />
+                  Ce qui me drive
+                </h3>
+                <p className="mt-3 text-gray-700 dark:text-gray-200 text-justify">
+                  J’aime livrer des features qui comptent : utiles pour les
+                  utilisateurs, propres côté code, et élégantes côté UI. Mon
+                  style de travail : écoute, clarté, petites itérations,
+                  mesures, puis amélioration continue.
+                </p>
+                <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <Badge tone="primary">Craft & qualité</Badge>
+                  <Badge tone="primary">DX & DX</Badge>
+                  <Badge tone="primary">Accessibilité</Badge>
+                  <Badge tone="primary">Sécurité by design</Badge>
+                </div>
+              </Card>
             </div>
+          </div>
+        </div>
+
+        {/* Timeline */}
+        <div className="max-w-5xl mx-auto mt-14">
+          <h3 className="text-xl font-semibold mb-4">Parcours en bref</h3>
+          <ol className="relative border-s border-gray-200 dark:border-white/10">
+            <TimelineItem
+              title="Mastère 2 – CTO / Tech Lead"
+              subtitle="Spécialisation en architecture cloud, DevOps, leadership technique et vision stratégique."
+              right="En cours"
+            />
+            <TimelineItem
+              title="RNCP – Concepteur Développeur d’Applications"
+              subtitle="Spécialisation en Java/Spring Boot, React & React Native, sécurité applicative, Docker et intégration DevOps."
+              right="Validé"
+            />
+            <TimelineItem
+              title="Licence – Marketing Digital"
+              subtitle="Spécialisation en stratégie d’acquisition, SEO/SEA, communication multicanale et analyse de données."
+              right="Validé"
+            />
+            <TimelineItem
+              title="Titre professionnel – Référent Communication et Numérique"
+              subtitle="Pilotage de projets digitaux, gestion de contenus, identité visuelle et transformation numérique."
+              right="Validé"
+            />
+          </ol>
+        </div>
+
+        {/* Valeurs & Hobbies */}
+        <div className="max-w-6xl mx-auto mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <Card tone="secondary">
+            <h3 className="text-lg font-semibold flex items-center gap-3">
+              <FaSeedling className="opacity-80" />
+              Mes valeurs
+            </h3>
+            <div className="mt-4 flex flex-wrap">
+              <Badge>Bienveillance</Badge>
+              <Badge>Exigence</Badge>
+              <Badge>Transparence</Badge>
+              <Badge>Ownership</Badge>
+              <Badge>Apprentissage continu</Badge>
+            </div>
+          </Card>
+
+          <Card tone="secondary">
+            <h3 className="text-lg font-semibold flex items-center gap-3">
+              <FaRegSmileBeam className="opacity-80" />
+              Ce qui me fait kiffer
+            </h3>
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <Chip icon={<FaBookOpen />}>Lecture</Chip>
+              <Chip icon={<FaHistory />}>Histoire</Chip>
+              <Chip icon={<FaDumbbell />}>Fitness</Chip>
+              <Chip icon={<FaWalking />}>Marche</Chip>
+              <Chip icon={<FaSpa />}>Méditation</Chip>
+              <Chip icon={<FaCameraRetro />}>Design</Chip>
+              <Chip icon={<FaCameraRetro />}>Photographie</Chip>
+              <Chip icon={<FaPlane />}>Voyages</Chip>
+            </div>
+          </Card>
+        </div>
+
+        {/* CTA final */}
+        <div className="max-w-4xl mx-auto text-center mt-16">
+          <p className="text-gray-700 dark:text-gray-200">
+            Curieuse d’en savoir plus ? Je serais ravie d’échanger ☕
+          </p>
+          <div className="mt-4 flex justify-center gap-3">
+            <a href="#contact" className="btn-primary">
+              Discuter ensemble
+            </a>
+            <a href="#projects" className="btn-ghost">
+              Explorer mes projets
+            </a>
           </div>
         </div>
       </motion.div>
     </section>
   );
-};
+}
 
-const Block = ({
-  title,
+/* =============================
+   UI SUB-COMPONENTS
+============================= */
+
+function StatCard({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="card flex flex-col items-start gap-2 bg-gradient-to-br from-white to-primary-50/70 dark:from-gray-900 dark:to-primary-900/10">
+      <div className="text-2xl opacity-80">{icon}</div>
+      <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">
+        {label}
+      </div>
+      <div className="font-semibold">{value}</div>
+    </div>
+  );
+}
+
+function Card({
+  tone = "primary",
   children,
 }: {
-  title: string;
+  tone?: "primary" | "secondary" | "accent";
   children: React.ReactNode;
-}) => (
-  <div>
-    <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-1">
-      {title}
-    </h4>
-    <div className="flex flex-wrap">{children}</div>
-  </div>
-);
+}) {
+  const tones = {
+    primary:
+      "bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/15 dark:to-gray-900",
+    secondary:
+      "bg-gradient-to-br from-secondary-50 to-white dark:from-secondary-900/15 dark:to-gray-900",
+    accent:
+      "bg-gradient-to-br from-accent-50 to-white dark:from-accent-900/15 dark:to-gray-900",
+  } as const;
+  return <div className={`card ${tones[tone]}`}>{children}</div>;
+}
 
-const Badge = ({
+function TimelineItem({
+  title,
+  subtitle,
+  right,
+}: {
+  title: string;
+  subtitle?: string;
+  right?: string;
+}) {
+  return (
+    <li className="mb-8 ms-4">
+      <div className="absolute w-3 h-3 bg-primary-500 rounded-full mt-1.5 -start-1.5 border border-white/70 dark:border-gray-900"></div>
+      <div className="flex items-start justify-between gap-3">
+        <h4 className="text-base sm:text-lg font-semibold">{title}</h4>
+        {right && (
+          <span className="text-xs px-2 py-0.5 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-200">
+            {right}
+          </span>
+        )}
+      </div>
+      {subtitle && (
+        <p className="mt-1 text-gray-600 dark:text-gray-300">{subtitle}</p>
+      )}
+    </li>
+  );
+}
+
+function Badge({
   children,
   tone = "primary",
 }: {
   children: React.ReactNode;
   tone?: "primary" | "secondary" | "accent";
-}) => {
+}) {
   const tones = {
     primary:
       "bg-primary-100 text-primary-800 dark:bg-primary-900/40 dark:text-primary-200",
@@ -178,6 +271,19 @@ const Badge = ({
       {children}
     </span>
   );
-};
+}
 
-export default AboutClient;
+function Chip({
+  icon,
+  children,
+}: {
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-white dark:bg-gray-800 border border-gray-200/70 dark:border-white/10 shadow-sm">
+      {icon && <span className="text-sm opacity-80">{icon}</span>}
+      {children}
+    </span>
+  );
+}
