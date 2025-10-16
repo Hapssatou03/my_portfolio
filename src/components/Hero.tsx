@@ -9,7 +9,6 @@ export default function Hero() {
   return (
     <section className="py-12 md:py-20">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Texte */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -42,8 +41,6 @@ export default function Hero() {
             </Link>
           </div>
         </motion.div>
-
-        {/* Visuel */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -51,10 +48,7 @@ export default function Hero() {
           className="relative"
         >
           <div className="relative w-full h-[400px] md:h-[500px]">
-            {/* Blob gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-secondary-200 rounded-full opacity-20 blur-3xl" />
-
-            {/* Photo */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative w-72 h-72 md:w-96 md:h-96 overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10">
                 <Image
@@ -67,8 +61,6 @@ export default function Hero() {
                 />
               </div>
             </div>
-
-            {/* Badge */}
             <div className="absolute -bottom-4 -right-4 md:bottom-0 md:right-0">
               <div className="bg-white rounded-full p-3 shadow-lg">
                 <div className="bg-primary-100 rounded-full p-3">
