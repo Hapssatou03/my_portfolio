@@ -5,10 +5,10 @@ const Footer = () => {
   return (
     <footer className="bg-primary-50 dark:bg-gray-900 border-t border-primary-100 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-[calc(2rem+env(safe-area-inset-bottom))]">
-        {/* Ligne principale : 3 colonnes -> 1fr | auto | 1fr */}
-        <div className="grid grid-cols-1 gap-6 items-center
-                        md:grid-cols-[1fr_auto_1fr]">
-          {/* Colonne gauche */}
+        <div
+          className="grid grid-cols-1 gap-6 items-center
+                        md:grid-cols-[1fr_auto_1fr]"
+        >
           <div className="text-center md:text-left">
             <Link href="/" className="inline-flex items-center space-x-2">
               <span className="font-serif text-lg font-semibold text-primary-800 dark:text-primary-200">
@@ -19,10 +19,7 @@ const Footer = () => {
               Ingénieure logicielle en apprentissage
             </p>
           </div>
-
-          {/* Colonne centre (auto) */}
           <div className="flex items-center justify-center gap-3 text-sm">
-            {/* Le séparateur n’apparaît que sur desktop si tu le veux */}
             <span className="hidden md:inline text-gray-400">|</span>
             <Link
               href="/confidentialite"
@@ -32,27 +29,24 @@ const Footer = () => {
             </Link>
           </div>
 
-          {/* Colonne droite */}
           <div className="flex items-center justify-center md:justify-end gap-6">
             <SocialLink
-              href="https://github.com/hapssatou"
+              href="https://github.com/Hapssatou03"
               icon={<FaGithub />}
               label="GitHub"
             />
             <SocialLink
-              href="https://linkedin.com/in/hapssatou"
+              href="https://www.linkedin.com/in/hapssatou-sy/"
               icon={<FaLinkedin />}
               label="LinkedIn"
             />
             <SocialLink
-              href="mailto:hapssatousy01@gmail.com"
+              href="hapssatousy01@gmail.com"
               icon={<FaEnvelope />}
               label="Email"
             />
           </div>
         </div>
-
-        {/* Barre + Copyright (centré à 100%) */}
         <div className="mt-6 pt-4 border-t border-primary-100 dark:border-gray-800">
           <p className="mx-auto w-fit text-center text-sm text-gray-600 dark:text-gray-400">
             © Tous droits réservés.
