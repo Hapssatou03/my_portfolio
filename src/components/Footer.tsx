@@ -3,13 +3,15 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary-50 dark:bg-gray-900 border-t border-primary-100 dark:border-gray-800 py-8">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0 text-center md:text-left">
+    <footer className="bg-primary-50 dark:bg-gray-900 border-t border-primary-100 dark:border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-[calc(2rem+env(safe-area-inset-bottom))]">
+        {/* Ligne principale */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Branding */}
+          <div className="text-center md:text-left">
             <Link
               href="/"
-              className="flex items-center space-x-2 justify-center md:justify-start"
+              className="inline-flex items-center space-x-2"
             >
               <span className="font-serif text-lg font-semibold text-primary-800 dark:text-primary-200">
                 Hapssatou.S
@@ -20,20 +22,19 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Liens RGPD */}
-          <div className="text-sm text-gray-600 dark:text-gray-400 mb-4 md:mb-0 text-center">
-            {" "}
-            |
+          {/* Lien RGPD */}
+          <div className="flex items-center gap-3 text-sm">
+            <span className="hidden md:inline text-gray-400">|</span>
             <Link
               href="/confidentialite"
-              className="hover:underline text-primary-600 dark:text-primary-400 mx-2"
+              className="hover:underline text-primary-600 dark:text-primary-400"
             >
               Politique de confidentialité
             </Link>
           </div>
 
-          {/* Réseaux sociaux*/}
-          <div className="flex space-x-6">
+          {/* Réseaux sociaux */}
+          <div className="flex items-center gap-6">
             <SocialLink
               href="https://github.com/hapssatou"
               icon={<FaGithub />}
@@ -51,8 +52,10 @@ const Footer = () => {
             />
           </div>
         </div>
-        <div className="mt-6 pt-4 border-t border-primary-100 dark:border-gray-800 text-center text-sm text-gray-600 dark:text-gray-400 overflow-hidden">
-          <p className="inline-block translate-x-[2.8rem]">
+
+        {/* Barre */}
+        <div className="mt-6 pt-4 border-t border-primary-100 dark:border-gray-800">
+          <p className="mx-auto w-fit text-center text-sm text-gray-600 dark:text-gray-400">
             © Tous droits réservés.
           </p>
         </div>
@@ -78,7 +81,7 @@ const SocialLink = ({
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="text-2xl">{icon}</div>
+      <span className="text-2xl leading-none">{icon}</span>
     </Link>
   );
 };

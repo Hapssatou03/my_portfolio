@@ -1114,6 +1114,10 @@ video {
 .w-full {
   width: 100%;
 }
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -1579,6 +1583,9 @@ video {
 .pt-4 {
   padding-top: 1rem;
 }
+.pb-\[calc\(2rem\+env\(safe-area-inset-bottom\)\)\] {
+  padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+}
 .text-center {
   text-align: center;
 }
@@ -1646,6 +1653,9 @@ video {
 }
 .leading-tight {
   line-height: 1.25;
+}
+.leading-none {
+  line-height: 1;
 }
 .tracking-wider {
   letter-spacing: 0.05em;
@@ -2201,6 +2211,10 @@ body {
 
   .md\:mb-0 {
     margin-bottom: 0px;
+  }
+
+  .md\:inline {
+    display: inline;
   }
 
   .md\:flex {
