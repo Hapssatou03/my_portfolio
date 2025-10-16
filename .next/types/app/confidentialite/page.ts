@@ -1,8 +1,8 @@
-// File: C:\Users\Sy\Desktop\portfolio\portfolio-front\src\app\apropos\page.tsx
-import * as entry from '../../../../src/app/apropos/page.js'
+// File: C:\Users\Sy\Desktop\portfolio\portfolio-front\src\app\confidentialite\page.tsx
+import * as entry from '../../../../src/app/confidentialite/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../src/app/apropos/page.js')
+type TEntry = typeof import('../../../../src/app/confidentialite/page.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{
