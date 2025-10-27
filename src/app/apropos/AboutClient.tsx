@@ -73,7 +73,7 @@ export default function AboutClient() {
                 <FaGraduationCap className="text-pink-400 sm:text-pink-500" />
               }
               label="Parcours"
-              value="Ingénieure Logiciel en apprentissage"
+              value="Data ingénieure en apprentissage"
             />
             <StatCard
               icon={<FaBullseye className="text-pink-400 sm:text-pink-500" />}
@@ -91,9 +91,9 @@ export default function AboutClient() {
                   Ma vision du développement
                 </h3>
                 <p className="mt-3 text-gray-700 dark:text-gray-200 text-justify">
-                  Pour moi, un bon produit allie clarté du code, performance et
-                  expérience utilisateur. Je privilégie la qualité, la rigueur
-                  et la collaboration — pour livrer des solutions durables et
+                  Pour moi, un bon pipeline de données allie fiabilité,
+                  performance et qualité. Je privilégie la rigueur, la clarté et
+                  l’automatisation — pour livrer des solutions data durables et
                   évolutives.
                 </p>
                 <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -112,23 +112,23 @@ export default function AboutClient() {
           <h3 className="text-xl font-semibold mb-4">Parcours en bref</h3>
           <ol className="relative border-s border-gray-200 dark:border-white/10">
             <TimelineItem
-              title="Mastère 2 – CTO / Tech Lead"
-              subtitle="Spécialisation en architecture cloud, DevOps, leadership technique et vision stratégique."
+              title="Mastère 2 – Ingénierie Data"
+              subtitle="Spécialisation : Cloud, Big Data, ETL/ELT & IA appliquée"
               right="En cours"
             />
             <TimelineItem
               title="RNCP – Concepteur Développeur d’Applications"
-              subtitle="Spécialisation en Java/Spring Boot, React & React Native, sécurité applicative, Docker et intégration DevOps."
+              subtitle="Spécialisation en Java/Spring Boot, sécurité applicative, Docker et intégration DevOps."
               right="Validé"
             />
             <TimelineItem
               title="Licence – Marketing Digital"
-              subtitle="Spécialisation en stratégie d’acquisition, SEO/SEA, communication multicanale et analyse de données."
+              subtitle="Spécialisation en stratégie d’acquisition, communication multicanale et analyse de données."
               right="Validé"
             />
             <TimelineItem
               title="Titre professionnel – Référent Communication et Numérique"
-              subtitle="Pilotage de projets digitaux, gestion de contenus, identité visuelle et transformation numérique."
+              subtitle="Pilotage de projets digitaux, gestion de contenus et transformation numérique."
               right="Validé"
             />
           </ol>
