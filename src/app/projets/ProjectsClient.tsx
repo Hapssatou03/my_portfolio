@@ -97,7 +97,7 @@ const ProjectsClient = () => {
           className="text-center mt-16"
         >
           <h2 className="mt-2 text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-primary-300 via-white to-primary-300 bg-clip-text text-transparent">
-            Mes projets
+            Mes projets Full Stack
           </h2>
           <p className="mt-3 text-gray-500 dark:text-gray-400">
             De la conception à la mise en production : une vitrine de projets full-stack qui conjuguent rigueur, design et innovation.
