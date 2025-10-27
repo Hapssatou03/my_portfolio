@@ -6,21 +6,95 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
+/* ====== Projets Data (données) ====== */
+const dataProjects = [
+  {
+    title: "Data Pipeline AWS (Batch ETL)",
+    description:
+      "Ingestion → transformation → stockage → requêtes analytiques sur un data lake.",
+    image: "/images/DataPipeline.png", 
+    technologies: ["AWS S3", "Python", "Airflow", "Athena", "Glue/DBT"],
+    features: [
+      "DAG Airflow (ingestion & transformation)",
+      "Zones Raw / Processed sur S3",
+      "Schéma simple de Data Lake",
+      "Requêtes analytiques (Athena/SQL)",
+    ],
+    githubLink: "#",
+    liveLink: "#",
+  },
+  {
+    title: "Streaming Light (Temps réel)",
+    description:
+      "Flux d’événements en continu, transformation légère et visualisation quasi temps réel.",
+    image: "/images/data-streaming.jpg",
+    technologies: ["Kafka / Kinesis", "Python", "Streamlit / Metabase"],
+    features: [
+      "Producers & Consumers",
+      "Transformation en stream",
+      "Mini dashboard live",
+      "Monitoring des topics/streams",
+    ],
+    githubLink: "#",
+    liveLink: "#",
+  },
+  {
+    title: "Data Warehouse & BI",
+    description:
+      "Modélisation analytique (étoile), tables Fact/Dim et dashboards KPI.",
+    image: "/images/data-warehouse.jpg", 
+    technologies: ["PostgreSQL", "DBT", "Power BI / Metabase"],
+    features: [
+      "Modèle en étoile (Star Schema)",
+      "Tables Fact / Dimension",
+      "Transformations DBT",
+      "Dashboards KPI propres",
+    ],
+    githubLink: "#",
+    liveLink: "#",
+  },
+];
+
 /* =========================
    PAGE: Projects (client)
 ========================= */
-
 const ProjectsClient = () => {
   return (
     <section id="projects" className="py-14 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+
+        {/* ====== PROJETS DATA (au-dessus) ====== */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center"
+        >
+          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary-100 text-primary-700">
+            EN COURS
+          </span>
+          <h2 className="mt-3 text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-primary-300 via-white to-primary-300 bg-clip-text text-transparent">
+            Projets Data en
+          </h2>
+          <p className="mt-3 text-gray-500 dark:text-gray-400">
+            Pipelines batch & streaming, modélisation BI et dashboards décisionnels.
+          </p>
+        </motion.div>
+
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
+          {dataProjects.map((p, i) => (
+            <ProjectCard key={`data-${i}`} {...p} />
+          ))}
+        </div>
+
+        {/* ====== PROJETS FULL-STACK (TES PROJETS ACTUELS) ====== */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
         >
           <h2 className="mt-2 text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-primary-300 via-white to-primary-300 bg-clip-text text-transparent">
             Mes projets
@@ -30,10 +104,9 @@ const ProjectsClient = () => {
           </p>
         </motion.div>
 
-        {/* Grille */}
-        
+        {/* ——  —— */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
-          
+          {/* Spendy */}
           <ProjectCard
             title="Spendy"
             description="Application de gestion des finances personnelles avec statistiques automatiques."
@@ -48,6 +121,7 @@ const ProjectsClient = () => {
             liveLink="https://spendy-front-klbm.vercel.app"
           />
 
+          {/* Jiamini */}
           <ProjectCard
             title="JIAMINI — Plateforme éducative immersive"
             description="Application éducative interactive permettant aux élèves d’apprendre à travers un globe 3D et des quiz par matières."
@@ -69,6 +143,7 @@ const ProjectsClient = () => {
             liveLink="#"
           />
 
+          {/* Éclat Solidaire */}
           <ProjectCard
             title="Éclat Solidaire"
             description="Plateforme solidaire pour connecter associations, bénévoles et bénéficiaires, avec gestion des projets et des dons."
@@ -83,6 +158,7 @@ const ProjectsClient = () => {
             liveLink="https://eclat-solidaire.vercel.app"
           />
 
+          {/* Filmeo */}
           <ProjectCard
             title="FILMEO — Catalogue de films & bandes-annonces"
             description="Site vitrine façon plateforme de streaming : recherche, grilles par catégories, fiches avec bande-annonce."
@@ -113,7 +189,6 @@ const ProjectsClient = () => {
 /* =========================
    PROJECT CARD
 ========================= */
-
 interface ProjectCardProps {
   title: string;
   description: string;
@@ -161,7 +236,7 @@ const ProjectCard = ({
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-        {/* Boutons) */}
+        {/* Boutons */}
         <div className="absolute left-4 bottom-4 z-20 flex gap-3">
           <CircleIconBtn href={githubLink} label="Code source">
             <FaGithub className="text-lg" />
@@ -220,7 +295,6 @@ const CircleIconBtn = ({
   label: string;
   children: React.ReactNode;
 }) => {
- 
   const isGithub = href.includes("github.com");
   const iconColor = isGithub ? "text-gray-800" : "text-primary-600";
 
@@ -244,7 +318,6 @@ const CircleIconBtn = ({
 /* =========================
    CARROUSEL D’IMAGES
 ========================= */
-
 type CarouselProps = {
   images: string[];
   altBase?: string;
@@ -317,10 +390,12 @@ const ImageCarousel = ({
           />
         </motion.div>
       ))}
+
+      {/* Ombres latérales */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/35 to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/35 to-transparent" />
 
-      {/* Controls */}
+      {/* Contrôles */}
       <button
         type="button"
         onClick={() => go(-1)}
