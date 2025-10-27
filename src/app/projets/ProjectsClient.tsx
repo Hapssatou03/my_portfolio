@@ -75,7 +75,7 @@ const ProjectsClient = () => {
             EN COURS
           </span>
           <h2 className="mt-3 text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-primary-300 via-white to-primary-300 bg-clip-text text-transparent">
-            Projets Data en
+            Projets Data en cours
           </h2>
           <p className="mt-3 text-gray-500 dark:text-gray-400">
             Pipelines batch & streaming, modélisation BI et dashboards décisionnels.

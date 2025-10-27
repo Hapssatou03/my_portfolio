@@ -22,11 +22,17 @@ export default function CompetencesClient() {
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div
           className="absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl opacity-25"
-          style={{ background: "radial-gradient(circle at 30% 30%, #8731ff 0%, transparent 60%)" }}
+          style={{
+            background:
+              "radial-gradient(circle at 30% 30%, #8731ff 0%, transparent 60%)",
+          }}
         />
         <div
           className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full blur-3xl opacity-20"
-          style={{ background: "radial-gradient(circle at 70% 70%, #ff2a9d 0%, transparent 60%)" }}
+          style={{
+            background:
+              "radial-gradient(circle at 70% 70%, #ff2a9d 0%, transparent 60%)",
+          }}
         />
       </div>
 
@@ -39,10 +45,12 @@ export default function CompetencesClient() {
           className="text-center mb-12"
         >
           {/* <p className="text-sm text-gray-400">Stack & savoir-faire</p> */}
-          <h2 className="text-3xl sm:text-4xl font-semibold">Compétences techniques</h2>
+          <h2 className="text-3xl sm:text-4xl font-semibold">
+            Compétences techniques
+          </h2>
           <p className="mt-3 text-gray-400 max-w-2xl mx-auto">
-            Un socle solide full-stack, du design au déploiement, avec une attention
-            particulière à la sécurité, la performance et l’UX.
+            Un socle solide full-stack, du design au déploiement, avec une
+            attention particulière à la sécurité, la performance et l’UX.
           </p>
         </motion.div>
 
@@ -117,8 +125,13 @@ export default function CompetencesClient() {
           viewport={{ once: true }}
           className="mt-16 relative overflow-hidden rounded-2xl ring-1 ring-white/10 bg-white/5 backdrop-blur-md"
         >
-          <div className="absolute -top-16 -left-10 h-40 w-40 rounded-full blur-2xl opacity-30"
-               style={{ background: "radial-gradient(circle, #8731ff 0%, transparent 60%)" }} />
+          <div
+            className="absolute -top-16 -left-10 h-40 w-40 rounded-full blur-2xl opacity-30"
+            style={{
+              background:
+                "radial-gradient(circle, #8731ff 0%, transparent 60%)",
+            }}
+          />
           <div className="p-8 md:p-10 relative">
             <h3 className="text-2xl font-semibold">Pourquoi me choisir ?</h3>
             <motion.ul
@@ -129,22 +142,24 @@ export default function CompetencesClient() {
               className="mt-6 grid sm:grid-cols-2 gap-4"
             >
               {[
-                {
-                  t: "De la conception au déploiement",
-                  d: "De l’idée au produit en ligne. Je maîtrise tout le cycle pour livrer vite et bien.",
-                },
-                {
-                  t: "Développement sécurisé",
-                  d: "Sécurité by design, code maintenable, testé et documenté.",
-                },
-                {
-                  t: "Performance & UX",
-                  d: "Apps rapides, modernes et centrées sur l’utilisateur.",
-                },
-                {
-                  t: "Polyvalence & collaboration",
-                  d: "Langages, frameworks, DB, CI/CD — et un vrai esprit d’équipe.",
-                },
+                
+                  {
+                    t: "Vision globale : de l’idée à la mise en production",
+                    d: "Je conçois, construis et livre des solutions complètes, avec une approche produit axée sur l’impact.",
+                  },
+                  {
+                    t: "Fiabilité & sécurité dès la conception",
+                    d: "Qualité du code, bonnes pratiques, sécurité by design et documentation structurée.",
+                  },
+                  {
+                    t: "Performance, scalabilité & UX",
+                    d: "Des applications rapides, stables et agréables — pensées pour durer et évoluer.",
+                  },
+                  {
+                    t: "Polyvalence & collaboration",
+                    d: "Maîtrise full-stack + data, CI/CD, Cloud, et un vrai sens du travail en équipe.",
+                  },
+                
               ].map((e, i) => (
                 <Bullet key={i} title={e.t} desc={e.d} />
               ))}
