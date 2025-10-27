@@ -66,7 +66,7 @@ export default function Hero() {
                 <div className="bg-primary-100 rounded-full p-3">
                   <div className="bg-primary-200 rounded-full p-3">
                     <div className="bg-primary-500 rounded-full p-3 text-white">
-                      <span className="font-bold">CDA</span>
+                      {/* <span className="font-bold">CDA</span> */}
                     </div>
                   </div>
                 </div>
