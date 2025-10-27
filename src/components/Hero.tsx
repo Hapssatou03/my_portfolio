@@ -18,10 +18,10 @@ export default function Hero() {
             Je suis <span className="text-primary-600">Hapssatou</span>
           </h1>
           <h2 className="text-xl md:text-2xl text-gray-600 mt-4">
-             Ingénieure logicielle en apprentissage
+           Data Engineer en apprentissage
           </h2>
           <p className="text-gray-700 mt-6 text-lg">
-            J’aime relever des défis techniques et créer des solutions qui facilitent le quotidien.
+           Ensemble, transformons vos données en solutions fiables, évolutives et orientées impact.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">

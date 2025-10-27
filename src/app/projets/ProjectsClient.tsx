@@ -30,8 +30,10 @@ const ProjectsClient = () => {
           </p>
         </motion.div>
 
-        {/* Grille 2 colonnes */}
+        {/* Grille */}
+        
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
+          
           <ProjectCard
             title="Spendy"
             description="Application de gestion des finances personnelles avec statistiques automatiques."
@@ -159,7 +161,7 @@ const ProjectCard = ({
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-        {/* Boutons ronds ) */}
+        {/* Boutons) */}
         <div className="absolute left-4 bottom-4 z-20 flex gap-3">
           <CircleIconBtn href={githubLink} label="Code source">
             <FaGithub className="text-lg" />
