@@ -20,7 +20,7 @@ const dataProjects = [
       "Schéma simple de Data Lake",
       "Requêtes analytiques (Athena/SQL)",
     ],
-    githubLink: "#",
+    githubLink: "https://github.com/Hapssatou03/transactions",
     liveLink: "#",
   },
   {
