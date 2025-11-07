@@ -91,10 +91,10 @@ export default function AboutClient() {
                   Ma vision du développement
                 </h3>
                 <p className="mt-3 text-gray-700 dark:text-gray-200 text-justify">
-                  Pour moi, un bon pipeline de données allie fiabilité,
-                  performance et qualité. Je privilégie la rigueur, la clarté et
-                  l’automatisation — pour livrer des solutions data durables et
-                  évolutives.
+                  Un bon projet Full Stack repose sur une architecture
+                  maîtrisée, un code propre et une intégration fluide. J’accorde
+                  une grande importance à l’automatisation, la qualité
+                  logicielle et la cohérence entre le front et le back.
                 </p>
                 <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
                   <Badge tone="primary">Craft & qualité</Badge>
