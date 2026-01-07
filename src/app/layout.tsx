@@ -17,9 +17,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Hapssatou | Développeuse Web & Mobile",
+  title: "Hapssatou | Développeuse Web & Data",
   description:
-    "Portfolio de Hapssatou, Concepteur Développeur d'Applications spécialisée en développement web et mobile.",
+    "Portfolio de Hapssatou, Ingénieure Logicielle & Data en apprentissage, spécialisée en développement web, mobile et data.",
   icons: {
     icon: [
       { url: "/favicon.ico?v=hs1" },
@@ -56,12 +56,12 @@ export default function RootLayout({
           `}
         </Script>
       </head>
+      <body className="min-h-screen bg-slate-950 text-slate-50 antialiased">
+  <Navbar />
+  <main className="">{children}</main>
+  <Footer />
+</body>
 
-      <body className="font-sans text-gray-900 bg-gradient-to-br from-pink-50 to-white min-h-screen dark:text-gray-100 dark:from-gray-950 dark:to-gray-900">
-        <Navbar />
-        <main className="container mx-auto px-4 py-8">{children}</main>
-        <Footer />
-      </body>
     </html>
   );
 }

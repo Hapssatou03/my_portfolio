@@ -3,167 +3,141 @@
 import { motion } from "framer-motion";
 import {
   FaCode,
-  FaServer,
+  FaCubes,
   FaDatabase,
-  FaShieldAlt,
   FaTools,
-  FaPencilRuler,
+  FaProjectDiagram,
 } from "react-icons/fa";
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0 },
+};
+
 export default function CompetencesClient() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.08 } },
-  };
-  const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
-
   return (
-    <section className="relative pt-12 pb-20 sm:pt-16">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div
-          className="absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl opacity-25"
-          style={{
-            background:
-              "radial-gradient(circle at 30% 30%, #8731ff 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full blur-3xl opacity-20"
-          style={{
-            background:
-              "radial-gradient(circle at 70% 70%, #ff2a9d 0%, transparent 60%)",
-          }}
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section
+      id="competences"
+      className="relative py-20 md:py-24 bg-slate-50 text-slate-900"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Titre */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
-          {/* <p className="text-sm text-gray-400">Stack & savoir-faire</p> */}
-          <h2 className="text-3xl sm:text-4xl font-semibold">
-            Compétences techniques
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-slate-900">
+            Compétences
           </h2>
-          <p className="mt-3 text-gray-400 max-w-2xl mx-auto">
-            Un socle solide full-stack, du design au déploiement, avec une
-            attention particulière à la sécurité, la performance et l’UX.
-          </p>
+          
         </motion.div>
 
-        {/* Grid cartes */}
+        {/* Cartes principales */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "0px 0px -80px 0px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          <SkillCard
+          {/* Langages */}
+          <TechCard
             variants={item}
-            icon={<FaCode className="text-xl" />}
-            title="Développement web & mobile"
-            bullets={[
-              "Frontend : JavaScript, React, React Native, Angular, Vue, Tailwind",
-              "Backend : Java, Spring Boot, Hibernate/JPA, Node.js, Express",
+            icon={
+              <FaCode className="text-xl" />
+            }
+            iconGradient="from-blue-500 to-sky-400"
+            title="Langages"
+            chips={[
+              "HTML",
+              "CSS",
+              "JavaScript",
+              "TypeScript",
+              "PHP",
+              "Java",
+              "SQL",
+              "NoSQL",
             ]}
           />
-          <SkillCard
+
+          {/* Frameworks & Libraries */}
+          <TechCard
             variants={item}
-            icon={<FaServer className="text-xl" />}
-            title="Création d’API REST"
-            bullets={[
-              "Conception & implémentation d’API sécurisées (Spring, Express)",
-              "Auth & autorisation : JWT, bonnes pratiques REST",
+            icon={<FaCubes className="text-xl" />}
+            iconGradient="from-emerald-500 to-teal-400"
+            title="Frameworks & Libraries"
+            chips={[
+              "React",
+              "Next.js",
+              "Spring",
+              "Symfony",
+              "Node.js",
+              "React Native",
+              "Expo",
             ]}
           />
-          <SkillCard
+
+          {/* Bases de données */}
+          <TechCard
             variants={item}
             icon={<FaDatabase className="text-xl" />}
+            iconGradient="from-orange-500 to-amber-400"
             title="Bases de données"
-            bullets={[
-              "SQL : PostgreSQL, MySQL • NoSQL : MongoDB",
-              "Modélisation, indexation & optimisation des requêtes",
-            ]}
+            chips={["MySQL", "MongoDB", "PostgreSQL"]}
           />
-          <SkillCard
-            variants={item}
-            icon={<FaPencilRuler className="text-xl" />}
-            title="Conception (UX/UI & Architecture)"
-            bullets={[
-              "Figma : wireframes, maquettes, design system",
-              "UML, user flows, specs & accessibilité",
-            ]}
-          />
-          <SkillCard
-            variants={item}
-            icon={<FaShieldAlt className="text-xl" />}
-            title="Sécurité & Authentification"
-            bullets={[
-              "JWT, bcrypt, validation de données",
-              "Headers, CORS, rate limiting, bonnes pratiques OWASP",
-            ]}
-          />
-          <SkillCard
+
+          {/* Outils & DevOps */}
+          <TechCard
             variants={item}
             icon={<FaTools className="text-xl" />}
-            title="DevOps & Outils"
-            bullets={[
-              "Docker, GitHub Actions (CI/CD), Git",
-              "Monitoring & logs de base, Linux, Nginx",
-            ]}
+            iconGradient="from-pink-500 to-rose-400"
+            title="Outils & DevOps"
+            chips={["Git", "Docker", "VS Code", "IntelliJ", "Eclipse", "Monday", "Jira", "Trello"]}
+          />
+
+          {/* Architectures */}
+          <TechCard
+            variants={item}
+            icon={<FaProjectDiagram className="text-xl" />}
+            iconGradient="from-purple-500 to-violet-400"
+            title="Architectures"
+            chips={["Hexagonale", "DDD", "MVC"]}
           />
         </motion.div>
 
-        {/* Bandeau différenciant */}
+        {/* Méthodologies */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 relative overflow-hidden rounded-2xl ring-1 ring-white/10 bg-white/5 backdrop-blur-md"
+          className="mt-16 md:mt-20"
         >
-          <div
-            className="absolute -top-16 -left-10 h-40 w-40 rounded-full blur-2xl opacity-30"
-            style={{
-              background:
-                "radial-gradient(circle, #8731ff 0%, transparent 60%)",
-            }}
-          />
-          <div className="p-8 md:p-10 relative">
-            <h3 className="text-2xl font-semibold">Pourquoi me choisir ?</h3>
-            <motion.ul
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="mt-6 grid sm:grid-cols-2 gap-4"
-            >
-              {[
-                
-                  {
-                    t: "Vision globale : de l’idée à la mise en production",
-                    d: "Je conçois, construis et livre des solutions complètes, avec une approche produit axée sur l’impact.",
-                  },
-                  {
-                    t: "Fiabilité & sécurité dès la conception",
-                    d: "Qualité du code, bonnes pratiques, sécurité by design et documentation structurée.",
-                  },
-                  {
-                    t: "Performance, scalabilité & UX",
-                    d: "Des applications rapides, stables et agréables — pensées pour durer et évoluer.",
-                  },
-                  {
-                    t: "Polyvalence & collaboration",
-                    d: "Maîtrise full-stack + data, CI/CD, Cloud, et un vrai sens du travail en équipe.",
-                  },
-                
-              ].map((e, i) => (
-                <Bullet key={i} title={e.t} desc={e.d} />
-              ))}
-            </motion.ul>
+          <div className="rounded-3xl bg-slate-900 text-slate-50 px-6 py-7 md:px-10 md:py-8 shadow-xl shadow-slate-300/40">
+            <h3 className="text-xl md:text-2xl font-semibold mb-4">
+              Méthodologies
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {["Agile Scrum", "API Integration", "Tests unitaires & E2E"].map(
+                (m) => (
+                  <span
+                    key={m}
+                    className="inline-flex items-center rounded-full bg-slate-800 px-4 py-1.5 text-sm font-medium shadow-sm"
+                  >
+                    {m}
+                  </span>
+                )
+              )}
+            </div>
           </div>
         </motion.div>
       </div>
@@ -171,65 +145,45 @@ export default function CompetencesClient() {
   );
 }
 
-/* ---------- UI Parts ---------- */
+/* ---------- Sous-composant carte ---------- */
 
-function SkillCard({
-  icon,
-  title,
-  bullets,
-  variants,
-}: {
+type TechCardProps = {
   icon: React.ReactNode;
+  iconGradient: string;
   title: string;
-  bullets: string[];
+  chips: string[];
   variants?: any;
-}) {
+};
+
+function TechCard({ icon, iconGradient, title, chips, variants }: TechCardProps) {
   return (
-    <motion.div
+    <motion.article
       variants={variants}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.25 }}
-      className="group rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur-md p-5 shadow-card"
+      className="rounded-3xl bg-white border border-slate-100 shadow-lg shadow-slate-200/60 px-6 py-6 md:py-7 flex flex-col"
     >
-      <div className="flex items-center gap-3">
-        <div className="p-3 rounded-xl bg-primary-500/10 ring-1 ring-primary-500/20 text-primary-300">
+      <div className="flex items-center gap-4 mb-4">
+        <div
+          className={`h-11 w-11 rounded-2xl grid place-items-center text-white shadow-md bg-gradient-to-tr ${iconGradient}`}
+        >
           {icon}
         </div>
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3 className="text-lg md:text-xl font-semibold text-slate-900">
+          {title}
+        </h3>
       </div>
 
-      <ul className="mt-4 space-y-2">
-        {bullets.map((b, i) => (
-          <li key={i} className="text-gray-300 leading-relaxed flex gap-2">
-            <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-primary-400/80" />
-            <span>{b}</span>
-          </li>
+      <div className="flex flex-wrap gap-2 mt-2">
+        {chips.map((chip) => (
+          <span
+            key={chip}
+            className="inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-sm font-medium text-slate-700"
+          >
+            {chip}
+          </span>
         ))}
-      </ul>
-
-      <div className="mt-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="mt-3 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition">
-        Stack évolutive • bonnes pratiques • accessibilité
       </div>
-    </motion.div>
-  );
-}
-
-function Bullet({ title, desc }: { title: string; desc: string }) {
-  return (
-    <motion.li
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="flex items-start gap-3 rounded-xl bg-white/5 ring-1 ring-white/10 p-4"
-    >
-      <div className="mt-1 h-5 w-5 rounded-full grid place-items-center bg-primary-500/15 text-primary-300 ring-1 ring-primary-500/20">
-        ✓
-      </div>
-      <div>
-        <h4 className="font-medium">{title}</h4>
-        <p className="text-gray-300">{desc}</p>
-      </div>
-    </motion.li>
+    </motion.article>
   );
 }

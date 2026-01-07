@@ -1,52 +1,71 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    document.documentElement.classList.add("dark");
-    try {
-      localStorage.theme = "dark";
-    } catch {}
-  }, []);
 
   const toggleMenu = () => setIsOpen((o) => !o);
 
   const items = [
-    { href: "/apropos", label: "À propos" },
-    { href: "/competences", label: "Compétences" },
-    { href: "/projets", label: "Projets" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", label: "Accueil" },
+    { href: "/#competences", label: "Compétences" },
+    { href: "/#projets", label: "Projets" },
+    { href: "/#experience", label: "Expérience" },
+    { href: "/#formation", label: "Formation" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-gray-900/70 backdrop-blur-md shadow-sm">
-      <div className="container mx-auto px-6 py-3 flex items-center justify-between">
-        <Link href="/" className="font-serif text-xl font-bold text-[#EE4D96]">
-          Hapssatou.S
+    <nav
+      className="sticky top-0 z-50 relative
+      bg-gradient-to-b
+      from-[#243654]
+      via-[#1f2f4b]
+      to-[#182a44]
+      backdrop-blur-sm
+      border-b border-white/5
+      after:content-['']
+      after:absolute after:inset-0
+      after:bg-[radial-gradient(circle_at_top_left,rgba(80,120,255,0.10),transparent_35%)]
+      after:pointer-events-none after:-z-10"
+    >
+      {/* Barre de navigation */}
+      <div
+        className="relative z-10 w-full
+                   px-4 sm:px-6 lg:px-10
+                   py-4 md:py-5
+                   flex items-center justify-between"
+      >
+        {/* Logo gauche */}
+        <Link
+          href="/"
+          className="font-serif text-xl font-bold tracking-tight text-slate-50"
+        >
+          H{" "}
+          <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent">
+            S
+          </span>
         </Link>
+
+        {/* Menu desktop aligné tout à droite */}
         <div className="hidden md:flex items-center gap-8 ml-auto">
           {items.map((it) => (
-            <NavLink
+            <Link
               key={it.href}
               href={it.href}
-              active={pathname === it.href}
+              className="text-sm font-semibold text-slate-100 hover:text-white transition-colors"
             >
               {it.label}
-            </NavLink>
+            </Link>
           ))}
         </div>
 
-        {/* Menu mobile */}
+        {/* Burger mobile à droite */}
         <button
-          className="md:hidden p-2 text-gray-100 ml-auto"
+          className="md:hidden p-2 text-slate-100 ml-auto"
           onClick={toggleMenu}
           aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
@@ -74,26 +93,26 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Mobile dropdown */}
+        {/* Menu mobile déroulant */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="absolute top-full left-0 right-0 bg-gray-900/90 backdrop-blur-md md:hidden"
+              className="absolute top-full left-0 right-0 bg-[#182a44]/95 backdrop-blur-md md:hidden"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.2 }}
             >
-              <div className="flex flex-col items-center space-y-3 py-4">
+              <div className="flex flex-col items-center space-y-2 py-4">
                 {items.map((it) => (
-                  <MobileNavLink
+                  <Link
                     key={it.href}
                     href={it.href}
-                    active={pathname === it.href}
-                    onClick={toggleMenu}
+                    onClick={() => setIsOpen(false)}
+                    className="w-full text-center font-medium py-2 px-4 rounded-lg text-slate-100 hover:text-white hover:bg-slate-800/70 transition"
                   >
                     {it.label}
-                  </MobileNavLink>
+                  </Link>
                 ))}
               </div>
             </motion.div>
@@ -101,59 +120,5 @@ export default function Navbar() {
         </AnimatePresence>
       </div>
     </nav>
-  );
-}
-
-function NavLink({
-  href,
-  active,
-  children,
-}: {
-  href: string;
-  active?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      aria-current={active ? "page" : undefined}
-      className={`font-medium relative group ${
-        active ? "text-[#EE4D96]" : "text-gray-100 hover:text-[#EE4D96]"
-      }`}
-    >
-      {children}
-      <span
-        className={`absolute -bottom-0.5 left-0 h-0.5 bg-[#EE4D96] transition-all duration-300 ${
-          active ? "w-full" : "w-0 group-hover:w-full"
-        }`}
-      />
-    </Link>
-  );
-}
-
-function MobileNavLink({
-  href,
-  onClick,
-  active,
-  children,
-}: {
-  href: string;
-  onClick: () => void;
-  active?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      aria-current={active ? "page" : undefined}
-      className={`font-medium py-2 px-4 rounded-lg transition ${
-        active
-          ? "text-[#EE4D96] bg-gray-800/60"
-          : "text-gray-100 hover:text-[#EE4D96] hover:bg-gray-800/60"
-      }`}
-    >
-      {children}
-    </Link>
   );
 }

@@ -1,259 +1,396 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
-/* ====== Projets Data (données) ====== */
-const dataProjects = [
+/* ========= Types ========= */
+
+type TechBar = {
+  label: string;
+  value: number; // pourcentage
+};
+
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[]; // tags affichés sur la carte
+  tags: string[]; // pour le filtre (ex: ["react", "typescript"])
+  techBars?: TechBar[]; // pour la modal
+  gallery?: string[]; // captures d’écran pour la modal
+  githubLink?: string;
+  liveLink?: string;
+};
+
+type ProjectCardProps = {
+  project: Project;
+  onClick: () => void;
+};
+
+type CircleIconBtnProps = {
+  href: string;
+  label: string;
+  children: ReactNode;
+};
+
+type ProjectModalProps = {
+  project: Project;
+  onClose: () => void;
+};
+
+/* ========= Filtres (tags du haut) ========= */
+
+const FILTERS: { key: string; label: string }[] = [
+  { key: "all", label: "Tous" },
+  { key: "react", label: "react" },
+  { key: "html", label: "html" },
+  { key: "css", label: "css" },
+  { key: "js", label: "js" },
+  { key: "react-native", label: "react native" },
+  { key: "typescript", label: "typescript" },
+  { key: "nodejs", label: "nodejs" },
+  { key: "api", label: "api" },
+  { key: "java", label: "java" },
+  { key: "mysql", label: "mysql" },
+  { key: "mongodb", label: "mongodb" },
+  { key: "postgresql", label: "postgresql" },
+  { key: "expo", label: "expo" },
+  { key: "redux", label: "redux" },
+];
+
+/* ========= Données projets ========= */
+
+const PROJECTS: Project[] = [
   {
+    id: "manageo",
+    title: "Manageo",
+    description:
+      "Application mobile de gestion des finances personnelles : suivi des dépenses, budgets et dashboards interactifs.",
+    image: "/images/manageo-card.png",
+    technologies: ["expo", "redux", "react native"],
+    tags: ["react-native", "expo", "redux"],
+    techBars: [
+      { label: "expo", value: 40 },
+      { label: "redux", value: 30 },
+      { label: "react native", value: 15 },
+    ],
+    gallery: [
+      "/images/manageo-1.png",
+      "/images/manageo-2.png",
+      "/images/manageo-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "vault-my-password",
+    title: "Vault My Password",
+    description:
+      "Application mobile de gestion de mots de passe sécurisée avec organisation par catégories et options d’export.",
+    image: "/images/vault-card.png",
+    technologies: ["expo", "redux", "react native"],
+    tags: ["react-native", "expo", "redux"],
+    techBars: [
+      { label: "expo", value: 40 },
+      { label: "redux", value: 30 },
+      { label: "react native", value: 15 },
+    ],
+    gallery: [
+      "/images/vault-1.png",
+      "/images/vault-2.png",
+      "/images/vault-3.png",
+      "/images/vault-4.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "portfolio-v1",
+    title: "Portfolio (version Windows 10)",
+    description:
+      "Ancien portfolio présentant tes projets et compétences sur un design inspiré d’un environnement Windows 10.",
+    image: "/images/portfolio-win-card.png",
+    technologies: ["html", "css", "js"],
+    tags: ["html", "css", "js"],
+    techBars: [
+      { label: "html", value: 40 },
+      { label: "css", value: 35 },
+      { label: "javascript", value: 25 },
+    ],
+    gallery: [
+      "/images/portfolio-win-1.png",
+      "/images/portfolio-win-2.png",
+      "/images/portfolio-win-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03/portfolio_dev",
+    liveLink: "#",
+  },
+  {
+    id: "spendy",
+    title: "Spendy — Gestion des finances personnelles",
+    description:
+      "Application full-stack pour gérer revenus, dépenses, budgets et statistiques avec sécurisation JWT.",
+    image: "/images/spendy-card.png",
+    technologies: ["React", "Spring Boot", "MySQL", "MongoDB", "JWT"],
+    tags: ["react", "api", "java", "mysql", "mongodb"],
+    techBars: [
+      { label: "React", value: 35 },
+      { label: "Spring Boot", value: 35 },
+      { label: "MySQL / MongoDB", value: 30 },
+    ],
+    gallery: [
+      "/images/spendy-1.png",
+      "/images/spendy-2.png",
+      "/images/spendy-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03/backend-spendy",
+    liveLink: "https://spendy-front-klbm.vercel.app",
+  },
+  {
+    id: "jiamini",
+    title: "JIAMINI — Plateforme éducative immersive",
+    description:
+      "Application éducative interactive avec globe 3D, quiz par matière et niveau, et espace élève.",
+    image: "/images/jiamini-card.png",
+    technologies: ["React Native", "Spring Boot", "PostgreSQL"],
+    tags: ["react-native", "api", "java", "postgresql"],
+    techBars: [
+      { label: "React Native", value: 40 },
+      { label: "Spring Boot", value: 35 },
+      { label: "PostgreSQL", value: 25 },
+    ],
+    gallery: [
+      "/images/jiamini-1.png",
+      "/images/jiamini-2.png",
+      "/images/jiamini-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03/Jiamini-API",
+  },
+  {
+    id: "mindia",
+    title: "Mindia — Quiz IA personnalisés",
+    description:
+      "Application web qui génère des quiz personnalisés en temps réel à partir d’un sujet et d’un niveau choisis.",
+    image: "/images/mindia-card.png",
+    technologies: ["Next.js", "TypeScript", "API"],
+    tags: ["react", "typescript", "api"],
+    techBars: [
+      { label: "Next.js / React", value: 40 },
+      { label: "TypeScript", value: 35 },
+      { label: "API / IA", value: 25 },
+    ],
+    gallery: [
+      "/images/mindia-1.png",
+      "/images/mindia-2.png",
+      "/images/mindia-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03/Mindia",
+  },
+  {
+    id: "data-pipeline",
     title: "Data Pipeline AWS (Batch ETL)",
     description:
-      "Ingestion → transformation → stockage → requêtes analytiques sur un data lake.",
-    image: "/images/DataPipeline.png", 
-    technologies: ["AWS S3", "Python", "Airflow", "Athena", "Glue/DBT"],
-    features: [
-      "DAG Airflow (ingestion & transformation)",
-      "Zones Raw / Processed sur S3",
-      "Schéma simple de Data Lake",
-      "Requêtes analytiques (Athena/SQL)",
+      "Pipeline de données batch de bout-en-bout : ingestion, transformation, stockage et requêtes analytiques.",
+    image: "/images/DataPipeline.png",
+    technologies: ["AWS S3", "Python", "Airflow", "Athena"],
+    tags: ["python", "api"],
+    techBars: [
+      { label: "Airflow", value: 40 },
+      { label: "AWS S3 / Athena", value: 35 },
+      { label: "Python", value: 25 },
     ],
+    gallery: ["/images/datapipeline-1.png", "/images/datapipeline-2.png"],
     githubLink: "https://github.com/Hapssatou03/transactions",
-    liveLink: "#",
   },
   {
-    title: "Streaming Light (Temps réel)",
+    id: "filmeo",
+    title: "FILMEO — Catalogue de films & trailers",
     description:
-      "Flux d’événements en continu, transformation légère et visualisation quasi temps réel.",
-    image: "/images/data-streaming.jpg",
-    technologies: ["Kafka / Kinesis", "Python", "Streamlit / Metabase"],
-    features: [
-      "Producers & Consumers",
-      "Transformation en stream",
-      "Mini dashboard live",
-      "Monitoring des topics/streams",
+      "Plateforme de type streaming avec recherche, catégories, fiches détaillées et bandes-annonces.",
+    image: "/images/filmeo-card.png",
+    technologies: ["Spring Boot", "Thymeleaf", "MySQL"],
+    tags: ["java", "mysql"],
+    techBars: [
+      { label: "Spring Boot", value: 40 },
+      { label: "Thymeleaf", value: 30 },
+      { label: "MySQL", value: 30 },
     ],
-    githubLink: "#",
-    liveLink: "#",
+    gallery: [
+      "/images/filmeo-1.png",
+      "/images/filmeo-2.png",
+      "/images/filmeo-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03/Filmeo_Streaming",
   },
   {
-    title: "Data Warehouse & BI",
+    id: "eclat-solidaire",
+    title: "Éclat Solidaire",
     description:
-      "Modélisation analytique (étoile), tables Fact/Dim et dashboards KPI.",
-    image: "/images/data-warehouse.jpg", 
-    technologies: ["PostgreSQL", "DBT", "Power BI / Metabase"],
-    features: [
-      "Modèle en étoile (Star Schema)",
-      "Tables Fact / Dimension",
-      "Transformations DBT",
-      "Dashboards KPI propres",
+      "Plateforme solidaire pour connecter associations, bénévoles et bénéficiaires avec gestion des projets et dons.",
+    image: "/images/eclat-solidaire.png",
+    technologies: ["React", "Node.js", "Express", "MongoDB"],
+    tags: ["react", "nodejs", "mongodb", "api"],
+    techBars: [
+      { label: "React", value: 35 },
+      { label: "Node / Express", value: 35 },
+      { label: "MongoDB", value: 30 },
     ],
-    githubLink: "#",
-    liveLink: "#",
+    gallery: [
+      "/images/eclat-1.png",
+      "/images/eclat-2.png",
+      "/images/eclat-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03/eclat_solidaire",
+    liveLink: "https://eclat-solidaire.vercel.app",
   },
 ];
 
-/* =========================
-   PAGE: Projects (client)
-========================= */
-const ProjectsClient = () => {
-  return (
-    <section id="projects" className="py-14 sm:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+/* ========= Page Mes Projets ========= */
 
-        {/* ====== PROJETS DATA (au-dessus) ====== */}
+const ProjectsClient: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [showAll, setShowAll] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const filtered = PROJECTS.filter((p) =>
+    activeFilter === "all" ? true : p.tags.includes(activeFilter)
+  );
+
+  const visibleProjects = showAll ? filtered : filtered.slice(0, 6);
+
+  return (
+    <section id="projets" className="py-16 sm:py-20 bg-[#020617] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Titre */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary-100 text-primary-700">
-            EN COURS
-          </span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-primary-300 via-white to-primary-300 bg-clip-text text-transparent">
-            Projets Data en cours
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold">
+            Mes Projets
           </h2>
-          <p className="mt-3 text-gray-500 dark:text-gray-400">
-            Pipelines batch & streaming, modélisation BI et dashboards décisionnels.
-          </p>
         </motion.div>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {dataProjects.map((p, i) => (
-            <ProjectCard key={`data-${i}`} {...p} />
+        {/* Filtres */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-8 flex flex-wrap justify-center gap-3"
+        >
+          {FILTERS.map((filter) => (
+            <button
+              key={filter.key}
+              type="button"
+              onClick={() => {
+                setActiveFilter(filter.key);
+                setShowAll(false);
+              }}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+                activeFilter === filter.key
+                  ? "bg-gradient-to-r from-[#2563eb] to-[#38bdf8] text-white shadow-lg"
+                  : "bg-[#0f172a] text-slate-200 hover:bg-[#1e293b]"
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Grille de projets */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          {visibleProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onClick={() => setSelectedProject(project)}
+            />
           ))}
         </div>
 
-        {/* ====== PROJETS FULL-STACK (TES PROJETS ACTUELS) ====== */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <h2 className="mt-2 text-3xl md:text-4xl font-serif font-bold bg-gradient-to-r from-primary-300 via-white to-primary-300 bg-clip-text text-transparent">
-            Mes projets Full Stack
-          </h2>
-          <p className="mt-3 text-gray-500 dark:text-gray-400">
-            De la conception à la mise en production : une vitrine de projets full-stack qui conjuguent rigueur, design et innovation.
-          </p>
-        </motion.div>
-
-        {/* ——  —— */}
-         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {/* Spendy */}
-          <ProjectCard
-            title="Spendy"
-            description="Application de gestion des finances personnelles avec statistiques automatiques."
-            image="/images/spendy.png"
-            technologies={["React", "Spring Boot", "MySQL", "MongoDB", "JWT"]}
-            features={[
-              "API REST sécurisée (JWT, BCrypt)",
-              "Gestion revenus/dépenses + budgets",
-              "Dashboard et totaux automatiques",
-            ]}
-            githubLink="https://github.com/Hapssatou03/spendy_backend"
-            liveLink="https://spendy-front-klbm.vercel.app"
-          />
-
-          {/* Jiamini */}
-          <ProjectCard
-            title="JIAMINI — Plateforme éducative immersive"
-            description="Application éducative interactive permettant aux élèves d’apprendre à travers un globe 3D et des quiz par matières."
-            image="/images/jiamini1.png"
-            gallery={[
-              "/images/jiamini1.png",
-              "/images/globe_interactive.png",
-              "/images/jiamini_espace_student.png",
-              "/images/jiamini_quiz_1.png",
-              "/images/choice_level_quiz.png",
-            ]}
-            technologies={["Next.js", "Three.js", "MongoDB", "Tailwind CSS", "JWT"]}
-            features={[
-              "Globe 3D interactif pour explorer les contenus",
-              "Quiz par matières et niveaux",
-              "Espace élève avec progression",
-            ]}
-            githubLink="https://github.com/Hapssatou03/Jiamini-API"
-            liveLink="#"
-          />
-
-          {/* Éclat Solidaire */}
-          <ProjectCard
-            title="Éclat Solidaire"
-            description="Plateforme solidaire pour connecter associations, bénévoles et bénéficiaires, avec gestion des projets et des dons."
-            image="/images/eclat-solidaire.png"
-            technologies={["React", "Node.js", "Express", "MongoDB"]}
-            features={[
-              "Espace projets associatifs et suivi",
-              "Gestion des bénévoles et des dons",
-              "UI simple et accessible",
-            ]}
-            githubLink="https://github.com/hapssatou03/eclat-solidaire"
-            liveLink="https://eclat-solidaire.vercel.app"
-          />
-
-          {/* Filmeo */}
-          <ProjectCard
-            title="FILMEO — Catalogue de films & bandes-annonces"
-            description="Site vitrine façon plateforme de streaming : recherche, grilles par catégories, fiches avec bande-annonce."
-            image="/images/filmeo.png"
-            gallery={[
-              "/images/filmeo.png",
-              "/images/flime_bande_annonce.png",
-              "/images/flimeo_polulaire.png",
-              "/images/filmeo3.png",
-              "/images/flimeo_tendance_2.png",
-              "/images/flimeo_tendance.png",
-            ]}
-            technologies={["Next.js", "TypeScript", "Tailwind CSS", "YouTube API"]}
-            features={[
-              "Recherche globale (films, séries, artistes)",
-              "Sections : Populaires, Tendances, Streaming",
-              "Bandes-annonces intégrées (YouTube)",
-            ]}
-            githubLink="https://github.com/ton-compte/filmeo"
-            liveLink="#"
-          />
-        </div>
+        {/* Bouton */}
+        {filtered.length > 6 && (
+          <div className="mt-10 text-center">
+            <button
+              type="button"
+              onClick={() => setShowAll((prev) => !prev)}
+              className="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold bg-[#2563eb] hover:bg-[#1d4ed8] text-white shadow-lg transition"
+            >
+              {showAll ? "Afficher moins de projets" : "Voir tous mes projets"}
+            </button>
+          </div>
+        )}
       </div>
+
+      {/* Modal projet */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            key={selectedProject.id}
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
 
-/* =========================
-   PROJECT CARD
-========================= */
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  features: string[];
-  githubLink: string;
-  liveLink?: string;
-  gallery?: string[];
-}
+/* ========= Carte Projet ========= */
 
-const ProjectCard = ({
-  title,
-  description,
-  image,
-  technologies,
-  features,
-  githubLink,
-  liveLink,
-  gallery,
-}: ProjectCardProps) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
+  const { title, description, image, technologies, githubLink, liveLink } =
+    project;
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="group bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl rounded-2xl ring-1 ring-black/5 dark:ring-white/10 overflow-hidden hover:-translate-y-1 transition-transform"
+      onClick={onClick}
+      className="group cursor-pointer bg-[#0b1120] rounded-2xl ring-1 ring-white/5 overflow-hidden hover:-translate-y-1 transition-transform shadow-lg shadow-black/40"
     >
-      {/* Media */}
+      {/* Image */}
       <div className="relative">
         <div className="relative w-full aspect-[16/10]">
-          {gallery?.length ? (
-            <ImageCarousel images={gallery} altBase={title} autoPlayMs={6000} />
-          ) : (
-            <Image
-              src={image}
-              alt={`Illustration du projet ${title}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-              priority
-            />
-          )}
+          <Image
+            src={image}
+            alt={`Illustration du projet ${title}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+          />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-        {/* Boutons */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+        {/* Boutons Github / Live */}
         <div className="absolute left-4 bottom-4 z-20 flex gap-3">
-          <CircleIconBtn href={githubLink} label="Code source">
-            <FaGithub className="text-lg" />
-          </CircleIconBtn>
-          {!!liveLink && liveLink !== "#" && (
+          {githubLink && (
+            <CircleIconBtn href={githubLink} label="Code source">
+              <FaGithub className="text-lg" />
+            </CircleIconBtn>
+          )}
+          {liveLink && liveLink !== "#" && (
             <CircleIconBtn href={liveLink} label="Voir le projet">
               <FaExternalLinkAlt className="text-lg" />
             </CircleIconBtn>
           )}
         </div>
 
-        {/* Tags techno */}
+        {/* Tags techno sur l'image */}
         <div className="absolute right-4 bottom-4 z-20 flex flex-wrap justify-end gap-1.5 max-w-[70%]">
           {technologies.map((tech, i) => (
             <span
               key={i}
-              className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/85 dark:bg-black/40 text-gray-900 dark:text-gray-50 ring-1 ring-black/10 dark:ring-white/10 backdrop-blur"
+              className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/85 dark:bg-black/60 text-gray-900 dark:text-gray-50 ring-1 ring-black/10 dark:ring-white/10 backdrop-blur"
             >
               {tech}
             </span>
@@ -262,41 +399,27 @@ const ProjectCard = ({
       </div>
 
       {/* Contenu texte */}
-      <div className="p-6 sm:p-8">
-        <h3 className="text-2xl font-serif font-bold text-primary-900 dark:text-primary-200">
+      <div className="p-6 sm:p-7">
+        <h3 className="text-xl md:text-2xl font-serif font-bold text-white">
           {title}
         </h3>
-        <p className="mt-3 text-gray-600 dark:text-gray-300 text-base">{description}</p>
-
-        <ul className="mt-5 space-y-2.5">
-          {features.map((f, i) => (
-            <li key={i} className="flex gap-3">
-              <span className="mt-1 inline-grid h-5 w-5 place-items-center rounded-full bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 text-[11px]">
-                ✓
-              </span>
-              <span className="text-gray-700 dark:text-gray-200">{f}</span>
-            </li>
-          ))}
-        </ul>
+        <p className="mt-3 text-sm sm:text-base text-gray-300 line-clamp-3">
+          {description}
+        </p>
       </div>
     </motion.article>
   );
 };
 
-/* =========================
-   BOUTON ROND (icônes colorées)
-========================= */
-const CircleIconBtn = ({
+/* ========= Bouton rond (icônes) ========= */
+
+const CircleIconBtn: React.FC<CircleIconBtnProps> = ({
   href,
   label,
   children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
 }) => {
   const isGithub = href.includes("github.com");
-  const iconColor = isGithub ? "text-gray-800" : "text-primary-600";
+  const iconColor = isGithub ? "text-slate-900" : "text-[#2563eb]";
 
   return (
     <Link
@@ -304,129 +427,132 @@ const CircleIconBtn = ({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className={`grid place-items-center w-10 h-10 rounded-full 
-      bg-white text-xl ${iconColor}
-      ring-1 ring-black/10 shadow-md hover:shadow-lg
-      hover:bg-gradient-to-br hover:from-primary-500 hover:to-primary-400 
-      hover:text-white transition duration-300`}
+      onClick={(e) => e.stopPropagation()}
+      className={`grid place-items-center w-10 h-10 rounded-full bg-white text-xl ${iconColor} ring-1 ring-black/20 shadow-md hover:shadow-lg hover:bg-gradient-to-br hover:from-[#2563eb] hover:to-[#38bdf8] hover:text-white transition duration-300`}
     >
       {children}
     </Link>
   );
 };
 
-/* =========================
-   CARROUSEL D’IMAGES
-========================= */
-type CarouselProps = {
-  images: string[];
-  altBase?: string;
-  autoPlayMs?: number;
-};
+/* ========= Modal projet ========= */
 
-const ImageCarousel = ({
-  images,
-  altBase = "Diapositive",
-  autoPlayMs = 0,
-}: CarouselProps) => {
-  const [index, setIndex] = useState(0);
-  const touchStartX = useRef<number | null>(null);
-
-  const go = (dir: 1 | -1) =>
-    setIndex((prev) => (prev + dir + images.length) % images.length);
-  const goTo = (i: number) => setIndex(i);
+const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+  const overlayRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") go(1);
-      if (e.key === "ArrowLeft") go(-1);
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [images.length]);
-
-  useEffect(() => {
-    if (!autoPlayMs) return;
-    const id = setInterval(() => go(1), autoPlayMs);
-    return () => clearInterval(id);
-  }, [autoPlayMs, images.length]);
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current == null) return;
-    const delta = e.changedTouches[0].clientX - touchStartX.current;
-    const threshold = 40;
-    if (delta > threshold) go(-1);
-    else if (delta < -threshold) go(1);
-    touchStartX.current = null;
-  };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [onClose]);
 
   return (
-    <div
-      className="relative w-full h-full select-none"
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-      aria-roledescription="carousel"
+    <motion.div
+      ref={overlayRef}
+      className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
     >
-      {images.map((src, i) => (
-        <motion.div
-          key={src + i}
-          className="absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: i === index ? 1 : 0 }}
-          transition={{ duration: 0.35 }}
-          aria-hidden={i !== index}
-          style={{ zIndex: i === index ? 20 : 0 }}
-        >
-          <Image
-            src={src}
-            alt={`${altBase} ${i + 1}`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-            priority={i === 0}
-          />
-        </motion.div>
-      ))}
-
-      {/* Ombres latérales */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/35 to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/35 to-transparent" />
-
-      {/* Contrôles */}
-      <button
-        type="button"
-        onClick={() => go(-1)}
-        aria-label="Image précédente"
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-30 bg-black/55 hover:bg-black/70 text-white rounded-full w-10 h-10 grid place-items-center backdrop-blur-sm"
+      <motion.div
+        className="relative w-full max-w-5xl max-h-[85vh] bg-slate-900 text-slate-50 rounded-3xl overflow-hidden shadow-2xl"
+        initial={{ scale: 0.96, y: 20, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        exit={{ scale: 0.96, y: 20, opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        onClick={(e) => e.stopPropagation()}
       >
-        ‹
-      </button>
-      <button
-        type="button"
-        onClick={() => go(1)}
-        aria-label="Image suivante"
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-30 bg-black/55 hover:bg-black/70 text-white rounded-full w-10 h-10 grid place-items-center backdrop-blur-sm"
-      >
-        ›
-      </button>
-
-      {/* Dots */}
-      <div className="absolute bottom-3 left-0 right-0 z-30 flex justify-center gap-2">
-        {images.map((_, i) => (
+        {/* Header modal */}
+        <div className="flex items-center justify-between px-6 sm:px-8 py-4 border-b border-white/5">
+          <h3 className="text-2xl font-serif font-bold">{project.title}</h3>
           <button
-            key={i}
-            aria-label={`Aller à l’image ${i + 1}`}
-            onClick={() => goTo(i)}
-            className={`h-2.5 rounded-full transition-all ${
-              i === index ? "w-6 bg-white" : "w-2.5 bg-white/60 hover:bg-white/80"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
+            type="button"
+            onClick={onClose}
+            aria-label="Fermer"
+            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xl"
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Contenu scrollable */}
+        <div className="px-6 sm:px-8 py-6 space-y-8 overflow-y-auto max-h-[75vh]">
+          {/* Description */}
+          <p className="text-sm sm:text-base text-gray-200">
+            {project.description}
+          </p>
+
+          {/* Tech bars */}
+          {project.techBars && project.techBars.length > 0 && (
+            <div>
+              <h4 className="text-lg font-semibold mb-4">
+                Technologies utilisées
+              </h4>
+              <div className="space-y-4">
+                {project.techBars.map((t) => (
+                  <div key={t.label}>
+                    <div className="flex justify-between text-xs sm:text-sm mb-1">
+                      <span className="text-gray-200">{t.label}</span>
+                      <span className="text-[#38bdf8]">{t.value}%</span>
+                    </div>
+                    <div className="h-2 rounded-full bg-slate-700 overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-[#2563eb] to-[#38bdf8]"
+                        style={{ width: `${t.value}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tags */}
+          {project.technologies.length > 0 && (
+            <div>
+              <h4 className="text-lg font-semibold mb-3">Tags</h4>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-gray-100"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Captures d’écran */}
+          {project.gallery && project.gallery.length > 0 && (
+            <div>
+              <h4 className="text-lg font-semibold mb-4">
+                Captures d&apos;écran
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {project.gallery.map((src, i) => (
+                  <div
+                    key={src + i}
+                    className="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-slate-800"
+                  >
+                    <Image
+                      src={src}
+                      alt={`Capture ${i + 1} - ${project.title}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
