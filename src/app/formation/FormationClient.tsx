@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGraduationCap } from "react-icons/fa";
+import { FaGraduationCap, FaLanguage, FaBullseye } from "react-icons/fa";
 
 type Formation = {
   title: string;
@@ -17,7 +17,7 @@ const mainFormations: Formation[] = [
     school: "HETIC",
     details:
       "Architecture logicielle, data, management d’équipes tech, vision produit.",
-    status: "En cours",
+    status: "Sept 2026 - Sept 2027",
   },
   {
     title: "Maîtrise – Concepteur Développeur d’Applications Web & Mobile",
@@ -73,8 +73,10 @@ function FormationCard({ title, school, details, status }: Formation) {
       className="flex items-start gap-4 rounded-3xl bg-white shadow-[0_18px_45px_rgba(15,23,42,0.08)]
                  border border-slate-100 px-5 sm:px-6 py-5 sm:py-6"
     >
-      <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white
-                      flex items-center justify-center text-xl shrink-0">
+      <div
+        className="h-11 w-11 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white
+                      flex items-center justify-center text-xl shrink-0"
+      >
         <FaGraduationCap />
       </div>
 
@@ -98,7 +100,6 @@ function FormationCard({ title, school, details, status }: Formation) {
     </motion.div>
   );
 }
-
 
 export default function FormationClient() {
   const [showMore, setShowMore] = useState(false);
@@ -125,7 +126,7 @@ export default function FormationClient() {
             <FormationCard key={f.title} {...f} />
           ))}
 
-          {/* Bloc “voir plus / moins” */}
+          {/* Bloc “voir plus” */}
           <AnimatePresence>
             {showMore &&
               extraTrainings.map((f) => (
@@ -144,37 +145,102 @@ export default function FormationClient() {
 
         {/* Bouton toggler */}
         <div className="mt-8 flex justify-center">
-  <button
-    type="button"
-    onClick={() => setShowMore(v => !v)}
-    className="inline-flex items-center gap-2 rounded-full
+          <button
+            type="button"
+            onClick={() => setShowMore((v) => !v)}
+            className="inline-flex items-center gap-2 rounded-full
                bg-gradient-to-r from-blue-500 to-cyan-500
                text-white text-sm font-semibold
                px-8 py-3 shadow-md hover:shadow-lg
                transition-all hover:scale-[1.02]"
-  >
-    {showMore ? "Voir moins" : "Voir plus"}
+          >
+            {showMore ? "Voir moins" : "Voir plus"}
 
-    <motion.span
-      animate={{ rotate: showMore ? 180 : 0 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className="flex items-center"
-    >
-      <svg
-        className="w-5 h-5"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M6 9l6 6 6-6" />
-      </svg>
-    </motion.span>
-  </button>
-</div>
+            <motion.span
+              animate={{ rotate: showMore ? 180 : 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="flex items-center"
+            >
+              <svg
+                className="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </motion.span>
+          </button>
+        </div>
+        {/* Bloc Langues & Centres d'intérêt */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
+          {/* Carte Langues */}
+          <div
+            className="rounded-3xl bg-[#050b1f] text-slate-50 px-7 py-6 md:px-8 md:py-7
+                          "
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className="h-11 w-11 rounded-2xl bg-gradient-to-br from-purple-500 to-fuchsia-500
+                              grid place-items-center text-2xl shadow-md"
+              >
+                <FaLanguage />
+              </div>
+              <h3 className="text-xl font-semibold">Langues</h3>
+            </div>
 
+            <div className="space-y-3 text-sm sm:text-base">
+              <div>
+                <p className="font-semibold">Français</p>
+              </div>
+              <div>
+                <p className="font-semibold">Anglais</p>
+                <p className="text-slate-300">
+                  Lecture et conversation courante
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Carte Centres d'intérêt */}
+          <div
+            className="rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-500
+                          text-slate-50 px-7 py-6 md:px-8 md:py-7
+                          shadow-[0_26px_70px_rgba(15,23,42,0.6)]"
+          >
+            <div className="flex items-center gap-3">
+              <span
+                className="flex items-center justify-center
+    h-9 w-9 rounded-xl
+    bg-white/15
+    shadow-sm
+    text-[22px]"
+              >
+                🎯
+              </span>
+
+              <h3 className="text-xl md:text-2xl font-semibold text-white">
+                Centres d'intérêt
+              </h3>
+            </div>
+
+            <ul className="mt-4 space-y-2.5 text-sm sm:text-base list-disc pl-6">
+              <li>Meditation</li>
+              <li>Cinéma</li>
+              <li>Lecture livre developpement personnel</li>
+              <li>voyage </li>
+            </ul>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

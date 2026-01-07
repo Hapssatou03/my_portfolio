@@ -58,12 +58,8 @@ const item = {
 
 export default function ExperienceClient() {
   return (
-    <section
-      id="experience"
-      className="w-full bg-white py-20 md:py-24"
-    >
+    <section id="experience" className="w-full bg-white py-20 md:py-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Titre section */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -86,22 +82,19 @@ export default function ExperienceClient() {
         >
           {EXPERIENCES.map((exp) => (
             <motion.article
-  key={exp.company}
-  variants={item}
-  className="
+              key={exp.company}
+              variants={item}
+              className="
     rounded-3xl
-    bg-white/98                  /* fond plus blanc, moins “flou” */
+    bg-white/98                
     border border-[#e0e7ff]
     shadow-[0_28px_70px_-30px_rgba(15,23,42,0.4)]
     px-6 py-7 md:px-10 md:py-8
     transition-shadow duration-300
     hover:shadow-[0_40px_90px_-35px_rgba(15,23,42,0.55)]
   "
->
-
+            >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6">
-                
-                {/* Colonne gauche */}
                 <div>
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-2xl bg-blue-500 text-white grid place-items-center shadow-md">
@@ -118,36 +111,41 @@ export default function ExperienceClient() {
                       </h3>
                     </div>
                   </div>
-<ul className="mt-4 space-y-2.5 text-sm md:text-[15px] text-slate-700">
-  {exp.bullets.map((b, i) => (
-    <li key={i} className="flex gap-2 leading-relaxed">
-      <span className="mt-[8px] h-1.5 w-1.5 rounded-full bg-blue-500" />
-      <span className="text-slate-800">{b}</span>
-    </li>
-  ))}
-</ul>
-
-
+                  <ul className="mt-4 space-y-2.5 text-sm md:text-[15px] text-slate-700">
+                    {exp.bullets.map((b, i) => (
+                      <li key={i} className="flex gap-2 leading-relaxed">
+                        <span className="mt-[8px] h-1.5 w-1.5 rounded-full bg-blue-500" />
+                        <span className="text-slate-800">{b}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 {/* Colonne droite — période */}
                 <div className="md:pt-1 flex md:block">
-                  <div
-                    className="
-                      inline-flex items-center gap-2
-                      rounded-full
-                      border border-[#dde3f8]
-                      bg-white
-                      px-5 py-2
-                      text-xs md:text-sm
-                      text-slate-700
-                      whitespace-nowrap
-                    "
-                  >
-                    <FaRegCalendarAlt className="text-blue-500" />
-                    <span>{exp.period}</span>
-                  </div>
-                </div>
+  <div
+    className="
+      inline-flex items-center gap-2
+      rounded-full
+      border border-blue-300
+      bg-blue-50
+      px-5 py-2
+      text-[13px] md:text-sm
+      font-semibold
+      tracking-wide
+      text-[#0f172a]   /* NOIR BLEU FONCÉ — NET */
+      whitespace-nowrap
+      shadow-sm shadow-blue-100
+      hover:bg-blue-100 hover:border-blue-400
+      transition-all
+    "
+  >
+    <FaRegCalendarAlt className="text-blue-600" />
+    <span className="leading-none">
+      {exp.period}
+    </span>
+  </div>
+</div>
 
               </div>
             </motion.article>
