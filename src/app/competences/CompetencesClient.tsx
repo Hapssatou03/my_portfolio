@@ -6,6 +6,7 @@ import {
   FaCubes,
   FaDatabase,
   FaTools,
+  FaPencilAlt,
   FaProjectDiagram,
 } from "react-icons/fa";
 
@@ -65,6 +66,7 @@ export default function CompetencesClient() {
               "TypeScript",
               "PHP",
               "Java",
+              "Python",
               "SQL",
               "NoSQL",
             ]}
@@ -113,6 +115,20 @@ export default function CompetencesClient() {
             title="Architectures"
             chips={["Hexagonale", "DDD", "MVC"]}
           />
+
+           {/* Conception UX */}
+        <TechCard
+          variants={item}
+          icon={<FaPencilAlt className="text-xl" />}
+          iconGradient="from-indigo-500 to-sky-400"
+          title="Conception UX"
+          chips={[
+            "UML",
+            "Merise",
+            "Figma",
+            "Wireframes & maquettes",
+          ]}
+        />
         </motion.div>
 
         {/* Méthodologies */}

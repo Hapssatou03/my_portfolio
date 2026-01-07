@@ -4,13 +4,19 @@ import React, { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import {
+  FaGithub,
+  FaExternalLinkAlt,
+  FaMobileAlt,
+  FaArrowLeft,
+} from "react-icons/fa";
 
 /* ========= Types ========= */
 
 type TechBar = {
   label: string;
-  value: number; // pourcentage
+  value: number;
 };
 
 type Project = {
@@ -18,10 +24,10 @@ type Project = {
   title: string;
   description: string;
   image: string;
-  technologies: string[]; // tags affichés sur la carte
-  tags: string[]; // pour le filtre (ex: ["react", "typescript"])
-  techBars?: TechBar[]; // pour la modal
-  gallery?: string[]; // captures d’écran pour la modal
+  technologies: string[];
+  tags: string[];
+  techBars?: TechBar[];
+  gallery?: string[];
   githubLink?: string;
   liveLink?: string;
 };
@@ -60,76 +66,58 @@ const FILTERS: { key: string; label: string }[] = [
   { key: "postgresql", label: "postgresql" },
   { key: "expo", label: "expo" },
   { key: "redux", label: "redux" },
+  { key: "python", label: "python" },
+  { key: "php", label: "php" },
 ];
+
 
 /* ========= Données projets ========= */
 
 const PROJECTS: Project[] = [
   {
-    id: "manageo",
-    title: "Manageo",
+    id: "caresync",
+    title: "CareSync",
     description:
-      "Application mobile de gestion des finances personnelles : suivi des dépenses, budgets et dashboards interactifs.",
-    image: "/images/manageo-card.png",
-    technologies: ["expo", "redux", "react native"],
-    tags: ["react-native", "expo", "redux"],
+      "Application de self-tracking orientée bien-être permettant de suivre le sommeil, l’humeur, les habitudes quotidiennes et d’afficher des tendances via un moteur d’analyse.",
+    image: "/images/caresync-card.png",
+    technologies: ["react", "next.js", "tailwind", "charts"],
+    tags: ["react", "typescript", "data", "ux"],
     techBars: [
-      { label: "expo", value: 40 },
-      { label: "redux", value: 30 },
-      { label: "react native", value: 15 },
+      { label: "Frontend React / Next.js", value: 40 },
+      { label: "UX / UI & Design System", value: 30 },
+      { label: "Data / Analytics", value: 30 },
     ],
     gallery: [
-      "/images/manageo-1.png",
-      "/images/manageo-2.png",
-      "/images/manageo-3.png",
+      "/images/caresync-1.png",
+      "/images/caresync-2.png",
+      "/images/caresync-3.png",
     ],
     githubLink: "https://github.com/Hapssatou03",
   },
   {
-    id: "vault-my-password",
-    title: "Vault My Password",
+    id: "recettio",
+    title: "Recettio",
     description:
-      "Application mobile de gestion de mots de passe sécurisée avec organisation par catégories et options d’export.",
-    image: "/images/vault-card.png",
-    technologies: ["expo", "redux", "react native"],
+      "Application mobile de gestion de recettes permettant de créer, organiser et retrouver facilement ses plats favoris, avec gestion des ingrédients et filtrage par catégories.",
+    image: "/images/recettio-card.png",
+    technologies: ["expo", "react native", "redux"],
     tags: ["react-native", "expo", "redux"],
     techBars: [
-      { label: "expo", value: 40 },
-      { label: "redux", value: 30 },
-      { label: "react native", value: 15 },
+      { label: "Expo", value: 40 },
+      { label: "React Native", value: 35 },
+      { label: "Redux / State", value: 25 },
     ],
     gallery: [
-      "/images/vault-1.png",
-      "/images/vault-2.png",
-      "/images/vault-3.png",
-      "/images/vault-4.png",
+      "/images/recettio-1.png",
+      "/images/recettio-2.png",
+      "/images/recettio-3.png",
+      "/images/recettio-4.png",
     ],
     githubLink: "https://github.com/Hapssatou03",
-  },
-  {
-    id: "portfolio-v1",
-    title: "Portfolio (version Windows 10)",
-    description:
-      "Ancien portfolio présentant tes projets et compétences sur un design inspiré d’un environnement Windows 10.",
-    image: "/images/portfolio-win-card.png",
-    technologies: ["html", "css", "js"],
-    tags: ["html", "css", "js"],
-    techBars: [
-      { label: "html", value: 40 },
-      { label: "css", value: 35 },
-      { label: "javascript", value: 25 },
-    ],
-    gallery: [
-      "/images/portfolio-win-1.png",
-      "/images/portfolio-win-2.png",
-      "/images/portfolio-win-3.png",
-    ],
-    githubLink: "https://github.com/Hapssatou03/portfolio_dev",
-    liveLink: "#",
   },
   {
     id: "spendy",
-    title: "Spendy — Gestion des finances personnelles",
+    title: "Spendy",
     description:
       "Application full-stack pour gérer revenus, dépenses, budgets et statistiques avec sécurisation JWT.",
     image: "/images/spendy-card.png",
@@ -150,7 +138,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "jiamini",
-    title: "JIAMINI — Plateforme éducative immersive",
+    title: "JIAMINI ",
     description:
       "Application éducative interactive avec globe 3D, quiz par matière et niveau, et espace élève.",
     image: "/images/jiamini-card.png",
@@ -170,7 +158,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "mindia",
-    title: "Mindia — Quiz IA personnalisés",
+    title: "Mindia ",
     description:
       "Application web qui génère des quiz personnalisés en temps réel à partir d’un sujet et d’un niveau choisis.",
     image: "/images/mindia-card.png",
@@ -189,24 +177,29 @@ const PROJECTS: Project[] = [
     githubLink: "https://github.com/Hapssatou03/Mindia",
   },
   {
-    id: "data-pipeline",
-    title: "Data Pipeline AWS (Batch ETL)",
+    id: "my-todo",
+    title: "My Todo ",
     description:
-      "Pipeline de données batch de bout-en-bout : ingestion, transformation, stockage et requêtes analytiques.",
-    image: "/images/DataPipeline.png",
-    technologies: ["AWS S3", "Python", "Airflow", "Athena"],
-    tags: ["python", "api"],
+      "Application web permettant d’organiser ses tâches quotidiennes : ajout, édition, suppression, filtrage par statut et persistance des données.",
+    image: "/images/mytodo-card.png",
+    technologies: ["React", "TypeScript", "LocalStorage"],
+    tags: ["react", "typescript", "js"],
     techBars: [
-      { label: "Airflow", value: 40 },
-      { label: "AWS S3 / Athena", value: 35 },
-      { label: "Python", value: 25 },
+      { label: "React", value: 40 },
+      { label: "TypeScript", value: 35 },
+      { label: "State & Storage", value: 25 },
     ],
-    gallery: ["/images/datapipeline-1.png", "/images/datapipeline-2.png"],
-    githubLink: "https://github.com/Hapssatou03/transactions",
+    gallery: [
+      "/images/mytodo-1.png",
+      "/images/mytodo-2.png",
+      "/images/mytodo-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+    liveLink: "#",
   },
   {
     id: "filmeo",
-    title: "FILMEO — Catalogue de films & trailers",
+    title: "FILMEO ",
     description:
       "Plateforme de type streaming avec recherche, catégories, fiches détaillées et bandes-annonces.",
     image: "/images/filmeo-card.png",
@@ -245,24 +238,187 @@ const PROJECTS: Project[] = [
     githubLink: "https://github.com/Hapssatou03/eclat_solidaire",
     liveLink: "https://eclat-solidaire.vercel.app",
   },
+  {
+    id: "shoply",
+    title: "Shoply",
+    description:
+      "Application web e-commerce permettant de parcourir un catalogue de produits, gérer un panier persistant, passer une commande et administrer les produits côté back-office.",
+    image: "/images/shoply-card.png",
+    technologies: ["React", "Node.js", "MongoDB", "JWT"],
+    tags: ["react", "nodejs", "api", "mongodb"],
+    techBars: [
+      { label: "Frontend React", value: 40 },
+      { label: "Backend API / Auth", value: 35 },
+      { label: "MongoDB & Data", value: 25 },
+    ],
+    gallery: [
+      "/images/shoply-1.png",
+      "/images/shoply-2.png",
+      "/images/shoply-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "quizmaster-ai",
+    title: "QuizMaster AI ",
+    description:
+      "Application web pédagogique permettant de générer des quiz par thème et niveau, avec score final, correction détaillée et historique des séances.",
+    image: "/images/quizmaster-card.png",
+    technologies: ["Next.js", "TypeScript", "API"],
+    tags: ["react", "typescript", "api"],
+    techBars: [
+      { label: "Next.js / React", value: 40 },
+      { label: "TypeScript", value: 35 },
+      { label: "Quiz Engine / Logic", value: 25 },
+    ],
+    gallery: [
+      "/images/quizmaster-1.png",
+      "/images/quizmaster-2.png",
+      "/images/quizmaster-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "readly",
+    title: "Readly ",
+    description:
+      "Application mobile permettant de suivre sa progression de lecture, définir des objectifs mensuels, enregistrer ses livres et consulter des statistiques d’évolution.",
+    image: "/images/readly-card.png",
+    technologies: ["Expo", "React Native", "AsyncStorage"],
+    tags: ["react-native", "expo"],
+    techBars: [
+      { label: "React Native", value: 45 },
+      { label: "Expo", value: 35 },
+      { label: "State & Storage", value: 20 },
+    ],
+    gallery: [
+      "/images/readly-1.png",
+      "/images/readly-2.png",
+      "/images/readly-3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "snake-python",
+    title: "Snake ",
+    description:
+      "Jeu rétro développé en Python jouable dans le terminal : le serpent se déplace dans une grille, mange des pommes pour grandir et le joueur doit éviter les murs et son propre corps.",
+    image: "/images/snake-card.png",
+    technologies: ["Python", "Curses", "Algorithmes"],
+    tags: ["python", "jeu", "terminal"],
+    techBars: [
+      { label: "Python", value: 50 },
+      { label: "Logique de jeu", value: 30 },
+      { label: "Structures de données", value: 20 },
+    ],
+    gallery: ["/images/snake-1.png", "/images/snake-2.png"],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "mot-mystere",
+    title: "Mot Mystère — Jeu d’énigme en Python",
+    description:
+      "Jeu d’énigme en ligne de commande inspiré du pendu : un mot secret est choisi aléatoirement et le joueur doit le deviner lettre par lettre avec un nombre limité de tentatives.",
+    image: "/images/motmystere-card.png",
+    technologies: ["Python", "Fichiers texte", "Algorithmes"],
+    tags: ["python", "jeu", "console"],
+    techBars: [
+      { label: "Python", value: 50 },
+      { label: "Manipulation de chaînes", value: 30 },
+      { label: "Gestion des fichiers", value: 20 },
+    ],
+    gallery: ["/images/motmystere-1.png", "/images/motmystere-2.png"],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "booktrack",
+    title: "BookTrack ",
+    description:
+      "Application PHP permettant de gérer une bibliothèque : ajout de livres, gestion des utilisateurs, suivi des emprunts et retours, avec interface d’administration.",
+    image: "/images/booktrack-card.png",
+    technologies: ["PHP", "MySQL", "MVC"],
+    tags: ["php", "mysql", "crud"],
+    techBars: [
+      { label: "PHP", value: 45 },
+      { label: "Base de données", value: 35 },
+      { label: "Architecture MVC", value: 20 },
+    ],
+    gallery: ["/images/booktrack-1.png", "/images/booktrack-2.png"],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "eventify",
+    title: "Eventify ",
+    description:
+      "Application PHP permettant de créer des événements, gérer les inscriptions des participants et suivre le nombre de places restantes, avec interface d’administration.",
+    image: "/images/eventify-card.png",
+    technologies: ["PHP", "MySQL", "Sessions"],
+    tags: ["php", "mysql", "gestion"],
+    techBars: [
+      { label: "PHP", value: 45 },
+      { label: "Logique métier", value: 30 },
+      { label: "Gestion utilisateurs", value: 25 },
+    ],
+    gallery: ["/images/eventify-1.png", "/images/eventify-2.png"],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "data-pipeline",
+    title: "Data Pipeline AWS (Batch ETL)",
+    description:
+      "Pipeline de données batch de bout-en-bout : ingestion, transformation, stockage et requêtes analytiques.",
+    image: "/images/DataPipeline.png",
+    technologies: ["AWS S3", "Python", "Airflow", "Athena"],
+    tags: ["python", "api"],
+    techBars: [
+      { label: "Airflow", value: 40 },
+      { label: "AWS S3 / Athena", value: 35 },
+      { label: "Python", value: 25 },
+    ],
+    gallery: ["/images/datapipeline-1.png", "/images/datapipeline-2.png"],
+    githubLink: "https://github.com/Hapssatou03/transactions",
+  },
 ];
 
 /* ========= Page Mes Projets ========= */
 
 const ProjectsClient: React.FC = () => {
+  const pathname = usePathname();
+  const isFullPage = pathname === "/projets"; // /projets = vue complète
+
   const [activeFilter, setActiveFilter] = useState<string>("all");
-  const [showAll, setShowAll] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filtered = PROJECTS.filter((p) =>
     activeFilter === "all" ? true : p.tags.includes(activeFilter)
   );
-
-  const visibleProjects = showAll ? filtered : filtered.slice(0, 6);
+  const visibleProjects = isFullPage ? filtered : filtered.slice(0, 6);
 
   return (
-    <section id="projets" className="py-16 sm:py-20 bg-[#020617] text-white">
+    <section id="projets" className="py-20 sm:py-24 bg-[#182a44]/95 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {isFullPage && (
+          <div className="mb-8">
+            <Link
+              href="/"
+              className="
+                inline-flex items-center gap-2
+                px-6 py-2.5
+                rounded-full
+                bg-gradient-to-r from-[#2563eb] to-[#38bdf8]
+                text-white
+                text-sm sm:text-base
+                shadow-[0_18px_40px_rgba(0,0,0,0.65)]
+                hover:brightness-110
+                transition
+              "
+            >
+              <FaArrowLeft className="text-sm" />
+              <span>Retour à l&apos;accueil</span>
+            </Link>
+          </div>
+        )}
+
         {/* Titre */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -272,7 +428,7 @@ const ProjectsClient: React.FC = () => {
           className="text-center"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold">
-            Mes Projets
+            {isFullPage ? "Tous mes projets" : "Mes Projets"}
           </h2>
         </motion.div>
 
@@ -288,10 +444,7 @@ const ProjectsClient: React.FC = () => {
             <button
               key={filter.key}
               type="button"
-              onClick={() => {
-                setActiveFilter(filter.key);
-                setShowAll(false);
-              }}
+              onClick={() => setActiveFilter(filter.key)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
                 activeFilter === filter.key
                   ? "bg-gradient-to-r from-[#2563eb] to-[#38bdf8] text-white shadow-lg"
@@ -314,16 +467,24 @@ const ProjectsClient: React.FC = () => {
           ))}
         </div>
 
-        {/* Bouton */}
-        {filtered.length > 6 && (
-          <div className="mt-10 text-center">
-            <button
-              type="button"
-              onClick={() => setShowAll((prev) => !prev)}
-              className="inline-flex items-center px-6 py-2.5 rounded-full text-sm font-semibold bg-[#2563eb] hover:bg-[#1d4ed8] text-white shadow-lg transition"
+        {!isFullPage && filtered.length > 6 && (
+          <div className="mt-16 text-center">
+            <Link
+              href="/projets"
+              className="
+        inline-flex items-center justify-center
+        px-10 py-3
+        rounded-full
+        bg-gradient-to-r from-[#2563eb] to-[#06b6d4]
+        text-white
+        text-sm sm:text-base font-semibold
+        shadow-[0_18px_40px_rgba(0,0,0,0.65)]
+        hover:brightness-110
+        transition
+      "
             >
-              {showAll ? "Afficher moins de projets" : "Voir tous mes projets"}
-            </button>
+              Voir tous mes projets
+            </Link>
           </div>
         )}
       </div>
@@ -345,8 +506,10 @@ const ProjectsClient: React.FC = () => {
 /* ========= Carte Projet ========= */
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
-  const { title, description, image, technologies, githubLink, liveLink } =
-    project;
+  const { title, description, image, technologies, tags } = project;
+
+  const primaryTags = tags.slice(0, 3);
+  const extraCount = tags.length - primaryTags.length;
 
   return (
     <motion.article
@@ -355,57 +518,97 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       onClick={onClick}
-      className="group cursor-pointer bg-[#0b1120] rounded-2xl ring-1 ring-white/5 overflow-hidden hover:-translate-y-1 transition-transform shadow-lg shadow-black/40"
+      className="
+        group cursor-pointer
+        flex flex-col
+        rounded-3xl
+        bg-[#0b1628]
+        border border-white/8
+        shadow-[0_22px_55px_rgba(0,0,0,0.75)]
+        overflow-hidden
+        h-[460px]
+        hover:-translate-y-2 hover:shadow-[0_28px_70px_rgba(0,0,0,0.9)]
+        transition-transform duration-300
+      "
     >
-      {/* Image */}
-      <div className="relative">
-        <div className="relative w-full aspect-[16/10]">
-          <Image
-            src={image}
-            alt={`Illustration du projet ${title}`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-          />
-        </div>
-
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-        {/* Boutons Github / Live */}
-        <div className="absolute left-4 bottom-4 z-20 flex gap-3">
-          {githubLink && (
-            <CircleIconBtn href={githubLink} label="Code source">
-              <FaGithub className="text-lg" />
-            </CircleIconBtn>
-          )}
-          {liveLink && liveLink !== "#" && (
-            <CircleIconBtn href={liveLink} label="Voir le projet">
-              <FaExternalLinkAlt className="text-lg" />
-            </CircleIconBtn>
-          )}
-        </div>
-
-        {/* Tags techno sur l'image */}
-        <div className="absolute right-4 bottom-4 z-20 flex flex-wrap justify-end gap-1.5 max-w-[70%]">
-          {technologies.map((tech, i) => (
-            <span
-              key={i}
-              className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/85 dark:bg-black/60 text-gray-900 dark:text-gray-50 ring-1 ring-black/10 dark:ring-white/10 backdrop-blur"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+      <div className="relative w-full h-56 overflow-hidden bg-slate-900">
+        <Image
+          src={image}
+          alt={`Illustration du projet ${title}`}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+        />
       </div>
 
-      {/* Contenu texte */}
-      <div className="p-6 sm:p-7">
-        <h3 className="text-xl md:text-2xl font-serif font-bold text-white">
+      <div className="flex-1 px-7 pt-6 pb-5 bg-gradient-to-b from-[#0b1628] to-[#020816]">
+        {/* Titre */}
+        <h3 className="text-xl md:text-2xl font-semibold text-slate-50">
           {title}
         </h3>
-        <p className="mt-3 text-sm sm:text-base text-gray-300 line-clamp-3">
+
+        <div className="mt-2 text-slate-300 text-lg" />
+
+        {/* Description */}
+        <p className="mt-2 text-sm sm:text-base text-slate-200 line-clamp-3">
           {description}
         </p>
+
+        {technologies.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {technologies.map((tech) => (
+              <span
+                key={tech}
+                className="
+                  inline-flex items-center gap-1
+                  rounded-full
+                  bg-[#020617]
+                  border border-white/10
+                  px-3 py-1
+                  text-xs font-medium text-slate-100
+                "
+              >
+                <span className="text-[10px]">🏷</span>
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {primaryTags.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {primaryTags.map((tag) => (
+              <span
+                key={tag}
+                className="
+                  inline-flex items-center
+                  rounded-full
+                  bg-[#020617]
+                  px-3 py-1
+                  text-xs font-semibold
+                  text-slate-100
+                "
+              >
+                {tag}
+              </span>
+            ))}
+
+            {extraCount > 0 && (
+              <span
+                className="
+                  inline-flex items-center
+                  rounded-full
+                  bg-[#020617]
+                  px-3 py-1
+                  text-xs font-semibold
+                  text-slate-100
+                "
+              >
+                +{extraCount}
+              </span>
+            )}
+          </div>
+        )}
       </div>
     </motion.article>
   );
@@ -478,14 +681,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           </button>
         </div>
 
-        {/* Contenu scrollable */}
         <div className="px-6 sm:px-8 py-6 space-y-8 overflow-y-auto max-h-[75vh]">
           {/* Description */}
           <p className="text-sm sm:text-base text-gray-200">
             {project.description}
           </p>
 
-          {/* Tech bars */}
           {project.techBars && project.techBars.length > 0 && (
             <div>
               <h4 className="text-lg font-semibold mb-4">
@@ -527,7 +728,6 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
             </div>
           )}
 
-          {/* Captures d’écran */}
           {project.gallery && project.gallery.length > 0 && (
             <div>
               <h4 className="text-lg font-semibold mb-4">

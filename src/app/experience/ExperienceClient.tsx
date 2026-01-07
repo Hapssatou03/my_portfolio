@@ -60,87 +60,95 @@ export default function ExperienceClient() {
   return (
     <section
       id="experience"
-      className=" ppy-16 md:py-20
-    bg-gradient-to-b
-    from-white
-    via-[#fafbff]
-    to-[#f7f9fc]
-    dark:from-slate-900/40
-    dark:via-slate-900/30
-    dark:to-slate-900/20"
+      className="w-full bg-white py-20 md:py-24"
     >
-      <div
-        className="max-w-5xl mx-auto
-    px-4 sm:px-6 lg:px-8
-    pt-6 md:pt-8
-    pb-16 md:pb-20
-    shadow-[0_40px_80px_-30px_rgba(0,0,0,0.35)]
-  "
-      >
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Titre section */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "0px 0px -80px 0px" }}
-          className="text-center mb-10 md:mb-12"
+          className="text-center mb-12 md:mb-14"
         >
-          <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 text-black-slate-50">
-            Expériences Professionnelles
+          <h2 className="text-3xl md:text-5xl font-semibold text-slate-900">
+            Expérience Professionnelle
           </h2>
         </motion.div>
 
+        {/* Liste expériences */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "0px 0px -80px 0px" }}
-          className="space-y-6 md:space-y-7"
+          className="space-y-7 md:space-y-8"
         >
           {EXPERIENCES.map((exp) => (
             <motion.article
-              key={exp.company}
-              variants={item}
-              className="rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-100 dark:border-slate-800 shadow-[0_18px_45px_rgba(15,23,42,0.06)] px-5 py-6 md:px-8 md:py-7"
-            >
+  key={exp.company}
+  variants={item}
+  className="
+    rounded-3xl
+    bg-white/98                  /* fond plus blanc, moins “flou” */
+    border border-[#e0e7ff]
+    shadow-[0_28px_70px_-30px_rgba(15,23,42,0.4)]
+    px-6 py-7 md:px-10 md:py-8
+    transition-shadow duration-300
+    hover:shadow-[0_40px_90px_-35px_rgba(15,23,42,0.55)]
+  "
+>
+
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-6">
+                
+                {/* Colonne gauche */}
                 <div>
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-2xl bg-blue-500 text-white grid place-items-center shadow-md">
                       <FaBriefcase />
                     </div>
+
                     <div>
                       <p className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
                         {exp.company}
                       </p>
-                      <h3 className="mt-0.5 text-lg md:text-xl font-semibold text-slate-900 dark:text-slate-50">
+
+                      <h3 className="mt-0.5 text-lg md:text-xl font-semibold text-slate-900">
                         {exp.role}
                       </h3>
                     </div>
                   </div>
+<ul className="mt-4 space-y-2.5 text-sm md:text-[15px] text-slate-700">
+  {exp.bullets.map((b, i) => (
+    <li key={i} className="flex gap-2 leading-relaxed">
+      <span className="mt-[8px] h-1.5 w-1.5 rounded-full bg-blue-500" />
+      <span className="text-slate-800">{b}</span>
+    </li>
+  ))}
+</ul>
 
-                  <ul className="mt-4 space-y-2.5 text-sm md:text-[15px] text-slate-600 dark:text-slate-200">
-                    {exp.bullets.map((b, i) => (
-                      <li key={i} className="flex gap-2">
-                        <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-blue-500" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+
                 </div>
 
-                <div className="md:pt-1">
+                {/* Colonne droite — période */}
+                <div className="md:pt-1 flex md:block">
                   <div
-                    className=" inline-flex items-center gap-2
-    rounded-full border border-slate-200 dark:border-slate-700
-    bg-slate-50 dark:bg-slate-900
-    px-5 py-2
-    text-xs md:text-sm
-    text-slate-600 dark:text-slate-200
-    whitespace-nowrap"
+                    className="
+                      inline-flex items-center gap-2
+                      rounded-full
+                      border border-[#dde3f8]
+                      bg-white
+                      px-5 py-2
+                      text-xs md:text-sm
+                      text-slate-700
+                      whitespace-nowrap
+                    "
                   >
                     <FaRegCalendarAlt className="text-blue-500" />
                     <span>{exp.period}</span>
                   </div>
                 </div>
+
               </div>
             </motion.article>
           ))}
