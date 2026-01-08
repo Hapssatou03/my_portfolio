@@ -116,27 +116,7 @@ const PROJECTS: Project[] = [
     ],
     githubLink: "https://github.com/Hapssatou03",
   },
-  {
-    id: "recettio",
-    title: "Recettio",
-    description:
-      "Recettio est une application mobile de recettes intelligentes conçue pour accompagner les utilisateurs au quotidien. Elle propose des recettes personnalisées en fonction du temps disponible, du budget et des préférences alimentaires, avec une expérience mobile fluide, intuitive et apaisante.",
-    image: "/images/recettio/recettio.png",
-    technologies: ["expo", "react native", "redux"],
-    tags: ["react-native", "expo", "redux"],
-    techBars: [
-      { label: "Expo", value: 40 },
-      { label: "React Native", value: 35 },
-      { label: "Redux / State", value: 25 },
-    ],
-    gallery: [
-      "/images/recettio/recettio.png",
-      "/images/recettio/",
-      "/images/recettio/",
-      "/images/recettio/",
-    ],
-    githubLink: "https://github.com/Hapssatou03",
-  },
+ 
 
   {
     id: "jiamini",
@@ -331,6 +311,27 @@ const PROJECTS: Project[] = [
       "/images/snake/snake.jpeg",
       "/images/snake/snake2.png",
       "/images/snake/snake3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+   {
+    id: "recettio",
+    title: "Recettio",
+    description:
+      "Recettio est une application mobile de recettes intelligentes conçue pour accompagner les utilisateurs au quotidien. Elle propose des recettes personnalisées en fonction du temps disponible, du budget et des préférences alimentaires, avec une expérience mobile fluide, intuitive et apaisante.",
+    image: "/images/recettio/recettio.png",
+    technologies: ["expo", "react native", "redux"],
+    tags: ["react-native", "expo", "redux"],
+    techBars: [
+      { label: "Expo", value: 40 },
+      { label: "React Native", value: 35 },
+      { label: "Redux / State", value: 25 },
+    ],
+    gallery: [
+      "/images/recettio/recettio.png",
+      "/images/recettio/recettio1.jpeg",
+      "/images/recettio/recettio2.jpeg",
+   
     ],
     githubLink: "https://github.com/Hapssatou03",
   },
