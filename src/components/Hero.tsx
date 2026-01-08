@@ -6,27 +6,22 @@ import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden isolate">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#243654] via-[#182a44] to-[#0f1c2f]" />
+
       <div
-        className="absolute inset-0 bg-gradient-to-b
-        from-[#243654]
-        via-[#182a44]
-        to-[#0f1c2f]"
+        className="absolute inset-0 -z-10 pointer-events-none
+    bg-[radial-gradient(circle_at_top_left,rgba(80,120,255,0.18),transparent_35%)]
+    mix-blend-soft-light"
       />
 
       <div
-        className="absolute inset-0 pointer-events-none
-        bg-[radial-gradient(circle_at_top_left,rgba(80,120,255,0.18),transparent_35%)]
-        mix-blend-soft-light"
+        className="absolute inset-0 -z-10 pointer-events-none
+    bg-[radial-gradient(circle_at_bottom_right,rgba(255,80,180,0.12),transparent_40%)]
+    mix-blend-soft-light"
       />
 
-      <div
-        className="absolute inset-0 pointer-events-none
-        bg-[radial-gradient(circle_at_bottom_right,rgba(255,80,180,0.12),transparent_40%)]
-        mix-blend-soft-light"
-      />
-
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 md:pt-24 md:pb-28 text-center">
+      <div className="relative z-10 mix-blend-normal max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 md:pt-24 md:pb-28 text-center">
         {/* NOM */}
         <motion.h1
           initial={{ opacity: 0, y: 10 }}

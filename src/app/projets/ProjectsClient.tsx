@@ -388,7 +388,7 @@ const PROJECTS: Project[] = [
     title: "Data Pipeline AWS (Batch ETL)",
     description:
       "Pipeline de données batch de bout-en-bout : ingestion, transformation, stockage et requêtes analytiques.",
-    image: "/images/DataPipeline.png",
+    image: "/images/data/data-streaming.jpg",
     technologies: ["AWS S3", "Python", "Airflow", "Athena"],
     tags: ["python", "api"],
     techBars: [

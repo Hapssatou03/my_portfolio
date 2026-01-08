@@ -39,7 +39,6 @@ export default function Navbar() {
                    py-4 md:py-5
                    flex items-center justify-between"
       >
-        {/* Logo gauche */}
         <Link
           href="/"
           className="font-serif text-xl font-bold tracking-tight text-slate-50"
@@ -50,7 +49,6 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Menu desktop aligné tout à droite */}
         <div className="hidden md:flex items-center gap-8 ml-auto">
           {items.map((it) => (
             <Link
@@ -63,7 +61,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Burger mobile à droite */}
         <button
           className="md:hidden p-2 text-slate-100 ml-auto"
           onClick={toggleMenu}

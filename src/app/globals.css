@@ -2,22 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Scroll fluide pour le mode "SPA" (/#apropos, /#projets, etc.) */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Variables de couleurs globales (optionnel, on garde simple) */
+
 :root {
-  --foreground-rgb: 248, 250, 252; /* slate-50 */
+  --foreground-rgb: 248, 250, 252; 
 }
 
-/* Mode dark (tu forces déjà 'dark' côté JS, donc on reste cohérent) */
+
 html.dark {
   --foreground-rgb: 248, 250, 252;
 }
 
-/* On laisse le fond être géré par les classes Tailwind (bg-slate-950 dans le layout) */
+
 body {
   color: rgb(var(--foreground-rgb));
 }
@@ -42,7 +42,7 @@ body {
   }
 
   a {
-    @apply text-slate-100 hover:text-blue-400;
+    @apply text-slate-100;
   }
 
   .muted {
