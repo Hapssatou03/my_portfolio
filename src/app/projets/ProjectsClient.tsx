@@ -5,12 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  FaGithub,
-  FaExternalLinkAlt,
-  FaMobileAlt,
-  FaArrowLeft,
-} from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
+import { HiOutlineTag } from "react-icons/hi2";
 
 /* ========= Types ========= */
 
@@ -70,57 +66,15 @@ const FILTERS: { key: string; label: string }[] = [
   { key: "php", label: "php" },
 ];
 
-
 /* ========= Données projets ========= */
 
 const PROJECTS: Project[] = [
   {
-    id: "caresync",
-    title: "CareSync",
-    description:
-      "Application de self-tracking orientée bien-être permettant de suivre le sommeil, l’humeur, les habitudes quotidiennes et d’afficher des tendances via un moteur d’analyse.",
-    image: "/images/caresync-card.png",
-    technologies: ["react", "next.js", "tailwind", "charts"],
-    tags: ["react", "typescript", "data", "ux"],
-    techBars: [
-      { label: "Frontend React / Next.js", value: 40 },
-      { label: "UX / UI & Design System", value: 30 },
-      { label: "Data / Analytics", value: 30 },
-    ],
-    gallery: [
-      "/images/caresync-1.png",
-      "/images/caresync-2.png",
-      "/images/caresync-3.png",
-    ],
-    githubLink: "https://github.com/Hapssatou03",
-  },
-  {
-    id: "recettio",
-    title: "Recettio",
-    description:
-      "Application mobile de gestion de recettes permettant de créer, organiser et retrouver facilement ses plats favoris, avec gestion des ingrédients et filtrage par catégories.",
-    image: "/images/recettio-card.png",
-    technologies: ["expo", "react native", "redux"],
-    tags: ["react-native", "expo", "redux"],
-    techBars: [
-      { label: "Expo", value: 40 },
-      { label: "React Native", value: 35 },
-      { label: "Redux / State", value: 25 },
-    ],
-    gallery: [
-      "/images/recettio-1.png",
-      "/images/recettio-2.png",
-      "/images/recettio-3.png",
-      "/images/recettio-4.png",
-    ],
-    githubLink: "https://github.com/Hapssatou03",
-  },
-  {
     id: "spendy",
     title: "Spendy",
     description:
-      "Application full-stack pour gérer revenus, dépenses, budgets et statistiques avec sécurisation JWT.",
-    image: "/images/spendy-card.png",
+      "Spendy est une application de gestion de dépenses développée dans le cadre de la soutenance de mon Master. Conçue avec une architecture MVC et N-Tiers, la première version permet l’ajout de revenus et de dépenses, le calcul automatique des dépenses par rapport aux revenus, ainsi que leur visualisation à l’aide de graphiques interactifs.",
+    image: "/images/spendy/home-page.png",
     technologies: ["React", "Spring Boot", "MySQL", "MongoDB", "JWT"],
     tags: ["react", "api", "java", "mysql", "mongodb"],
     techBars: [
@@ -129,19 +83,67 @@ const PROJECTS: Project[] = [
       { label: "MySQL / MongoDB", value: 30 },
     ],
     gallery: [
-      "/images/spendy-1.png",
-      "/images/spendy-2.png",
-      "/images/spendy-3.png",
+      "/images/spendy/home-page.png",
+      "/images/spendy/connexion-page.png",
+      "/images/spendy/dashboard.png",
+      "/images/spendy/page-profil.png",
+      "/images/spendy/page-modif.png",
     ],
     githubLink: "https://github.com/Hapssatou03/backend-spendy",
     liveLink: "https://spendy-front-klbm.vercel.app",
   },
+
+  {
+    id: "caresync",
+    title: "CareSync",
+    description:
+      "CareSync est une application de self-tracking du bien-être, conçue pour aider les utilisateurs à mieux comprendre leur état quotidien grâce à des check-ins simples et à un score de bien-être explicable, dans une approche respectueuse des données personnelles.",
+    image: "/images/caresync/princpal-image.png",
+    technologies: ["react", "java", "tailwind", "python", "charts"],
+    tags: ["react", "typescript", "data", "ux"],
+    techBars: [
+      { label: "Frontend React / Next.js", value: 40 },
+      { label: "UX / UI & Design System", value: 30 },
+      { label: "python / Data", value: 20 },
+      { label: "Data / Analytics", value: 30 },
+    ],
+    gallery: [
+      "/images/caresync/dashboard-careSync.png",
+      "/images/caresync/register-caresync.png",
+      "/images/caresync/login-caresync.png",
+      "/images/caresync/how-are-you-doing.png",
+      "/images/caresync/princpal-image.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+  {
+    id: "recettio",
+    title: "Recettio",
+    description:
+      "Recettio est une application mobile de recettes intelligentes conçue pour accompagner les utilisateurs au quotidien. Elle propose des recettes personnalisées en fonction du temps disponible, du budget et des préférences alimentaires, avec une expérience mobile fluide, intuitive et apaisante.",
+    image: "/images/recettio/recettio.png",
+    technologies: ["expo", "react native", "redux"],
+    tags: ["react-native", "expo", "redux"],
+    techBars: [
+      { label: "Expo", value: 40 },
+      { label: "React Native", value: 35 },
+      { label: "Redux / State", value: 25 },
+    ],
+    gallery: [
+      "/images/recettio/recettio.png",
+      "/images/recettio/",
+      "/images/recettio/",
+      "/images/recettio/",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+  },
+
   {
     id: "jiamini",
     title: "JIAMINI ",
     description:
-      "Application éducative interactive avec globe 3D, quiz par matière et niveau, et espace élève.",
-    image: "/images/jiamini-card.png",
+      "Jiamini est une application éducative interactive dédiée aux élèves, conçue pour apprendre de manière ludique grâce à des quiz personnalisés par matière et niveau scolaire.",
+    image: "/images/jiamini/jiamini-home.png",
     technologies: ["React Native", "Spring Boot", "PostgreSQL"],
     tags: ["react-native", "api", "java", "postgresql"],
     techBars: [
@@ -150,9 +152,11 @@ const PROJECTS: Project[] = [
       { label: "PostgreSQL", value: 25 },
     ],
     gallery: [
-      "/images/jiamini-1.png",
-      "/images/jiamini-2.png",
-      "/images/jiamini-3.png",
+      "/images/jiamini/jiamini-home.png",
+      "/images/jiamini/jiamini_espace_student.png",
+      "/images/jiamini/jiamini_quiz_1.png",
+      "/images/jiamini/jiamini-choix-personnage.png",
+      "/images/jiamini/choice_level_quiz.png",
     ],
     githubLink: "https://github.com/Hapssatou03/Jiamini-API",
   },
@@ -160,69 +164,31 @@ const PROJECTS: Project[] = [
     id: "mindia",
     title: "Mindia ",
     description:
-      "Application web qui génère des quiz personnalisés en temps réel à partir d’un sujet et d’un niveau choisis.",
-    image: "/images/mindia-card.png",
+      "Mindia est une application web qui génère des quiz personnalisés en temps réel à partir d’un sujet et d’un niveau choisis.",
+    image: "/images/mindia/mindia.png",
     technologies: ["Next.js", "TypeScript", "API"],
     tags: ["react", "typescript", "api"],
     techBars: [
-      { label: "Next.js / React", value: 40 },
+      { label: "Next.js / node js", value: 40 },
       { label: "TypeScript", value: 35 },
       { label: "API / IA", value: 25 },
     ],
     gallery: [
-      "/images/mindia-1.png",
-      "/images/mindia-2.png",
-      "/images/mindia-3.png",
+      "/images/mindia/mindia.png",
+      "/images/mindia/login.png",
+      "/images/mindia/Register.png",
+      "/images/mindia/Setting.png",
+      "/images/mindia/userProfil.png",
+      "/images/mindia/ChoiceQuiz.png",
     ],
     githubLink: "https://github.com/Hapssatou03/Mindia",
-  },
-  {
-    id: "my-todo",
-    title: "My Todo ",
-    description:
-      "Application web permettant d’organiser ses tâches quotidiennes : ajout, édition, suppression, filtrage par statut et persistance des données.",
-    image: "/images/mytodo-card.png",
-    technologies: ["React", "TypeScript", "LocalStorage"],
-    tags: ["react", "typescript", "js"],
-    techBars: [
-      { label: "React", value: 40 },
-      { label: "TypeScript", value: 35 },
-      { label: "State & Storage", value: 25 },
-    ],
-    gallery: [
-      "/images/mytodo-1.png",
-      "/images/mytodo-2.png",
-      "/images/mytodo-3.png",
-    ],
-    githubLink: "https://github.com/Hapssatou03",
-    liveLink: "#",
-  },
-  {
-    id: "filmeo",
-    title: "FILMEO ",
-    description:
-      "Plateforme de type streaming avec recherche, catégories, fiches détaillées et bandes-annonces.",
-    image: "/images/filmeo-card.png",
-    technologies: ["Spring Boot", "Thymeleaf", "MySQL"],
-    tags: ["java", "mysql"],
-    techBars: [
-      { label: "Spring Boot", value: 40 },
-      { label: "Thymeleaf", value: 30 },
-      { label: "MySQL", value: 30 },
-    ],
-    gallery: [
-      "/images/filmeo-1.png",
-      "/images/filmeo-2.png",
-      "/images/filmeo-3.png",
-    ],
-    githubLink: "https://github.com/Hapssatou03/Filmeo_Streaming",
   },
   {
     id: "eclat-solidaire",
     title: "Éclat Solidaire",
     description:
       "Plateforme solidaire pour connecter associations, bénévoles et bénéficiaires avec gestion des projets et dons.",
-    image: "/images/eclat-solidaire.png",
+    image: "/images/eclat_solidaire/eclat-1.png",
     technologies: ["React", "Node.js", "Express", "MongoDB"],
     tags: ["react", "nodejs", "mongodb", "api"],
     techBars: [
@@ -231,19 +197,66 @@ const PROJECTS: Project[] = [
       { label: "MongoDB", value: 30 },
     ],
     gallery: [
-      "/images/eclat-1.png",
-      "/images/eclat-2.png",
-      "/images/eclat-3.png",
+      "/images/eclat_solidaire/eclat-1.png",
+      "/images/eclat_solidaire/eclat-2.png",
+      "/images/eclat_solidaire/eclat-3.png",
+      "/images/eclat_solidaire/eclat-4.png",
+      "/images/eclat_solidaire/eclat-5.png",
+      "/images/eclat_solidaire/eclat-6.png",
     ],
     githubLink: "https://github.com/Hapssatou03/eclat_solidaire",
     liveLink: "https://eclat-solidaire.vercel.app",
   },
   {
+    id: "filmeo",
+    title: "FILMEO ",
+    description:
+      "Filmeo est une plateforme de streaming développée avec Spring Boot et Thymeleaf, permettant aux utilisateurs de parcourir, visionner et gérer des vidéos en ligne de manière fluide et sécurisée. Elle ",
+    image: "/images/filmeo/filmeo1.png",
+    technologies: ["Spring Boot", "Thymeleaf", "MySQL"],
+    tags: ["java", "mysql"],
+    techBars: [
+      { label: "Spring Boot", value: 40 },
+      { label: "Thymeleaf", value: 30 },
+      { label: "MySQL", value: 30 },
+    ],
+    gallery: [
+      "/images/filmeo/filmeo1.png",
+      "/images/filmeo/filmeo2.png",
+      "/images/filmeo/filmeo3.png",
+      "/images/filmeo/filmeo4.png",
+      "/images/filmeo/filmeo5.png",
+      "/images/filmeo/filmeo6.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03/Filmeo_Streaming",
+  },
+  {
+    id: "my-todo",
+    title: "My Todo ",
+    description:
+      "Application web permettant d’organiser ses tâches quotidiennes : ajout, édition, suppression, filtrage par statut et persistance des données.",
+    image: "/images/mytodo/mytodo.png",
+    technologies: ["React", "TypeScript", "LocalStorage"],
+    tags: ["react", "typescript", "js"],
+    techBars: [
+      { label: "React", value: 40 },
+      { label: "TypeScript", value: 35 },
+      { label: "State & Storage", value: 25 },
+    ],
+    gallery: [
+      "/images/mytodo/mytodo1.png",
+      "/images/mytodo/mytodo2.png",
+      "/images/mytodo/mytodo3.png",
+    ],
+    githubLink: "https://github.com/Hapssatou03",
+    liveLink: "#",
+  },
+  {
     id: "shoply",
     title: "Shoply",
     description:
-      "Application web e-commerce permettant de parcourir un catalogue de produits, gérer un panier persistant, passer une commande et administrer les produits côté back-office.",
-    image: "/images/shoply-card.png",
+      "Shoply est une plateforme e-commerce dédiée à la revente d’articles d’occasion, pensée pour encourager une consommation plus responsable et durable. L’application permet aux utilisateurs de vendre facilement les articles qu’ils n’utilisent plus et d’acheter des produits de seconde main en toute sécurité.",
+    image: "/images/shoply/shoply.png",
     technologies: ["React", "Node.js", "MongoDB", "JWT"],
     tags: ["react", "nodejs", "api", "mongodb"],
     techBars: [
@@ -252,29 +265,32 @@ const PROJECTS: Project[] = [
       { label: "MongoDB & Data", value: 25 },
     ],
     gallery: [
-      "/images/shoply-1.png",
-      "/images/shoply-2.png",
-      "/images/shoply-3.png",
+      "/images/shoply/shoply1.png",
+      "/images/shoply/shoply2.png",
+      "/images/shoply/shoply3.png",
+      "/images/shoply/shoply4.png",
+      "/images/shoply/shoply5.png",
     ],
     githubLink: "https://github.com/Hapssatou03",
   },
   {
-    id: "quizmaster-ai",
-    title: "QuizMaster AI ",
+    id: "Juste prix",
+    title: "Juste prix ",
     description:
-      "Application web pédagogique permettant de générer des quiz par thème et niveau, avec score final, correction détaillée et historique des séances.",
-    image: "/images/quizmaster-card.png",
-    technologies: ["Next.js", "TypeScript", "API"],
+      " Le Juste Prix est un mini-jeu web interactif inspiré du célèbre concept télévisé. Le joueur doit deviner le prix exact d’un produit en un nombre limité d’essais, avec des indices dynamiques indiquant si le prix est plus haut ou plus bas. L’interface est moderne, ludique et responsive, offrant une expérience fluide et addictive. Ce projet met en avant la logique métier, la gestion d’état côté frontend et le design UI orienté jeu.",
+    image: "/images/juste_prix/juste_prix1.png",
+    technologies: ["js", "HTML", "CSS", "API"],
     tags: ["react", "typescript", "api"],
     techBars: [
-      { label: "Next.js / React", value: 40 },
-      { label: "TypeScript", value: 35 },
+      { label: "JS / HTML", value: 40 },
+      { label: "JS", value: 35 },
       { label: "Quiz Engine / Logic", value: 25 },
     ],
     gallery: [
-      "/images/quizmaster-1.png",
-      "/images/quizmaster-2.png",
-      "/images/quizmaster-3.png",
+      "/images/juste_prix/juste_prix1.png",
+      "/images/juste_prix/juste_prix2.png",
+      "/images/juste_prix/juste_prix3.png",
+      "/images/juste_prix/juste_prix4.png",
     ],
     githubLink: "https://github.com/Hapssatou03",
   },
@@ -282,8 +298,8 @@ const PROJECTS: Project[] = [
     id: "readly",
     title: "Readly ",
     description:
-      "Application mobile permettant de suivre sa progression de lecture, définir des objectifs mensuels, enregistrer ses livres et consulter des statistiques d’évolution.",
-    image: "/images/readly-card.png",
+      "Readly est une application mobile de suivi de lecture qui permet aux utilisateurs d’enregistrer leurs livres, suivre leur progression page par page, définir des objectifs mensuels et visualiser leurs statistiques d’évolution. L’app offre une expérience simple et motivante pour garder une routine de lecture régulière, mesurer ses progrès et rester organisé dans ses lectures.",
+    image: "/images/readly/readly.png",
     technologies: ["Expo", "React Native", "AsyncStorage"],
     tags: ["react-native", "expo"],
     techBars: [
@@ -292,9 +308,9 @@ const PROJECTS: Project[] = [
       { label: "State & Storage", value: 20 },
     ],
     gallery: [
-      "/images/readly-1.png",
-      "/images/readly-2.png",
-      "/images/readly-3.png",
+      "/images/readly/register.png",
+      "/images/readly/login.png",
+      "/images/readly/readly3.jpeg",
     ],
     githubLink: "https://github.com/Hapssatou03",
   },
@@ -303,7 +319,7 @@ const PROJECTS: Project[] = [
     title: "Snake ",
     description:
       "Jeu rétro développé en Python jouable dans le terminal : le serpent se déplace dans une grille, mange des pommes pour grandir et le joueur doit éviter les murs et son propre corps.",
-    image: "/images/snake-card.png",
+    image: "/images/snake/snake.jpeg",
     technologies: ["Python", "Curses", "Algorithmes"],
     tags: ["python", "jeu", "terminal"],
     techBars: [
@@ -311,57 +327,61 @@ const PROJECTS: Project[] = [
       { label: "Logique de jeu", value: 30 },
       { label: "Structures de données", value: 20 },
     ],
-    gallery: ["/images/snake-1.png", "/images/snake-2.png"],
-    githubLink: "https://github.com/Hapssatou03",
-  },
-  {
-    id: "mot-mystere",
-    title: "Mot Mystère — Jeu d’énigme en Python",
-    description:
-      "Jeu d’énigme en ligne de commande inspiré du pendu : un mot secret est choisi aléatoirement et le joueur doit le deviner lettre par lettre avec un nombre limité de tentatives.",
-    image: "/images/motmystere-card.png",
-    technologies: ["Python", "Fichiers texte", "Algorithmes"],
-    tags: ["python", "jeu", "console"],
-    techBars: [
-      { label: "Python", value: 50 },
-      { label: "Manipulation de chaînes", value: 30 },
-      { label: "Gestion des fichiers", value: 20 },
+    gallery: [
+      "/images/snake/snake.jpeg",
+      "/images/snake/snake2.png",
+      "/images/snake/snake3.png",
     ],
-    gallery: ["/images/motmystere-1.png", "/images/motmystere-2.png"],
     githubLink: "https://github.com/Hapssatou03",
   },
-  {
-    id: "booktrack",
-    title: "BookTrack ",
-    description:
-      "Application PHP permettant de gérer une bibliothèque : ajout de livres, gestion des utilisateurs, suivi des emprunts et retours, avec interface d’administration.",
-    image: "/images/booktrack-card.png",
-    technologies: ["PHP", "MySQL", "MVC"],
-    tags: ["php", "mysql", "crud"],
-    techBars: [
-      { label: "PHP", value: 45 },
-      { label: "Base de données", value: 35 },
-      { label: "Architecture MVC", value: 20 },
-    ],
-    gallery: ["/images/booktrack-1.png", "/images/booktrack-2.png"],
-    githubLink: "https://github.com/Hapssatou03",
-  },
-  {
-    id: "eventify",
-    title: "Eventify ",
-    description:
-      "Application PHP permettant de créer des événements, gérer les inscriptions des participants et suivre le nombre de places restantes, avec interface d’administration.",
-    image: "/images/eventify-card.png",
-    technologies: ["PHP", "MySQL", "Sessions"],
-    tags: ["php", "mysql", "gestion"],
-    techBars: [
-      { label: "PHP", value: 45 },
-      { label: "Logique métier", value: 30 },
-      { label: "Gestion utilisateurs", value: 25 },
-    ],
-    gallery: ["/images/eventify-1.png", "/images/eventify-2.png"],
-    githubLink: "https://github.com/Hapssatou03",
-  },
+  // {
+  //   id: "mot-mystere",
+  //   title: "Mot Mystère — Jeu d’énigme en Python",
+  //   description:
+  //     "Snake Game est un jeu 2D développé en Python qui revisite le célèbre jeu du serpent avec une interface moderne et intuitive. Le joueur contrôle un serpent qui évolue sur une grille, collecte des pommes pour augmenter son score et doit éviter les collisions avec les murs et son propre corps. Ce projet met en avant la gestion des événements, la logique de jeu temps réel, ainsi que la structuration du code orientée objet, avec une attention particulière portée à l’expérience utilisateur et au design.",
+  //   image: "/images/motmystere-card.png",
+  //   technologies: ["Python", "Fichiers texte", "Algorithmes"],
+  //   tags: ["python", "jeu", "console"],
+  //   techBars: [
+  //     { label: "Python", value: 50 },
+  //     { label: "Manipulation de chaînes", value: 30 },
+  //     { label: "Gestion des fichiers", value: 20 },
+  //   ],
+  //   gallery: ["/images/snake/snake.png", "/images/snake/snake2.png"],
+  //   githubLink: "https://github.com/Hapssatou03",
+  // },
+  // {
+  //   id: "booktrack",
+  //   title: "BookTrack ",
+  //   description:
+  //     "Application PHP permettant de gérer une bibliothèque : ajout de livres, gestion des utilisateurs, suivi des emprunts et retours, avec interface d’administration.",
+  //   image: "/images/booktrack-card.png",
+  //   technologies: ["PHP", "MySQL", "MVC"],
+  //   tags: ["php", "mysql", "crud"],
+  //   techBars: [
+  //     { label: "PHP", value: 45 },
+  //     { label: "Base de données", value: 35 },
+  //     { label: "Architecture MVC", value: 20 },
+  //   ],
+  //   gallery: ["/images/booktrack-1.png", "/images/booktrack-2.png"],
+  //   githubLink: "https://github.com/Hapssatou03",
+  // },
+  // {
+  //   id: "eventify",
+  //   title: "Eventify ",
+  //   description:
+  //     "Application PHP permettant de créer des événements, gérer les inscriptions des participants et suivre le nombre de places restantes, avec interface d’administration.",
+  //   image: "/images/eventify-card.png",
+  //   technologies: ["PHP", "MySQL", "Sessions"],
+  //   tags: ["php", "mysql", "gestion"],
+  //   techBars: [
+  //     { label: "PHP", value: 45 },
+  //     { label: "Logique métier", value: 30 },
+  //     { label: "Gestion utilisateurs", value: 25 },
+  //   ],
+  //   gallery: ["/images/eventify-1.png", "/images/eventify-2.png"],
+  //   githubLink: "https://github.com/Hapssatou03",
+  // },
   {
     id: "data-pipeline",
     title: "Data Pipeline AWS (Batch ETL)",
@@ -375,7 +395,7 @@ const PROJECTS: Project[] = [
       { label: "AWS S3 / Athena", value: 35 },
       { label: "Python", value: 25 },
     ],
-    gallery: ["/images/datapipeline-1.png", "/images/datapipeline-2.png"],
+    gallery: [],
     githubLink: "https://github.com/Hapssatou03/transactions",
   },
 ];
@@ -384,7 +404,7 @@ const PROJECTS: Project[] = [
 
 const ProjectsClient: React.FC = () => {
   const pathname = usePathname();
-  const isFullPage = pathname === "/projets"; // /projets = vue complète
+  const isFullPage = pathname === "/projets";
 
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -522,23 +542,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
         group cursor-pointer
         flex flex-col
         rounded-3xl
-        bg-[#0b1628]
-        border border-white/8
-        shadow-[0_22px_55px_rgba(0,0,0,0.75)]
+        bg-white/5 backdrop-blur-xl
+        border border-white/10
+        shadow-[0_22px_55px_rgba(0,0,0,0.65)]
         overflow-hidden
         h-[460px]
-        hover:-translate-y-2 hover:shadow-[0_28px_70px_rgba(0,0,0,0.9)]
-        transition-transform duration-300
+        hover:-translate-y-2 hover:shadow-[0_28px_70px_rgba(0,0,0,0.85)]
+        transition-all duration-300
+        text-slate-50
       "
     >
-      <div className="relative w-full h-56 overflow-hidden bg-slate-900">
+      <div className="relative w-full h-56 overflow-hidden rounded-t-3xl bg-slate-900">
         <Image
           src={image}
           alt={`Illustration du projet ${title}`}
           fill
-          className="object-cover"
+          className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+          priority={project.id === "spendy"}
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020816]/90 via-[#020816]/20 to-transparent pointer-events-none" />
       </div>
 
       <div className="flex-1 px-7 pt-6 pb-5 bg-gradient-to-b from-[#0b1628] to-[#020816]">
@@ -560,15 +583,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
               <span
                 key={tech}
                 className="
-                  inline-flex items-center gap-1
-                  rounded-full
-                  bg-[#020617]
-                  border border-white/10
-                  px-3 py-1
-                  text-xs font-medium text-slate-100
-                "
+    inline-flex items-center gap-2
+    rounded-full
+    bg-[#1e293b]
+    border border-white/10
+    px-3 py-1
+    text-xs font-medium
+    text-slate-200
+  "
               >
-                <span className="text-[10px]">🏷</span>
+                <HiOutlineTag className="text-[#38bdf8] text-sm" />
                 {tech}
               </span>
             ))}
@@ -642,14 +666,43 @@ const CircleIconBtn: React.FC<CircleIconBtnProps> = ({
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
   const overlayRef = useRef<HTMLDivElement | null>(null);
+  const [activeShotIndex, setActiveShotIndex] = useState<number | null>(null);
+
+  const openShot = (i: number) => setActiveShotIndex(i);
+  const closeShot = () => setActiveShotIndex(null);
+
+  const showPrev = () => {
+    if (!project.gallery || activeShotIndex === null) return;
+    setActiveShotIndex((prev) =>
+      prev === null
+        ? 0
+        : (prev - 1 + project.gallery!.length) % project.gallery!.length
+    );
+  };
+
+  const showNext = () => {
+    if (!project.gallery || activeShotIndex === null) return;
+    setActiveShotIndex((prev) =>
+      prev === null ? 0 : (prev + 1) % project.gallery!.length
+    );
+  };
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (activeShotIndex !== null) closeShot();
+        else onClose();
+      }
+
+      if (activeShotIndex !== null) {
+        if (e.key === "ArrowLeft") showPrev();
+        if (e.key === "ArrowRight") showNext();
+      }
     };
+
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [onClose]);
+  }, [onClose, activeShotIndex, project.gallery]);
 
   return (
     <motion.div
@@ -733,18 +786,103 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
               <h4 className="text-lg font-semibold mb-4">
                 Captures d&apos;écran
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+              {/* Lightbox */}
+              <AnimatePresence>
+                {activeShotIndex !== null && (
+                  <motion.div
+                    className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm flex items-center justify-center px-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={closeShot}
+                  >
+                    <motion.div
+                      className="relative w-full max-w-5xl max-h-[90vh] rounded-2xl overflow-hidden bg-slate-950 border border-white/10 shadow-2xl"
+                      initial={{ scale: 0.96, y: 10, opacity: 0 }}
+                      animate={{ scale: 1, y: 0, opacity: 1 }}
+                      exit={{ scale: 0.96, y: 10, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {/* close */}
+                      <button
+                        type="button"
+                        aria-label="Fermer"
+                        onClick={closeShot}
+                        className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl grid place-items-center"
+                      >
+                        ×
+                      </button>
+
+                      {/* prev */}
+                      <button
+                        type="button"
+                        aria-label="Précédent"
+                        onClick={showPrev}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-lg grid place-items-center"
+                      >
+                        ‹
+                      </button>
+
+                      {/* next */}
+                      <button
+                        type="button"
+                        aria-label="Suivant"
+                        onClick={showNext}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-lg grid place-items-center"
+                      >
+                        ›
+                      </button>
+
+                      {/* image */}
+                      <div className="relative w-full h-[90vh]">
+                        <Image
+                          src={project.gallery[activeShotIndex]}
+                          alt={`Capture ${activeShotIndex + 1} - ${
+                            project.title
+                          }`}
+                          fill
+                          className="object-contain p-6"
+                          sizes="100vw"
+                          priority
+                        />
+                      </div>
+
+                      {/* counter */}
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs text-white/80 bg-black/40 px-3 py-1 rounded-full">
+                        {activeShotIndex + 1} / {project.gallery.length}
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {project.gallery.map((src, i) => (
                   <div
                     key={src + i}
-                    className="relative w-full aspect-[9/16] rounded-xl overflow-hidden bg-slate-800"
+                    onClick={() => openShot(i)}
+                    className="
+            relative w-full
+            aspect-[4/5]
+            rounded-2xl overflow-hidden
+            bg-gradient-to-br from-slate-800/70 to-slate-900/70
+            border border-white/10
+            shadow-[0_16px_40px_rgba(0,0,0,0.45)]
+            cursor-zoom-in
+            transition-transform duration-200 hover:scale-[1.01]
+          "
                   >
                     <Image
                       src={src}
                       alt={`Capture ${i + 1} - ${project.title}`}
                       fill
-                      className="object-cover"
+                      className="object-contain p-4"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
+                    <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                   </div>
                 ))}
               </div>
