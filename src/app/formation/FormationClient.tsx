@@ -14,7 +14,7 @@ type Formation = {
 const mainFormations: Formation[] = [
   {
     title: "Master 2 – CTO & Lead Tech",
-    school: "HETIC",
+    school: "",
     details:
       "Architecture logicielle, data, management d’équipes tech, vision produit.",
     status: "Sept 2026 - Sept 2027",
